@@ -1,79 +1,72 @@
+using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-// Continue Lecture 2 at 3:34:40, this note is from 1/10/26
-// 1/10/26 Look for Player Collider, not currently taking damage
-// For top down games, just drag the camera to the Player in Unity Hierarchy
-public class playerController : MonoBehaviour, IDamage
+
+public class playerController : MonoBehaviour
 {
-    [Header("----- Component -----")]// creates sections in Player controller when attached to a GameObject
+
+    [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
-    [Range(1,10)][SerializeField] int hp;
+    [Range(1, 10)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] int speed;
     [Range(2, 5)][SerializeField] int sprintMod;
     [Range(8, 20)][SerializeField] int jumpSpeed;
     [Range(1, 3)][SerializeField] int jumpMax;
+    [Range(1, 3)][SerializeField] int sideJumpMax;
 
-    [Header("----- Physics -----")]
+
+    [Header("----- Phyisics -----")]
     [Range(15, 40)][SerializeField] int gravity;
 
-    [Header("----- Guns -----")]
-    [SerializeField] int shootDamage;
-    [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
+    [Header("----- Equipment -----")]
+   // [SerializeField] int grapleDist;
+ //   [SerializeField] int gunDist;
+   // [SerializeField] int gunDamage;
 
     int jumpCount;
-    int HPOriginal;
+    int HPOrig;
 
-    float shootTimer;
+    float shootTImer;
 
     Vector3 moveDir;
-    Vector3 playerVelocity;
-
-
+    Vector3 playerVel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     HPOriginal = hp;
-     
+        HPOrig = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
-        sprint();
+        Sprint();
     }
 
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+       // Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * gunDist, Color.red);
 
-        shootTimer += Time.deltaTime; //shoot timer counts up
+        shootTImer += Time.deltaTime;
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        jump();// Call jump first
-        controller.Move(playerVelocity * Time.deltaTime); // Only jump need gravity
+        jump();
+        controller.Move(playerVel * Time.deltaTime);
 
-        
-
-        if (controller.isGrounded) // controller colliders are on top, bottom, and sides
+        if (controller.isGrounded)
         {
             jumpCount = 0;
-            playerVelocity = Vector3.zero;
+            playerVel = Vector3.zero;
         }
         else
         {
-            playerVelocity.y -= gravity * Time.deltaTime;// Add gravity so he comes down
-        }
-
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        {
-            Shoot();
+            playerVel.y -= gravity * Time.deltaTime;
         }
     }
 
@@ -81,48 +74,20 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            playerVelocity.y = jumpSpeed;
-            jumpCount++; //increment jump
+            playerVel.y = jumpSpeed;
+            jumpCount++;
         }
     }
 
-    void sprint()
+    void Sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
         }
-        else if(Input.GetButtonUp ("Sprint"))
+        else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
         }
     }
-
-    void Shoot()
-    {
-        shootTimer = 0;
-
-        RaycastHit hit;
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if(dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
-
-        }
-    }
-
-    public void takeDamage(int amount)
-    {
-        hp -= amount;
-
-        //Check if the player is dead
-        if(hp <=0)
-        {
-            gameManager.instance.youLose();
-        }
-    }
-}// Normal is the side of a surface that has the side you can see, like the front of a wall
+}
