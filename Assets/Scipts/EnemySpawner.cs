@@ -27,4 +27,13 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null || spawnPoints == null || spawnPoints.Length == 0)
             return;
     }
+
+    private void SpawnEnemy()
+    {
+        int currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (currentEnemyCount >= maxEnemies)
+            return;
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+    }
 }
