@@ -6,6 +6,9 @@ using UnityEngine;
 //
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Spawn VFX")]
+    [SerializeField] private GameObject spawnVFXPreFab;
+    [SerializeField] private float vfxLidetime = 2f;
 
     [Header("References")]
     //Enemy prefab to spawn
