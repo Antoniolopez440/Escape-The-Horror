@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -26,6 +27,14 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemyPrefab == null || spawnPoints == null || spawnPoints.Length == 0)
             return;
+
+        timer += Time.deltaTime;
+
+        if (timer >= spwanDelay)
+        {
+            SpawnEnemy();
+            timer = 0f;
+        }
     }
 
     private void SpawnEnemy()
@@ -36,4 +45,5 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
+
 }
