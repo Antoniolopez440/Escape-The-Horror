@@ -23,7 +23,8 @@ public class playerController : MonoBehaviour
 
     [Header("----- Equipment -----")]
    // [SerializeField] int grapleDist;
- //   [SerializeField] int gunDist;
+   [SerializeField] int gunDist;
+   [SerializeField] float gunShootRate;
    // [SerializeField] int gunDamage;
 
     int jumpCount;
@@ -90,4 +91,15 @@ public class playerController : MonoBehaviour
             speed /= sprintMod;
         }
     }
+
+ //   void Shoot()
+ //   {
+ //       shootTImer = 0;
+
+   //     RaycastHit hit;
+  //      if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, gunDist, ~ignoreLayer))
+  //      {
+
+   //     }
+ //   }
 }
