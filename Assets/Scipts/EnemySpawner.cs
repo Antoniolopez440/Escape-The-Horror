@@ -51,12 +51,25 @@ public class EnemySpawner : MonoBehaviour
 
 
     //It ensures that the number of enemies does not exceed the maximum limit before spawning a new enemy at a random spawn point.
+    //Spawn VFX is instantiated if available.
     private void SpawnEnemy()
     {
         int currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (currentEnemyCount >= maxEnemies)
             return;
+
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+        if (spawnVFXPreFab != null)
+        {
+            GameObject vfx = Instantiate(
+                spawnVFXPreFab,
+                spawnPoint.position,
+                spawnPoint.rotation
+                );
+
+            Destroy(vfx, vfxLidetime);
+        }
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
