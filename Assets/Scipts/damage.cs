@@ -30,15 +30,15 @@ public class damage : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if(other.isTrigger) return; // Ignore trigger colliders
+       // if(other.isTrigger) return; // Ignore trigger colliders
 
-        IDamage damage = GetComponent<IDamage>(); // Try to get the IDamage component from the other object
-        if (damage != null)
+        IDamage d = other.GetComponentInParent<IDamage>(); // Try to get the IDamage component from the other object
+        if (d != null)
         {
-            damage.takeDamage(damageAmount);
-            if(damage != null && type != damageType.DOT) // If the other object has an IDamage component and the damage type is not DOT
+            d.takeDamage(damageAmount);
+            if(d != null && type != damageType.DOT) // If the other object has an IDamage component and the damage type is not DOT
             {
-                damage.takeDamage(damageAmount);
+                d.takeDamage(damageAmount);
             }
             if(type == damageType.moving)
             Destroy(gameObject); // Destroy the damage object after dealing damage
@@ -55,6 +55,7 @@ public class damage : MonoBehaviour
         {
             StartCoroutine(damageOther(damage)); // Start the damage over time coroutine
         }
+        
     }
 
     IEnumerator damageOther (IDamage d) // Coroutine to deal damage over time

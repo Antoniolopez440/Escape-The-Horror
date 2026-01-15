@@ -13,14 +13,8 @@ public class EnemyAi : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
-    [SerializeField] Transform meleePos;
-    [SerializeField] float attackRange;
-    [SerializeField] float attackRate;
-    [SerializeField] int attackDamage;
-
     Color colorOrig;
     float shootTimer;
-    float meleeTimer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,18 +28,12 @@ public class EnemyAi : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
-        meleeTimer += Time.deltaTime;
 
         agent.SetDestination(gameManager.instance.player.transform.position); // Set the destination of the NavMeshAgent to the player's position
 
         if (shootTimer >= shootRate)
         {
             shoot();
-        }
-        
-        if (Vector3.Distance(transform.position, gameManager.instance.player.transform.position) <= attackRange && meleeTimer >= attackRate)
-        {
-            melee();
         }
     }
 
@@ -54,23 +42,6 @@ public class EnemyAi : MonoBehaviour, IDamage
         shootTimer = 0;
 
         Instantiate(bullet, shootPos.position, transform.rotation); // Spawn bullet at shootPos with enemy rotation
-    }
-
-    void melee()
-    {
-        meleeTimer = 0;
-
-        Collider[] hits = Physics.OverlapSphere(meleePos.position, attackRange);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            IDamage damage = hits[i].GetComponent<IDamage>();
-            if (damage != null)
-            {
-                damage.takeDamage(attackDamage);
-                break; //only hit one target
-            }
-        }
     }
     //can be used for all game objects that take damage
     public void takeDamage(int amount)
