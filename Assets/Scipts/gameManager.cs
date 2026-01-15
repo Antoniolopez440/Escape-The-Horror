@@ -1,7 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 // Connecting the GameManager to ui as GameManager is going to become a prefab and is important.
 public class gameManager : MonoBehaviour
@@ -16,7 +14,6 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public GameObject player;
     public playerController playerScript;
-    public GameObject playerDamageScreen;
 
     float timeScaleOriginal;
 
