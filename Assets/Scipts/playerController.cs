@@ -7,7 +7,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
-    [Range(1,10)][SerializeField] int hp;
+    [Range(0,10)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] int speed;
     [Range(2, 5)][SerializeField] int sprintMod;
     [Range(8, 20)][SerializeField] int jumpSpeed;
@@ -25,23 +25,23 @@ public class playerController : MonoBehaviour, IDamage
     int jumpCount;
     int HPOriginal;
 
-    int remaingShots;
-
     float shootTimer;
+    int remaningShots;
 
     Vector3 moveDir;
     Vector3 playerVelocity;
 
 
 
-    
+   
     void Start()
     {
+     remaningShots = magazineSize;
      HPOriginal = hp;
      
     }
 
-   
+    
     void Update()
     {
         movement();
@@ -58,7 +58,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
-        controller.Move(playerVelocity * Time.deltaTime); 
+        controller.Move(playerVelocity * Time.deltaTime);
 
         
 
@@ -75,6 +75,12 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
             Shoot();
+            remaningShots -= 1;
+        }
+
+        if(Input.GetButton("Fire2"))
+        {
+            reload();
         }
     }
 
@@ -83,7 +89,7 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVelocity.y = jumpSpeed;
-            jumpCount++; 
+            jumpCount++; //increment jump
         }
     }
 
@@ -108,9 +114,15 @@ public class playerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if(dmg != null)
+
+            if(remaningShots <= 0)
+            {
+                return;
+            }
+            else if(dmg != null)
             {
                 dmg.takeDamage(shootDamage);
+             
             }
 
         }
@@ -118,20 +130,20 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        hp -= amount;
+        //hp -= amount;
 
-        
-    //   if(hp <=0)
-     //   {
-    //        gameManager.instance.youLose();
-      //  }
+        ////Check if the player is dead
+        //if (hp <= 0)
+        //{
+        //    gameManager.instance.youLose();
+        //}
     }
 
     public void reload()
     {
-        if(remaingShots <= magazineSize)
-        {
-            remaingShots = magazineSize;
-        }
+    
+            remaningShots = magazineSize;
+        
     }
-}
+
+}// Normal is the side of a surface that has the side you can see, like the front of a wall

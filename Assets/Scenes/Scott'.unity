@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a441b49180ea5cc46886a274c3f39dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
+  HP: 0
 --- !u!1001 &7668035336799349538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,6 +711,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
       propertyPath: hp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: gravity
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: jumpMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: shootDist
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: shootRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113387656376684812, guid: 924ead2cd125deb4cbda9fe499921b0a, type: 3}
+      propertyPath: shootDamage
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
