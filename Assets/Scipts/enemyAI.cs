@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage
 {
 
     [SerializeField] int HP;
