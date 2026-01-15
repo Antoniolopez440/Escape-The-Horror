@@ -1,73 +1,80 @@
-using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
-
-    [Header("----- Components -----")]
+    [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(1,10)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] int speed;
     [Range(2, 5)][SerializeField] int sprintMod;
     [Range(8, 20)][SerializeField] int jumpSpeed;
     [Range(1, 3)][SerializeField] int jumpMax;
-    [Range(1, 3)][SerializeField] int sideJumpMax;
 
-
-    [Header("----- Phyisics -----")]
+    [Header("----- Physics -----")]
     [Range(15, 40)][SerializeField] int gravity;
 
-    [Header("----- Equipment -----")]
-   // [SerializeField] int grapleDist;
-   [SerializeField] int gunDist;
-   [SerializeField] float gunShootRate;
-   // [SerializeField] int gunDamage;
+    [Header("----- Guns -----")]
+    [SerializeField] int shootDamage;
+    [SerializeField] int shootDist;
+    [SerializeField] float shootRate;
+    [SerializeField] int magazineSize;
 
     int jumpCount;
-    int HPOrig;
+    int HPOriginal;
 
-    float shootTImer;
+    int remaingShots;
+
+    float shootTimer;
 
     Vector3 moveDir;
-    Vector3 playerVel;
+    Vector3 playerVelocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+    
     void Start()
     {
-        HPOrig = HP;
+     HPOriginal = hp;
+     
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         movement();
-        Sprint();
+        sprint();
     }
 
     void movement()
     {
-       // Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * gunDist, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        shootTImer += Time.deltaTime;
+        shootTimer += Time.deltaTime; 
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
-        controller.Move(playerVel * Time.deltaTime);
+        controller.Move(playerVelocity * Time.deltaTime); 
 
-        if (controller.isGrounded)
+        
+
+        if (controller.isGrounded) 
         {
             jumpCount = 0;
-            playerVel = Vector3.zero;
+            playerVelocity = Vector3.zero;
         }
         else
         {
-            playerVel.y -= gravity * Time.deltaTime;
+            playerVelocity.y -= gravity * Time.deltaTime;
+        }
+
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            Shoot();
         }
     }
 
@@ -75,31 +82,56 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            playerVel.y = jumpSpeed;
-            jumpCount++;
+            playerVelocity.y = jumpSpeed;
+            jumpCount++; 
         }
     }
 
-    void Sprint()
+    void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if(Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if(Input.GetButtonUp ("Sprint"))
         {
             speed /= sprintMod;
         }
     }
 
- //   void Shoot()
- //   {
- //       shootTImer = 0;
+    void Shoot()
+    {
+        shootTimer = 0;
 
-   //     RaycastHit hit;
-  //      if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, gunDist, ~ignoreLayer))
-  //      {
+        RaycastHit hit;
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if(dmg != null)
+            {
+                dmg.takeDamage(shootDamage);
+            }
 
-   //     }
- //   }
+        }
+    }
+
+    public void takeDamage(int amount)
+    {
+        hp -= amount;
+
+        
+    //   if(hp <=0)
+     //   {
+    //        gameManager.instance.youLose();
+      //  }
+    }
+
+    public void reload()
+    {
+        if(remaingShots <= magazineSize)
+        {
+            remaingShots = magazineSize;
+        }
+    }
 }
