@@ -4,7 +4,9 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Renderer model;
     [SerializeField] LayerMask ignoreLayer;
+
 
     [Header("----- Stats -----")]
     [Range(0,10)][SerializeField] int hp;
