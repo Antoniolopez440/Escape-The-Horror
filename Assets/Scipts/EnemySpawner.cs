@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 //Handles enemy spawning at random spawn points with a maximum limit and delay.
-//
+//Spawns visual effects (VFX) when an enemy is spawned.
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn VFX")]

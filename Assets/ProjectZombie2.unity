@@ -1093,6 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c562d30eae9f4654194a5763cf95abbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  spawnVFXPreFab: {fileID: 8011431163159815466, guid: 34bd5f18f1ac06347b87a186ec7a7ca9, type: 3}
+  vfxLidetime: 2
   enemyPrefab: {fileID: 1627421211768585433, guid: ff0d7aef6f938f444b47a9083d2b3d14, type: 3}
   spawnPoints:
   - {fileID: 842097871}
