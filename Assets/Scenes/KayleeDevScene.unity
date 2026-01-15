@@ -9442,6 +9442,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e51b25651d2f9f4da7fce8df2261f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMeleeAi
+  agent: {fileID: 791330392}
+  model: {fileID: 8597865178428971248, guid: bb047726d06b1074c8ceb1c93a0899d6, type: 3}
+  animator: {fileID: 791330393}
+  meleePos: {fileID: 411821585}
+  attackRange: 1.5
+  attackRate: 0.5
+  attackDamage: 2
+  hitRadius: 1
+  hp: 10
+--- !u!195 &791330392 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 600762529005853396, guid: 3919b0bf211419b4bbaa5e024088c9dd, type: 3}
+  m_PrefabInstance: {fileID: 705504619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &791330393 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 638228743681575928, guid: 3919b0bf211419b4bbaa5e024088c9dd, type: 3}
+  m_PrefabInstance: {fileID: 705504619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &793019586
 GameObject:
   m_ObjectHideFlags: 0
@@ -24664,6 +24683,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e51b25651d2f9f4da7fce8df2261f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMeleeAi
+  agent: {fileID: 1984845144}
+  model: {fileID: 8597865178428971248, guid: bb047726d06b1074c8ceb1c93a0899d6, type: 3}
+  animator: {fileID: 1984845145}
+  meleePos: {fileID: 411821585}
+  attackRange: 1.5
+  attackRate: 0.5
+  attackDamage: 2
+  hitRadius: 1
+  hp: 10
+--- !u!195 &1984845144 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 600762529005853396, guid: 3919b0bf211419b4bbaa5e024088c9dd, type: 3}
+  m_PrefabInstance: {fileID: 1389237764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1984845145 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 638228743681575928, guid: 3919b0bf211419b4bbaa5e024088c9dd, type: 3}
+  m_PrefabInstance: {fileID: 1389237764}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998652571
 GameObject:
   m_ObjectHideFlags: 0
