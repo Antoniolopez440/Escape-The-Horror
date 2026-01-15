@@ -1,15 +1,15 @@
 using UnityEngine;
-// Continue Lecture 2 at 3:34:40, this note is from 1/10/26
-// 1/10/26 Look for Player Collider, not currently taking damage
-// For top down games, just drag the camera to the Player in Unity Hierarchy
+
 public class playerController : MonoBehaviour, IDamage
 {
-    [Header("----- Component -----")]// creates sections in Player controller when attached to a GameObject
+    [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Renderer model;
     [SerializeField] LayerMask ignoreLayer;
 
+
     [Header("----- Stats -----")]
-    [Range(1,10)][SerializeField] int hp;
+    [Range(0,10)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] int speed;
     [Range(2, 5)][SerializeField] int sprintMod;
     [Range(8, 20)][SerializeField] int jumpSpeed;
@@ -22,25 +22,28 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    [SerializeField] int magazineSize;
 
     int jumpCount;
     int HPOriginal;
 
     float shootTimer;
+    int remaningShots;
 
     Vector3 moveDir;
     Vector3 playerVelocity;
 
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
     void Start()
     {
+     remaningShots = magazineSize;
      HPOriginal = hp;
      
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         movement();
@@ -51,29 +54,35 @@ public class playerController : MonoBehaviour, IDamage
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        shootTimer += Time.deltaTime; //shoot timer counts up
+        shootTimer += Time.deltaTime; 
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        jump();// Call jump first
-        controller.Move(playerVelocity * Time.deltaTime); // Only jump need gravity
+        jump();
+        controller.Move(playerVelocity * Time.deltaTime);
 
         
 
-        if (controller.isGrounded) // controller colliders are on top, bottom, and sides
+        if (controller.isGrounded) 
         {
             jumpCount = 0;
             playerVelocity = Vector3.zero;
         }
         else
         {
-            playerVelocity.y -= gravity * Time.deltaTime;// Add gravity so he comes down
+            playerVelocity.y -= gravity * Time.deltaTime;
         }
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
             Shoot();
+            remaningShots -= 1;
+        }
+
+        if(Input.GetButton("Fire2"))
+        {
+            reload();
         }
     }
 
@@ -107,9 +116,15 @@ public class playerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if(dmg != null)
+
+            if(remaningShots <= 0)
+            {
+                return;
+            }
+            else if(dmg != null)
             {
                 dmg.takeDamage(shootDamage);
+             
             }
 
         }
@@ -121,9 +136,17 @@ public class playerController : MonoBehaviour, IDamage
         hp -= amount;
 
         //Check if the player is dead
-        if(hp <=0)
+        if (hp <= 0)
         {
-            gameManager.instance.youLose();
+         //   gameManager.instance.youLose();
         }
     }
+
+    public void reload()
+    {
+    
+            remaningShots = magazineSize;
+        
+    }
+
 }// Normal is the side of a surface that has the side you can see, like the front of a wall
