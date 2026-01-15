@@ -130,13 +130,13 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        //hp -= amount;
+        hp -= amount;
 
-        ////Check if the player is dead
-        //if (hp <= 0)
-        //{
-        //    gameManager.instance.youLose();
-        //}
+        //Check if the player is dead
+        if (hp <= 0)
+        {
+         //   gameManager.instance.youLose();
+        }
     }
 
     public void reload()
