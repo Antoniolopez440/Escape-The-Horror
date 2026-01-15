@@ -37,6 +37,11 @@ public class EnemyMeleeAi : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("TEST KEY PRESSED -> Calling DealMeleeDamage()");
+            DealMeleeDamage();
+        }
         meleeTimer += Time.deltaTime;
 
         agent.SetDestination(gameManager.instance.player.transform.position); // Set the destination of the NavMeshAgent to the player's position
@@ -58,10 +63,11 @@ public class EnemyMeleeAi : MonoBehaviour, IDamage
         
         isAttacking = true;
         animator.SetTrigger("MeleeAttack");
+        DealMeleeDamage();
     }
 public void DealMeleeDamage()
     {
-        float hitRadius = 1.5f;
+        float hitRadius = 2.0f;
         Collider[] hits = Physics.OverlapSphere(meleePos.position, hitRadius);
         Debug.Log("DealMeleeDamage connected!" + hits.Length);
 
@@ -70,7 +76,7 @@ public void DealMeleeDamage()
         for (int i = 0; i < hits.Length; i++)
         {
             //if (hits[i].gameObject == gameObject) continue;
-            if (hits[i].transform.root == transform.root) continue;
+            if (hits[i].CompareTag("Player")) continue;
 
             Debug.Log("Hit: " + hits[i].name);
 
