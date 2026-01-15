@@ -4,17 +4,26 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour, IDamage
 {
+    [SerializeField] LayerMask playerLayer;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
+    [SerializeField] float meleeDamage;
+    [SerializeField] float attackRange;
+    [SerializeField] bool playerInAttackRange;
+
 
     [SerializeField] int hp;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
+    Animator animator;
+
     Color colorOrig;
     float shootTimer;
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +31,7 @@ public class EnemyAi : MonoBehaviour, IDamage
         colorOrig = model.material.color;
 
         gameManager.instance.updateGameGoal(1);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,14 +39,26 @@ public class EnemyAi : MonoBehaviour, IDamage
     {
         shootTimer += Time.deltaTime;
 
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+
+
         agent.SetDestination(gameManager.instance.player.transform.position); // Set the destination of the NavMeshAgent to the player's position
 
         if (shootTimer >= shootRate)
         {
             shoot();
         }
+        if (playerInAttackRange)
+        {
+            meleeAttack();
+        }
     }
 
+    void meleeAttack()
+    {
+        animator.SetTrigger("Attack");
+        agent.SetDestination(transform.position);
+    }
     void shoot()
     {
         shootTimer = 0;

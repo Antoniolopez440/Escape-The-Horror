@@ -1,7 +1,7 @@
+using System.Collections;
 using UnityEngine;
-// Continue Lecture 2 at 3:34:40, this note is from 1/10/26
-// 1/10/26 Look for Player Collider, not currently taking damage
-// For top down games, just drag the camera to the Player in Unity Hierarchy
+using UnityEngine.UIElements;
+
 public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Component -----")]// creates sections in Player controller when attached to a GameObject
@@ -36,7 +36,7 @@ public class playerController : MonoBehaviour, IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     HPOriginal = hp;
+        HPOriginal = hp;
      
     }
 
@@ -118,11 +118,20 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         hp -= amount;
+        StartCoroutine(flashRed());
 
         //Check if the player is dead
         if(hp <=0)
         {
             gameManager.instance.youLose();
+        }
+
+        IEnumerator flashRed()
+        {
+            gameManager.instance.playerDamageScreen.SetActive(true);
+            yield return new WaitForSeconds(0.01f);
+            gameManager.instance.playerDamageScreen.SetActive(false);
+
         }
     }
 }// Normal is the side of a surface that has the side you can see, like the front of a wall
