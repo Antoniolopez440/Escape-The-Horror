@@ -132,6 +132,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+        Debug.Log(amount + " damage taken!");
         hp -= amount;
 
         //Check if the player is dead
