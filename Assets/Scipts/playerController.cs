@@ -138,7 +138,7 @@ public class playerController : MonoBehaviour, IDamage
         //Check if the player is dead
         if (hp <= 0)
         {
-         //   gameManager.instance.youLose();
+            gameManager.instance.youLose();
         }
     }
 
