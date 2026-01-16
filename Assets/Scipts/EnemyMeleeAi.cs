@@ -60,6 +60,11 @@ public class EnemymeleeAI : MonoBehaviour, IDamage
         agent.SetDestination(transform.position);
     }
 
+    public int GetV(int amount)
+    {
+        return hp -= amount;
+    }
+
     //can be used for all game objects that take damage
     public void takeDamage(int amount)
     {
