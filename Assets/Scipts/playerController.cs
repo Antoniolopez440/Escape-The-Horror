@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(15, 40)][SerializeField] int gravity;
 
     [Header("----- Guns -----")]
+    [SerializeField] GameObject currentGun;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
