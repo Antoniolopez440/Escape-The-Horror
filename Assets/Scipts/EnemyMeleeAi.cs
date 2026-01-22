@@ -14,7 +14,7 @@ public class EnemyMeleeAi : MonoBehaviour, IDamage
     [SerializeField] float attackRange;
     [SerializeField] float attackRate;
     [SerializeField] int attackDamage;
-    [SerializeField] float hitRadius = 1.0f;
+  //  [SerializeField] float hitRadius = 1.0f;
 
     [Header("Stats")]
     [SerializeField] int hp;

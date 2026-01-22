@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
 
     public GameObject player;
-    public playerController playerScript;
+    public PlayerController playerScript;
     public Image playerHPBar;
     public GameObject playerDamageScreen;
 
@@ -31,7 +31,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
 
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<PlayerController>();
 
     }
 
