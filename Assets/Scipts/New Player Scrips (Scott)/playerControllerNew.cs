@@ -52,7 +52,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     // Update is called once per frame
     void Update()
     {
-       movement();
+        
+        movement();
        Sprint();
     }
 
@@ -82,6 +83,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             shoot();
         }
+
+        selectGun();
 
     }
 
@@ -164,14 +167,14 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
         {
-            gunListPos++;
-            changeGun();
+                gunListPos++;
+                changeGun();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-        {
+        else if (Input.GetAxis("Mouse ScrollWheel")< 0 && gunListPos> 0) 
+            {
             gunListPos--;
             changeGun();
-        }
+            }
     }
 
 }
