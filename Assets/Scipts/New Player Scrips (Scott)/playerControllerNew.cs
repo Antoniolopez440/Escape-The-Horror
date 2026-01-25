@@ -19,8 +19,8 @@ public class playerControllerNew : MonoBehaviour , IDamage
     [Header("----- Phyisics -----")]
     [Range(15, 40)][SerializeField] int gravity;
 
-  //  [Header("----- Guns -----")]
-    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [Header("----- Guns -----")]
+    [SerializeField] List<gunStatsNew> gunList = new List<gunStatsNew>();
 
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
@@ -30,7 +30,7 @@ public class playerControllerNew : MonoBehaviour , IDamage
 
     int jumpCount;
     int HPOrig;
-  //  int gunListPos;
+    int gunListPos;
 
     float shootTimer;
 
@@ -111,14 +111,14 @@ public class playerControllerNew : MonoBehaviour , IDamage
        // Debug.Log(Camera.main);
         shootTimer = 0;
 
-       // gunList[gunListPos].ammoCur--;
+        gunList[gunListPos].ammoCur--;
 
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
 
-            //Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+            Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (dmg != null)
