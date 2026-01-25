@@ -11688,6 +11688,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302706411}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1321488747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7321921692361292108, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_Name
+      value: ToonSoldiers_infantry (Player)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.833511
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.981201
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000016292068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201871616165108975, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8658741869e9a7e4f85429a0f87adc2d, type: 3}
 --- !u!1 &1322256122
 GameObject:
   m_ObjectHideFlags: 0
@@ -18998,8 +19055,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 823030478681686053, guid: 5514cdfd9cce66746b04db30e747c5f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2586460375010648860}
   m_SourcePrefab: {fileID: 100100000, guid: 5514cdfd9cce66746b04db30e747c5f7, type: 3}
+--- !u!1 &2586460375010648859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 823030478681686053, guid: 5514cdfd9cce66746b04db30e747c5f7, type: 3}
+  m_PrefabInstance: {fileID: 2586460375010648858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2586460375010648860
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586460375010648859}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8cddb5a4a1774044acc57e7fa1bbca6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3089705630440497981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19070,3 +19157,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 123860407}
   - {fileID: 1963003583}
+  - {fileID: 1321488747}
