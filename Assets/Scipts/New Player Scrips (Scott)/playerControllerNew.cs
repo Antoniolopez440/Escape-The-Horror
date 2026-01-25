@@ -2,10 +2,11 @@ using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerControllerNew : MonoBehaviour
+public class playerControllerNew : MonoBehaviour , IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Camera playerCamera;
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
@@ -18,7 +19,7 @@ public class playerControllerNew : MonoBehaviour
     [Header("----- Phyisics -----")]
     [Range(15, 40)][SerializeField] int gravity;
 
-    [Header("----- Guns -----")]
+  //  [Header("----- Guns -----")]
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
 
     [SerializeField] GameObject gunModel;
@@ -29,7 +30,7 @@ public class playerControllerNew : MonoBehaviour
 
     int jumpCount;
     int HPOrig;
-    int gunListPos;
+  //  int gunListPos;
 
     float shootTimer;
 
@@ -52,6 +53,9 @@ public class playerControllerNew : MonoBehaviour
 
     void movement()
     {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+
+        shootTimer += Time.deltaTime;
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
@@ -67,6 +71,11 @@ public class playerControllerNew : MonoBehaviour
         else
         {
             playerVel.y -= gravity * Time.deltaTime;
+        }
+
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            shoot();
         }
 
     }
@@ -89,6 +98,33 @@ public class playerControllerNew : MonoBehaviour
         {
             playerVel.y = jumpSpeed;
             jumpCount++;
+        }
+    }
+
+    public void takeDamage(int amount)
+    {
+        
+    }
+
+    void shoot()
+    {
+       // Debug.Log(Camera.main);
+        shootTimer = 0;
+
+       // gunList[gunListPos].ammoCur--;
+
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
+
+            //Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (dmg != null)
+            {
+                dmg.takeDamage(shootDamage);
+            }
         }
     }
 }
