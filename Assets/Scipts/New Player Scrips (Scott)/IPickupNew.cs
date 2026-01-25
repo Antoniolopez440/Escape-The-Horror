@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IPickup
 {
-    public void getGunStats(gunStatsNew gun);
+    public void getGunStats(ProjectileGun gun);
 
 
 

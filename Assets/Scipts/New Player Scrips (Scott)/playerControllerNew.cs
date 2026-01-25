@@ -20,12 +20,34 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [Range(15, 40)][SerializeField] int gravity;
 
     [Header("----- Guns -----")]
-    [SerializeField] List<gunStatsNew> gunList = new List<gunStatsNew>();
+    [SerializeField] List<ProjectileGun> gunList = new List<ProjectileGun>();
 
     [SerializeField] GameObject gunModel;
+
+    [SerializeField] public float shootForce;
+    [SerializeField] public float upwardForce;
+
+    [SerializeField] public float timeBetweenShooting;
+    [SerializeField] public float spread;
+    [SerializeField] public float reloadTime;
+    [SerializeField] public float timeBetweenShots;
+
+    [SerializeField] public int magazineSize;
+    [SerializeField] public int bulletsPerTap;
+
+    [SerializeField] public bool allowButtonHold;
+
+    [SerializeField] int bulletsLeft;
+    [SerializeField] int bulletsShot;
+
+    bool shooting;
+    bool readyToShoot;
+    bool reloading;
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
+    //[SerializeField] float shootRate;
+
 
 
     int jumpCount;
@@ -53,8 +75,13 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     void Update()
     {
         
-        movement();
+       movement();
        Sprint();
+
+        MyInput();
+
+      //  if (ammunitionDisplay != null)
+      //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
 
     void movement()
@@ -79,10 +106,10 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             playerVel.y -= gravity * Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
-        {
-            shoot();
-        }
+        //if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= timeBetweenShooting)
+        //{
+        //    Shoot();
+        //}
 
         selectGun();
 
@@ -114,37 +141,126 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         
     }
 
-    void shoot()
+    //void shoot()
+    //{
+    //   // Debug.Log(Camera.main);
+    //    shootTimer = 0;
+
+    //    gunList[gunListPos].ammoCur--;
+
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootDist, ~ignoreLayer))
+    //    {
+    //        Debug.Log(hit.collider.name);
+
+    //      //  Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+
+    //        IDamage dmg = hit.collider.GetComponent<IDamage>();
+    //        if (dmg != null)
+    //        {
+    //            dmg.takeDamage(shootDamage);
+    //        }
+    //    }
+    //}
+
+
+
+    private void MyInput()
     {
-       // Debug.Log(Camera.main);
-        shootTimer = 0;
+        if (allowButtonHold)
+            shooting = Input.GetKey(KeyCode.Mouse0);
+        else
+            shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        gunList[gunListPos].ammoCur--;
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+            Reload();
 
+        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0)
+            Reload();
+
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        {
+            bulletsShot = 0;
+
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        readyToShoot = false;
+
+        Ray ray = gunList[gunListPos].fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootDist, ~ignoreLayer))
+
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+            targetPoint = hit.point;
+        else
+            targetPoint = ray.GetPoint(75);
+
+        Vector3 directionWithoutSpread = targetPoint - gunList[gunListPos].attackPoint.position;
+
+        float x = Random.Range(-spread, spread);
+        float y = Random.Range(-spread, spread);
+
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+
+        GameObject currentBullet = Instantiate(gunList[gunListPos].bullet, gunList[gunListPos].attackPoint.position, Quaternion.identity);
+        currentBullet.transform.forward = directionWithSpread.normalized;
+
+        // for normal bullet
+        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+
+        // for grenade bullet
+        currentBullet.GetComponent<Rigidbody>().AddForce(gunList[gunListPos].fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+
+        //if (gunList[gunListPos].muzzleFlash != null)
+         //   Instantiate(gunList[gunListPos].muzzleFlash, gunList[gunListPos].attackPoint.position, Quaternion.identity);
+
+        bulletsLeft--;
+        bulletsShot++;
+
+        if (gunList[gunListPos].allowInvoke)
         {
-            Debug.Log(hit.collider.name);
-
-          //  Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
+            Invoke("ResetShot", timeBetweenShooting);
+            gunList[gunListPos].allowInvoke = false;
         }
+
+        if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
+            Invoke("Shoot", timeBetweenShots);
+
     }
 
-    void reload()
+    private void ResetShot()
     {
-        if (Input.GetButtonDown("Reload") && gunList.Count > 0)
-        {
-            gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMaz;
-        }
+        readyToShoot = true;
+        gunList[gunListPos].allowInvoke = true;
     }
 
-    public void getGunStats(gunStatsNew gun)
+    private void Reload()
+    {
+        reloading = true;
+        Invoke("ReloadFinished", reloadTime);
+    }
+
+    private void ReloadFinished()
+    {
+        bulletsLeft = magazineSize;
+        reloading = false;
+    }
+
+
+
+    //void reload()
+    //{
+    //    if (Input.GetButtonDown("Reload") && gunList.Count > 0)
+    //    {
+    //        gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMaz;
+    //    }
+    //}
+
+    public void getGunStats(ProjectileGun gun)
     {
         gunList.Add(gun);
         gunListPos = gunList.Count - 1;
@@ -157,7 +273,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         shootDamage = gunList[gunListPos].shootDamage;
         shootDist = gunList[gunListPos].shootDist;
-        shootRate = gunList[gunListPos].shootRate;
+        timeBetweenShots = gunList[gunListPos].shootRate;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;

@@ -9,15 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea22e2f9f713aa4c90f1478283b1ad3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fee6a02ea99075499b2b679f5784042, type: 3}
   m_Name: Gun - Submachinegun
-  m_EditorClassIdentifier: Assembly-CSharp::gunStatsNew
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileGun
   gunModel: {fileID: 0}
-  shootDamage: 1
-  shootDist: 3
-  shootRate: 0.01
-  ammoCur: 0
-  ammoMaz: 5
-  hitEffect: {fileID: 0}
-  shootSound: []
-  shootSoundVol: 0
+  bullet: {fileID: 0}
+  shootDamage: 0
+  shootDist: 0
+  shootRate: 0
+  shootForce: 0
+  upwardForce: 0
+  timeBetweenShooting: 0
+  spread: 0
+  reloadTime: 0
+  timeBetweenShots: 0
+  magazineSize: 0
+  bulletsPerTap: 0
+  allowButtonHold: 0
+  bulletsLeft: 0
+  bulletsShot: 0
+  fpsCam: {fileID: 0}
+  attackPoint: {fileID: 0}
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1

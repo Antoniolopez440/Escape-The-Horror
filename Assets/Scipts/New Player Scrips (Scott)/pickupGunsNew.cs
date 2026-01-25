@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class pickupGunsNew : MonoBehaviour
 {
-    [SerializeField] gunStatsNew gun;
+    [SerializeField] ProjectileGun gun;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,7 +11,7 @@ public class pickupGunsNew : MonoBehaviour
 
         if (pik != null)
         {
-            gun.ammoCur = gun.ammoMaz;
+            gun.bulletsLeft = gun.magazineSize;
             pik.getGunStats(gun);
             Destroy(gameObject);
         }
