@@ -29,29 +29,11 @@ public class ProjectileGun : ScriptableObject
 
    public bool allowButtonHold;
 
-   public int bulletsLeft;
-   public int bulletsShot;
+   
 
  
 
-   public Camera fpsCam;
-    public Transform attackPoint;
-
-   // public GameObject muzzleFlash;
-    public TextMeshProUGUI ammunitionDisplay;
-
-    public bool allowInvoke = true;
-
-    private void Awake()
-    {
-        bulletsLeft = magazineSize;
-       
-    }
-
-    private void Update()
-    {
-       
-    }
+  
 
    
 }

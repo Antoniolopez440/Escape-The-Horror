@@ -7,6 +7,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Camera playerCamera;
+    [SerializeField] Transform attackPoint;
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
@@ -54,6 +55,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     int HPOrig;
     int gunListPos;
 
+    bool allowInvoke = true;
+
     float shootTimer;
 
     Vector3 moveDir;
@@ -68,6 +71,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     void Start()
     {
         HPOrig = HP;
+        readyToShoot = true;
 
     }
 
@@ -82,6 +86,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
       //  if (ammunitionDisplay != null)
       //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+    }
+
+    bool HasValidGun()
+    {
+        return gunList.Count > 0 && gunListPos >= 0 && gunListPos < gunList.Count;
     }
 
     void movement()
@@ -172,6 +181,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
+        Debug.Log($"shooting={shooting}, ready={readyToShoot}, bulletsLeft={bulletsLeft}, reloading={reloading}");
+
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
             Reload();
 
@@ -188,9 +199,12 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     private void Shoot()
     {
+        if (!HasValidGun()) return;
+        Debug.Log("Shoot() called");
+
         readyToShoot = false;
 
-        Ray ray = gunList[gunListPos].fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
         RaycastHit hit;
 
         Vector3 targetPoint;
@@ -199,21 +213,21 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         else
             targetPoint = ray.GetPoint(75);
 
-        Vector3 directionWithoutSpread = targetPoint - gunList[gunListPos].attackPoint.position;
+        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
-        GameObject currentBullet = Instantiate(gunList[gunListPos].bullet, gunList[gunListPos].attackPoint.position, Quaternion.identity);
+        GameObject currentBullet = Instantiate(gunList[gunListPos].bullet, attackPoint.position, Quaternion.identity);
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         // for normal bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
 
         // for grenade bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(gunList[gunListPos].fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(playerCamera.transform.up * upwardForce, ForceMode.Impulse);
 
         //if (gunList[gunListPos].muzzleFlash != null)
          //   Instantiate(gunList[gunListPos].muzzleFlash, gunList[gunListPos].attackPoint.position, Quaternion.identity);
@@ -221,10 +235,10 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         bulletsLeft--;
         bulletsShot++;
 
-        if (gunList[gunListPos].allowInvoke)
+        if (allowInvoke)
         {
             Invoke("ResetShot", timeBetweenShooting);
-            gunList[gunListPos].allowInvoke = false;
+            allowInvoke = false;
         }
 
         if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
@@ -235,7 +249,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     private void ResetShot()
     {
         readyToShoot = true;
-        gunList[gunListPos].allowInvoke = true;
+        allowInvoke = true;
     }
 
     private void Reload()
@@ -271,16 +285,30 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     void changeGun()
     {
-        shootDamage = gunList[gunListPos].shootDamage;
-        shootDist = gunList[gunListPos].shootDist;
-        timeBetweenShots = gunList[gunListPos].shootRate;
+        
+        if (!HasValidGun()) return;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        ProjectileGun gun = gunList[gunListPos];
+     //   Debug.Log("changeGun called with: " + gun.name);
+
+        shootDamage = gun.shootDamage;
+        shootDist = gun.shootDist;
+        timeBetweenShooting = gun.shootRate;
+
+        magazineSize = gun.magazineSize;
+        bulletsPerTap = gun.bulletsPerTap;
+        allowButtonHold = gun.allowButtonHold;
+
+        bulletsLeft = magazineSize;
+        bulletsShot = 0;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     void selectGun()
     {
+        if (!HasValidGun()) return;
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
         {
                 gunListPos++;
