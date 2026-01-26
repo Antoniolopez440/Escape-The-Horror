@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPickup
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -22,6 +23,8 @@ public class playerController : MonoBehaviour, IDamage
     [Range(15, 40)][SerializeField] int gravity;
 
     [Header("----- Guns -----")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -29,6 +32,7 @@ public class playerController : MonoBehaviour, IDamage
 
     int jumpCount;
     int HPOriginal;
+    int gunListPos;
 
     float shootTimer;
     int remaningShots;
@@ -88,6 +92,8 @@ public class playerController : MonoBehaviour, IDamage
         {
             reload();
         }
+
+        selectGun();
     }
 
     void jump()
@@ -166,5 +172,41 @@ public class playerController : MonoBehaviour, IDamage
             remaningShots = magazineSize;
         
     }
+    // Found in IPickup to make Player shoot stats be gun stats
+    // That way his damage output follows what gun he has.
+    //Inventory system needs below here
+    public void getGunStats(gunStats gun)
+    {
+        gunList.Add(gun);
+        gunListPos = gunList.Count - 1;
 
-}// Normal is the side of a surface that has the side you can see, like the front of a wall
+        changeGun(); //Change gun is the function for all of the stat changes and gun change
+
+    }
+    void changeGun()
+    {
+        shootDamage = gunList[gunListPos].shootDamage;
+        shootDist = gunList[gunListPos].shootDist;
+        shootRate = gunList[gunListPos].shootRate;
+        //for transitioning the gun model renderer and mesh so picked up gun is shown
+        // Always do this this way for ease.
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        {
+            gunListPos++; //scrolling up changes gun up
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        {
+            gunListPos--; //scrolling up changes gun up
+            changeGun();
+        }
+        
+    }
+}
+// Normal is the side of a surface that has the side you can see, like the front of a wall
