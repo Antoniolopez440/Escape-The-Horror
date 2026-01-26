@@ -25,6 +25,7 @@ public class ProjectileGun : ScriptableObject
     public float timeBetweenShots;
 
     public int magazineSize;
+    public int bulletsLeft;
     public int bulletsPerTap;
 
    public bool allowButtonHold;
