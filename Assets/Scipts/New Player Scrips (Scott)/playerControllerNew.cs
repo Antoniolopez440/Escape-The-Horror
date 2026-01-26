@@ -44,7 +44,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [SerializeField] int shootDist;
     //[SerializeField] float shootRate;
 
-
+//stuff 
 
     int jumpCount;
     int HPOrig;
