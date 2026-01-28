@@ -1,4 +1,5 @@
 using NUnit.Framework.Interfaces;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,7 +62,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         HPOrig = HP;
         readyToShoot = true;
-
+        updateplayerUI();
     }
 
     void Update()
@@ -129,7 +130,15 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     public void takeDamage(int amount)
     {
-        
+        HP -= amount;
+        updateplayerUI();
+        StartCoroutine(flashRed());
+
+        //Check if the player is dead
+        if (HP <= 0)
+        {
+            gameManager.instance.youLose();
+        }
     }
 
     private void MyInput()
@@ -190,9 +199,6 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         // for normal bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-
-        // for grenade bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(playerCamera.transform.up * upwardForce, ForceMode.Impulse);
 
         //if (gunList[gunListPos].muzzleFlash != null)
         //   Instantiate(gunList[gunListPos].muzzleFlash, gunList[gunListPos].attackPoint.position, Quaternion.identity);
@@ -275,6 +281,18 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             gunListPos--;
             changeGun();
             }
+    }
+
+    public void updateplayerUI()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    IEnumerator flashRed()
+    {
+        gameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
 }
