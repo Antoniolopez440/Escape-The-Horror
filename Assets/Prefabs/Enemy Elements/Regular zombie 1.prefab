@@ -2730,7 +2730,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5051114624929306767}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8b2d0fe5b1817a44e9d5f72b46c73013, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 0e095e68791b5ce44a80eb2bd34b1ef2, type: 3}
   m_Controller: {fileID: 9100000, guid: 46b6ef63d1ffd1542a9be8c6a69339e5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -2768,9 +2768,9 @@ MonoBehaviour:
   playerInAttackRange: 1
   model: {fileID: 7739628196438022587}
   meleeDamage: 1
-  hp: 10
+  hp: 5
   animator: {fileID: 6816722868616745833}
-  hasEmerged: 1
+  hasEmerged: 0
   emergetime: 3.3
 --- !u!136 &8308146201217418856
 CapsuleCollider:

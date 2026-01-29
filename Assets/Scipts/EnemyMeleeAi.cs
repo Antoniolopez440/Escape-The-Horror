@@ -16,38 +16,32 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] float meleeDamage;
 
     [SerializeField] float hp;
-    [SerializeField] Transform meleePos;
-    [SerializeField] Animator animator;
-    [SerializeField] int attackDamage;
-    [SerializeField] float hitRadius = 1.0f;
-
-    [Header("Stats")]
-    [SerializeField] int hp;
 
     [SerializeField] Animator animator;
 
     Color colorOrig;
 
     [SerializeField] bool hasEmerged = false;
- 
+    [SerializeField] float emergetime = 1.2F;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+
         if (model == null)
         {
             model = GetComponentInChildren<Renderer>(true);
-        } else
+        }
+        else
         {
             colorOrig = model.sharedMaterial.color;
         }
-            agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player");
-        {
-            colorOrig = model.sharedMaterial.color;
-        }
-            agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
 
         animator = GetComponent<Animator>();
         hasEmerged = false;
-        
+
         if (agent != null)
         {
             agent.enabled = false;
@@ -99,10 +93,6 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (hp <= 0)
         {
             gameManager.instance.updateGameGoal(-1);
-            // Can instantiate a scriptable game object for dropping item after death
-            if (dropItem != null)
-                Instantiate(dropItem, transform.position, transform.rotation);
-
             Destroy(gameObject);
         }
         else

@@ -24,6 +24,6 @@ MonoBehaviour:
   reloadTime: 10
   timeBetweenShots: 5
   magazineSize: 12
-  bulletsLeft: 6
+  bulletsLeft: 12
   bulletsPerTap: 1
   allowButtonHold: 0

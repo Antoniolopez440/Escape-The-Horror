@@ -697,12 +697,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec26cd13f4c768d4ea195623d2cb1318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerControllerNew
+  animTranSpeed: 0
   controller: {fileID: 5157005934608968519}
   playerCamera: {fileID: 5213566344720017995}
   attackPoint: {fileID: 9177566717115086189}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  anim: {fileID: 5195712041105937539}
   HP: 10
   speed: 10
   sprintMod: 2

@@ -16,6 +16,7 @@ public class damage : MonoBehaviour
     [SerializeField] GameObject hitEffect;
 
     bool isDamaging;
+    private bool hasHit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,13 +31,15 @@ public class damage : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
+        if (hasHit) return;
         // if(other.isTrigger) return; // Ignore trigger colliders
-
-        IDamage d = other.GetComponentInParent<IDamage>(); // Try to get the IDamage component from the other object
-        if (d != null)
+        IDamage d = other.GetComponent<IDamage>();  // Try to get the IDamage component from the other object
+        if (d != null) { }
+            d = other.GetComponentInParent<IDamage>();
         {
             if(d != null && type != damageType.DOT) // If the other object has an IDamage component and the damage type is not DOT
             {
+                hasHit = true;
                 d.takeDamage(damageAmount);
             }
             if(type == damageType.moving)

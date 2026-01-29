@@ -2,6 +2,7 @@ using NUnit.Framework.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 {
@@ -71,15 +72,14 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     void Update()
     {
-        
-       movement();
-       Sprint();
+        movement();
+        Sprint();
 
         MyInput();
         locoAnim();
 
-      //  if (ammunitionDisplay != null)
-      //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+        //  if (ammunitionDisplay != null)
+        //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
     void locoAnim()
     {
@@ -237,7 +237,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         RaycastHit hit;
 
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayer))
             targetPoint = hit.point;
         else
             targetPoint = ray.GetPoint(75);
@@ -248,16 +248,27 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         float y = Random.Range(-spread, spread);
 
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
-
+        Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
+        
         GameObject currentBullet = Instantiate(gunList[gunListPos].bullet, attackPoint.position, Quaternion.identity);
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         // for normal bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        //currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
 
         //if (gunList[gunListPos].muzzleFlash != null)
         //   Instantiate(gunList[gunListPos].muzzleFlash, gunList[gunListPos].attackPoint.position, Quaternion.identity);
 
+        Rigidbody rb = currentBullet.GetComponent<Rigidbody> ();
+        if (rb != null)
+        {
+            rb.AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+
+            if (upwardForce != 0)
+            {
+                rb.AddForce(transform.up * upwardForce, ForceMode.Impulse);
+            }
+        }
         currentAmmo--;
         gun.bulletsLeft = currentAmmo;
         bulletsShot++;
@@ -347,6 +358,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         bulletsPerTap = gun.bulletsPerTap;
         allowButtonHold = gun.allowButtonHold;
 
+        shootForce = gun.shootForce;
+        upwardForce = gun.upwardForce;
+        spread = gun.spread;
+        reloadTime = gun.reloadTime;
+        timeBetweenShots = gun.timeBetweenShots;
        
         bulletsShot = 0;
 

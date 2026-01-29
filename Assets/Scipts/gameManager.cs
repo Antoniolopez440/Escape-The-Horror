@@ -53,6 +53,7 @@ public class gameManager : MonoBehaviour
     private void Start()
     {
         StartLevel(0);
+
     }
 
     private void ShowLevelBanner(int levelNumber)
@@ -77,7 +78,7 @@ public class gameManager : MonoBehaviour
 
     private void StartLevel(int levelIndex)
     {
-        if(enemiesPerLevelNew == null || enemiesPerLevelNew.Length == 0)
+        if (enemiesPerLevelNew == null || enemiesPerLevelNew.Length == 0)
         {
             return;
         }
@@ -101,6 +102,12 @@ public class gameManager : MonoBehaviour
         gameGoalCount = 0;
 
         LevelEnemies level = enemiesPerLevelNew[currentLevel];
+        if( level == null || level.enemies == null)
+        {
+
+            UpdateGoalText();
+            return;
+        }
         for(int i = 0; i < level.enemies.Length; i++)
         {
             SpawnerAmount entry = level.enemies[i];
@@ -108,8 +115,16 @@ public class gameManager : MonoBehaviour
                 continue;
 
             entry.spawner.StartLevel(entry.amount);
-            gameGoalCountText.text = gameGoalCount.ToString("F0");
+            gameGoalCount += entry.amount;
         }
+        Debug.Log($"[GM] StartLevel done. gameGoalCount={gameGoalCount}");
+        UpdateGoalText();
+    }
+    private void UpdateGoalText()
+    {
+
+        if (gameGoalCountText != null)
+            gameGoalCountText.text = gameGoalCount.ToString();
     }
 
     private void NextLevelOrWin()
@@ -177,7 +192,9 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
+        Debug.Log($"[GM] updateGameGoal({amount}) BEFORE count={gameGoalCount}");
         gameGoalCount += amount;
+        Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
         
         if(gameGoalCount<= 0)

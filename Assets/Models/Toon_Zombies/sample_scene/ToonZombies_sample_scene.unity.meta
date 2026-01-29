@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1c2085b848e4a7f40aa5eb2f26715df2
+timeCreated: 1497557269
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 71099
+  packageName: Toon Zombies Pack
+  packageVersion: 1.2
+  assetPath: Assets/Toon_Zombies/sample_scene/ToonZombies_sample_scene.unity
+  uploadId: 248991
