@@ -14,9 +14,20 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text gameGoalCountText;
 
-    [Header("Leveles")]
-    [SerializeField] private spawner[] spawners;
-    [SerializeField] private int[] enemiesPerLevel = { 10, 15, 20, 25, 30 };
+    [System.Serializable]
+    public class SpawnerAmount
+    {
+        public spawner spawner;
+        public int amount;
+    }
+
+    [System.Serializable]
+    public class LevelEnemies
+    {
+        public SpawnerAmount[] enemies;
+    }
+
+    [SerializeField] LevelEnemies[] enemiesPerLevelNew;
 
     [Header("Level UI")]
     [SerializeField] private TMP_Text levelText;
@@ -66,6 +77,16 @@ public class gameManager : MonoBehaviour
 
     private void StartLevel(int levelIndex)
     {
+        if(enemiesPerLevelNew == null || enemiesPerLevelNew.Length == 0)
+        {
+            return;
+        }
+
+        if (levelIndex < 0)
+            levelIndex = 0;
+        if (levelIndex >= enemiesPerLevelNew.Length)
+            levelIndex = enemiesPerLevelNew.Length - 1;
+
         currentLevel = levelIndex;
 
         int displayLevel = currentLevel + 1;
@@ -77,14 +98,17 @@ public class gameManager : MonoBehaviour
 
         ShowLevelBanner(displayLevel);
 
-        int amount = enemiesPerLevel[currentLevel];
+        gameGoalCount = 0;
 
-        for (int i = 0; i < spawners.Length; i++)
+        LevelEnemies level = enemiesPerLevelNew[currentLevel];
+        for(int i = 0; i < level.enemies.Length; i++)
         {
-            if (spawners[i] != null)
-            {
-                spawners[i].StartLevel(amount);
-            }
+            SpawnerAmount entry = level.enemies[i];
+            if (entry == null || entry.spawner == null || entry.amount <= 0)
+                continue;
+
+            entry.spawner.StartLevel(entry.amount);
+            gameGoalCountText.text = gameGoalCount.ToString("F0");
         }
     }
 
@@ -92,7 +116,7 @@ public class gameManager : MonoBehaviour
     {
         int next = currentLevel + 1;
 
-        if (next >= enemiesPerLevel.Length)
+        if (next >= enemiesPerLevelNew.Length)
         {
             statePause();
             menuActive = menuWin;

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Gun - Submachinegun
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileGun
   gunModel: {fileID: 100000, guid: a59670924a782844eba004b28831683c, type: 3}
-  bullet: {fileID: 8362927536016474687, guid: ec8321e5bc816f24992e993c7381cc62, type: 3}
+  bullet: {fileID: 8362927536016474687, guid: c421c722e003e154d975d520d942c509, type: 3}
   shootDamage: 1
   shootDist: 3
   shootRate: 0.01
   shootForce: 100
   upwardForce: 0
-  timeBetweenShooting: 5
+  timeBetweenShooting: 2
   spread: 1
   reloadTime: 10
-  timeBetweenShots: 1
+  timeBetweenShots: 2
   magazineSize: 50
   bulletsLeft: 50
   bulletsPerTap: 1

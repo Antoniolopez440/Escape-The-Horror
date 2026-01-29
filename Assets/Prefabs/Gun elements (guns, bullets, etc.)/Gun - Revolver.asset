@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fee6a02ea99075499b2b679f5784042, type: 3}
-  m_Name: Gun - Heavy Machinegun
+  m_Name: Gun - Revolver
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileGun
-  gunModel: {fileID: 100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
-  bullet: {fileID: 8362927536016474687, guid: ec8321e5bc816f24992e993c7381cc62, type: 3}
+  gunModel: {fileID: 100000, guid: 5889cc033face224187fc217c9050b80, type: 3}
+  bullet: {fileID: 8362927536016474687, guid: 13cbf19a901b26447b1c913b9f815889, type: 3}
   shootDamage: 1
   shootDist: 3
   shootRate: 0.01
   shootForce: 100
   upwardForce: 0
-  timeBetweenShooting: 6
+  timeBetweenShooting: 5
   spread: 1
-  reloadTime: 5
-  timeBetweenShots: 6
-  magazineSize: 30
-  bulletsLeft: 0
+  reloadTime: 10
+  timeBetweenShots: 5
+  magazineSize: 12
+  bulletsLeft: 6
   bulletsPerTap: 1
   allowButtonHold: 0

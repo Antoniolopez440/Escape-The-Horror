@@ -15,7 +15,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] float meleeDamage;
 
-    [SerializeField] int hp;
+    [SerializeField] float hp;
 
     [SerializeField] Animator animator;
 
@@ -33,7 +33,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             model = GetComponentInChildren<Renderer>(true);
         } else
         {
-            colorOrig = model.material.color;
+            colorOrig = model.sharedMaterial.color;
         }
             agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
@@ -79,15 +79,16 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         agent.SetDestination(transform.position);
     }
 
-    public int GetV(int amount)
+    public int GetV(float amount)
     {
-        return hp -= amount;
+        return (int)(hp -= amount);
     }
 
     //can be used for all game objects that take damage
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         hp -= amount;
+
         if (hp <= 0)
         {
             gameManager.instance.updateGameGoal(-1);

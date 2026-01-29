@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 {
+    [SerializeField] int animTranSpeed;
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform attackPoint;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] Animator anim;
 
     [Header("----- Stats -----")]
     [Range(0, 10)][SerializeField] int HP;
@@ -41,8 +43,6 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     bool readyToShoot;
     bool reloading;
 
-    int remainingShots;
-
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     //[SerializeField] float shootRate;
@@ -52,6 +52,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     int jumpCount;
     int HPOrig;
     int gunListPos;
+    int remainingShots;
+    int currentAmmo;
 
     bool allowInvoke = true;
 
@@ -74,9 +76,19 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
        Sprint();
 
         MyInput();
+        locoAnim();
 
       //  if (ammunitionDisplay != null)
       //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+    }
+    void locoAnim()
+    {
+
+        Vector3 Velo = controller.velocity;
+        Velo.y = 0f;
+        float SpeedCur = Mathf.Clamp01(Velo.magnitude / Mathf.Max(1, speed));
+        float SpeedAnim = anim.GetFloat("Speed");
+        anim.SetFloat("Speed", Mathf.MoveTowards(SpeedAnim, SpeedCur, Time.deltaTime * animTranSpeed));
     }
 
     bool HasValidGun()
@@ -91,10 +103,6 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         shootTimer += Time.deltaTime;
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        controller.Move(moveDir * speed * Time.deltaTime);
-
-        jump(); 
-        controller.Move(playerVel * Time.deltaTime);
 
         if (controller.isGrounded)
         {
@@ -105,6 +113,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             playerVel.y -= gravity * Time.deltaTime;
         }
+
+        jump();
+
+        Vector3 finalMove = (moveDir * speed) + playerVel;
+        controller.Move(finalMove * Time.deltaTime);
 
         selectGun();
     }
@@ -130,9 +143,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         }
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         updateplayerUI();
         StartCoroutine(flashRed());
 
@@ -142,6 +155,17 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             gameManager.instance.youLose();
         }
     }
+
+    public void Heal(int amount)
+    {
+        HP += amount;
+        if (HP < HPOrig) HP = HPOrig;
+        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
+
+        updateplayerUI();
+    }
+
+
 
     private void MyInput()
     {
@@ -154,27 +178,56 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        
-
-        if (Input.GetKeyDown(KeyCode.R) && gun.bulletsLeft < magazineSize && !reloading)
+        // Manual reload only if: not reloading, mag not full, and we have reserve ammo
+        if (Input.GetKeyDown(KeyCode.R) && !reloading && currentAmmo < magazineSize && remainingShots > 0)
+        {
             Reload();
+            return;
+        }
 
-        if (readyToShoot && shooting && !reloading && gun.bulletsLeft <= 0)
+        // Auto reload only if: trying to shoot, mag empty, and we have reserve ammo
+        if (shooting && !reloading && currentAmmo <= 0 && remainingShots > 0)
+        {
             Reload();
+            return;
+        }
 
-        if (readyToShoot && shooting && !reloading && gun.bulletsLeft > 0)
+        // Shoot only if we have bullets in the mag
+        if (readyToShoot && shooting && !reloading && currentAmmo > 0)
         {
             bulletsShot = 0;
-
             Shoot();
+            anim.SetTrigger("Shoot");
+
         }
     }
+
+    public void RefillCurrentMagazine()
+    {
+        if (!HasValidGun()) return;
+
+        ProjectileGun gun = gunList[gunListPos];
+
+        // Fill mag
+        currentAmmo = magazineSize;
+        gun.bulletsLeft = currentAmmo;
+
+        // Fill reserve to max mag size too (simple rule: reserve = another full mag)
+        remainingShots = 0;
+
+        Debug.Log($"Refilled {gun.name} to {currentAmmo}/{magazineSize} + reserve {remainingShots}");
+    }
+
 
     private void Shoot()
     {
         if (!HasValidGun()) return;
 
         ProjectileGun gun = gunList[gunListPos];
+
+        if (currentAmmo <= 0)
+            return;
+        
 
         Debug.Log("Shoot() called");
 
@@ -205,8 +258,10 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         //if (gunList[gunListPos].muzzleFlash != null)
         //   Instantiate(gunList[gunListPos].muzzleFlash, gunList[gunListPos].attackPoint.position, Quaternion.identity);
 
-        gun.bulletsLeft--;
+        currentAmmo--;
+        gun.bulletsLeft = currentAmmo;
         bulletsShot++;
+
 
         if (allowInvoke)
         {
@@ -214,26 +269,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             allowInvoke = false;
         }
 
-        if (bulletsShot < bulletsPerTap && gun.bulletsLeft > 0)
+        if (bulletsShot < bulletsPerTap && currentAmmo > 0)
             Invoke("Shoot", timeBetweenShots);
 
-    }
-
-    public void Heal(int amount)
-    {
-        HP += amount;
-        if (HP < HPOrig) HP = HPOrig;
-        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
-
-        updateplayerUI();
-    }
-    public void AddAmmo(int amount)
-    {
-        remainingShots += amount;
-
-        if (remainingShots > magazineSize) remainingShots = magazineSize;
-
-        Debug.Log("Player Picked Up Ammo {amount}. Ammo now {remainingShots}/{magazoneSize}");
     }
 
     private void ResetShot()
@@ -252,15 +290,41 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         if (!HasValidGun()) return;
 
-        gunList[gunListPos].bulletsLeft = gunList[gunListPos].magazineSize;
+        ProjectileGun gun = gunList[gunListPos];
+
+        int need = magazineSize - currentAmmo;
+        if (need <= 0)
+        {
+            reloading = false;
+            return;
+        }
+
+        // Take from reserve
+        int take = Mathf.Min(need, remainingShots);
+
+        // If no reserve ammo, can't reload
+        if (take <= 0)
+        {
+            reloading = false;
+            return;
+        }
+
+        currentAmmo += take;
+        remainingShots -= take;
+
+        gun.bulletsLeft = currentAmmo;
+
         reloading = false;
     }
+
 
 
     public void getGunStats(ProjectileGun gun)
     {
         gunList.Add(gun);
         gunListPos = gunList.Count - 1;
+
+       
 
         changeGun();
 
@@ -271,6 +335,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (!HasValidGun()) return;
 
         ProjectileGun gun = gunList[gunListPos];
+        currentAmmo = gun.bulletsLeft;
+        if (currentAmmo > gun.magazineSize) currentAmmo = gun.bulletsLeft;
+        if (currentAmmo < 0) currentAmmo = 0;
 
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
@@ -292,11 +359,13 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (!HasValidGun()) return;
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
         {
-                gunListPos++;
+            gunList[gunListPos].bulletsLeft = currentAmmo;
+            gunListPos++;
                 changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel")< 0 && gunListPos> 0) 
             {
+            gunList[gunListPos].bulletsLeft = currentAmmo;
             gunListPos--;
             changeGun();
             }

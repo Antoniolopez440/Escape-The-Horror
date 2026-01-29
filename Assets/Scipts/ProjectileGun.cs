@@ -28,13 +28,7 @@ public class ProjectileGun : ScriptableObject
     public int bulletsLeft;
     public int bulletsPerTap;
 
-   public bool allowButtonHold;
-
-   
-
- 
-
-  
+    public bool allowButtonHold;
 
    
 }
