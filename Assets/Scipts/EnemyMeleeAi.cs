@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.AI;
 
 
-public class EnemymeleeAI : MonoBehaviour, IDamage
+public class EnemyMeleeAI : MonoBehaviour, IDamage
 {
     GameObject player;
     [SerializeField] NavMeshAgent agent;
@@ -21,7 +21,8 @@ public class EnemymeleeAI : MonoBehaviour, IDamage
 
     Color colorOrig;
 
-    
+    [SerializeField] bool hasEmerged = false;
+    [SerializeField] float emergetime = 1.2F;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,11 +39,25 @@ public class EnemymeleeAI : MonoBehaviour, IDamage
         player = GameObject.Find("Player");
 
         animator = GetComponent<Animator>();
+        hasEmerged = false;
+        
+        if (agent != null)
+        {
+            agent.enabled = false;
+        }
+
+        StartCoroutine(EmergeThenEnable());
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
+        if (!hasEmerged)
+        {
+            return;
+        }
         playerInsight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
@@ -89,6 +104,21 @@ public class EnemymeleeAI : MonoBehaviour, IDamage
         model.material.color = Color.red; // change color to red
         yield return new WaitForSeconds(0.1f); // wait for 0.1 seconds
         model.material.color = colorOrig; // change color back to original
+    }
 
+    IEnumerator EmergeThenEnable()
+    {
+        yield return new WaitForSeconds(emergetime);
+        OnEmergeFinished();
+    }
+
+    public void OnEmergeFinished()
+    {
+        if (agent != null)
+        {
+            agent.enabled = true;
+        }
+
+        hasEmerged = true;
     }
 }

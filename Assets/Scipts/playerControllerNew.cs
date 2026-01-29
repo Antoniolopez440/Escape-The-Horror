@@ -41,6 +41,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     bool readyToShoot;
     bool reloading;
 
+    int remainingShots;
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     //[SerializeField] float shootRate;
@@ -215,6 +217,23 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (bulletsShot < bulletsPerTap && gun.bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
 
+    }
+
+    public void Heal(int amount)
+    {
+        HP += amount;
+        if (HP < HPOrig) HP = HPOrig;
+        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
+
+        updateplayerUI();
+    }
+    public void AddAmmo(int amount)
+    {
+        remainingShots += amount;
+
+        if (remainingShots > magazineSize) remainingShots = magazineSize;
+
+        Debug.Log("Player Picked Up Ammo {amount}. Ammo now {remainingShots}/{magazoneSize}");
     }
 
     private void ResetShot()

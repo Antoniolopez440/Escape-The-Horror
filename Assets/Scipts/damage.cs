@@ -49,7 +49,7 @@ public class damage : MonoBehaviour
     {
         if (other.isTrigger) return; // Ignore trigger colliders
 
-        IDamage damage = other.GetComponent<IDamage>(); // Try to get the IDamage component from the other object
+        IDamage damage = other.GetComponentInParent<IDamage>(); // Try to get the IDamage component from the other object
         if (damage != null && type == damageType.DOT && !isDamaging) // If the damage type is DOT and not already damaging
         {
             StartCoroutine(damageOther(damage)); // Start the damage over time coroutine

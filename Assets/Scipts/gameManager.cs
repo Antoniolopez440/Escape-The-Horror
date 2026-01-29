@@ -56,7 +56,7 @@ public class gameManager : MonoBehaviour
 
     private IEnumerator levelBannerRoutine(int levelNumber)
     {
-        levelBannerText.text = "Level " + levelNumber + "!";
+        levelBannerText.text = "Level " + levelNumber;
         levelBanner.SetActive(true);
         yield return new WaitForSeconds(bannerTime);
         levelBanner.SetActive(false);
