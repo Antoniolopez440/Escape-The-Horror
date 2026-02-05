@@ -31,8 +31,10 @@ public class DoorInteract : MonoBehaviour
     // This happens before any Start functions and also just after a prefab is instantiated
     private void Awake()
     {
+        if (hinge == null) hinge = transform;
+
         closedRotation = hinge.rotation;
-        openRotation = Quaternion.Euler(hinge.eulerAngles + new Vector3(0f, openAngle, 0f));
+        openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
     }
 
 
@@ -49,18 +51,42 @@ public class DoorInteract : MonoBehaviour
         }
     }
 
+
     IEnumerator ToggleDoor()
     {
         isMoving = true;
+
+        Quaternion start = hinge.localRotation;
         Quaternion targetRotation = isOpen ? closedRotation : openRotation;
-        while (Quaternion.Angle(hinge.rotation, targetRotation) > 0.1f)
+
+        float t = 0f;
+        while (t < 1f)
         {
-            hinge.rotation = Quaternion.Slerp(hinge.rotation, targetRotation, Time.deltaTime * speed);
+
+            t += Time.deltaTime * speed;
+            hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
         hinge.rotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
 
 }
