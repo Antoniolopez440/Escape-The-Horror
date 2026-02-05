@@ -78220,7 +78220,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5387108767539600624, guid: 428aebc699fa07048b08a5dd37c07337, type: 3}
       propertyPath: spawnRate
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5387108767539600624, guid: 428aebc699fa07048b08a5dd37c07337, type: 3}
       propertyPath: objectToSpawn
