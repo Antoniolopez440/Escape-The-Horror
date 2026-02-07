@@ -14,11 +14,15 @@ public class DoorInteract : MonoBehaviour
     [Header("Input")]
     [SerializeField] KeyCode interactKey = KeyCode.E;
 
+    [Header("Auto Open For Zombies")]
+    [SerializeField] string zombieTag = "Enemy";
+
 
     // State variables
     bool playerInRange;
     bool isOpen;
     bool isMoving;
+    int zombiesInRange;
 
 
     // Rotations
@@ -77,6 +81,13 @@ public class DoorInteract : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+        }
+        if (other.CompareTag(zombieTag))
+        {
+            if (!isOpen && !isMoving)
+            {
+                StartCoroutine(ToggleDoor());
+            }
         }
     }
 

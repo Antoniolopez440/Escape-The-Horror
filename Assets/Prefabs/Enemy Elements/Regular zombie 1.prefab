@@ -2672,7 +2672,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.07845, y: 0.1, z: 18.42471}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5866008582172339354}
@@ -2763,14 +2763,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   sightRange: 100
-  attackRange: 2
+  attackRange: 1.5
   playerInsight: 1
   playerInAttackRange: 1
   model: {fileID: 7739628196438022587}
   meleeDamage: 1
   hp: 5
   animator: {fileID: 6816722868616745833}
-  hasEmerged: 0
+  hasEmerged: 1
   emergetime: 3.3
 --- !u!136 &8308146201217418856
 CapsuleCollider:
@@ -2791,7 +2791,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
@@ -2804,11 +2804,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 5051114624929306767}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 720
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
