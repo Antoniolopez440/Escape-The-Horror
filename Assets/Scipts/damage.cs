@@ -31,20 +31,22 @@ public class damage : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (hasHit) return;
+        if (other.isTrigger) return;
+        if (type == damageType.moving && hasHit) return;
         // if(other.isTrigger) return; // Ignore trigger colliders
         IDamage d = other.GetComponent<IDamage>();  // Try to get the IDamage component from the other object
-        if (d != null) { }
-            d = other.GetComponentInParent<IDamage>();
+        if (d == null)
         {
-            if(d != null && type != damageType.DOT) // If the other object has an IDamage component and the damage type is not DOT
-            {
-                hasHit = true;
-                d.takeDamage(damageAmount);
-            }
-            if(type == damageType.moving)
-            Destroy(gameObject); // Destroy the damage object after dealing damage
-
+            d = other.GetComponentInParent<IDamage>();
+        }
+        if (d == null) return;
+        if( type != damageType.DOT) // If the other object has an IDamage component and the damage type is not DOT
+        {
+            d.takeDamage(damageAmount);
+            hasHit = true;
+        }
+        if (type == damageType.moving) { 
+                Destroy(gameObject); // Destroy the damage object after dealing damage
         }
     }
 
@@ -66,7 +68,13 @@ public class damage : MonoBehaviour
         d.takeDamage(damageAmount); // Deal damage to the other object
         yield return new WaitForSeconds(damageRate); // Wait for the specified damage rate
         isDamaging = false; // Set the isDamaging flag to false
+    }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (type != damageType.moving && other.CompareTag("Player"))
+        {
+            hasHit = false;
+        }
     }
 }

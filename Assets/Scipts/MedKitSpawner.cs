@@ -19,6 +19,8 @@ public class MedkitSpawner : MonoBehaviour
 
     GameObject[] activeAtPoint;
 
+
+
     void Start()
     {
         // Spawn up to maxAlive at the start
