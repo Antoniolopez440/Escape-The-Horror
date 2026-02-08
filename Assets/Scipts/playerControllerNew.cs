@@ -40,6 +40,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [SerializeField] int bulletsShot;
 
 
+    [SerializeField] public gunDisplayManagerUI gunUI;
+
+    public List<ProjectileGun> GetGunList() => gunList;
+    public int GetCurrentGunIndex() => gunListPos;
+
     bool shooting;
     bool readyToShoot;
     bool reloading;
@@ -339,6 +344,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         changeGun();
 
+        gunUI.BuildUI();
+        gunUI.RefreshSelection();
+
     }
 
     void changeGun()
@@ -385,6 +393,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             gunListPos--;
             changeGun();
             }
+
+        gunUI.RefreshSelection(); 
     }
 
     public void updateplayerUI()
