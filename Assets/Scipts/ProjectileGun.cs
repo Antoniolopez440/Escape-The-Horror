@@ -8,6 +8,7 @@ using TMPro;
 public class ProjectileGun : ScriptableObject
 {
     [SerializeField] public GameObject gunModel;
+    [SerializeField] public Sprite gunModelSprite;
     [SerializeField] public GameObject bullet;
 
 

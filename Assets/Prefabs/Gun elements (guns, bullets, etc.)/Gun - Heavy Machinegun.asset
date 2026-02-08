@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gun - Heavy Machinegun
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileGun
   gunModel: {fileID: 100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
+  gunModelSprite: {fileID: 21300000, guid: a2888110d0b966f4ea2f956341a97b77, type: 3}
   bullet: {fileID: 8362927536016474687, guid: cbac91d84f8a0184f9fd77e418784e6e, type: 3}
   shootDamage: 1
   shootDist: 3
