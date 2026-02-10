@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 97acb5eb5debd0245ab51ebbd29722f7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Materials/Custom Materials/Shader/Branch_SSS_Wind.shadergraph
+  uploadId: 638041

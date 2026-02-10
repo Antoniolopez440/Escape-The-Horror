@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 963b4e7ef0d571546983ff012ba45a37
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Materials/Custom Materials/Shader/Grass_Wind.shadergraph
+  uploadId: 638041
