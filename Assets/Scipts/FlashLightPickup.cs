@@ -12,15 +12,25 @@ public class FlashLightPickup : MonoBehaviour
     private bool isPlayerInRange = false;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        if (playerFlashlightHolder == null)
+        playerFlashlightHolder.SetActive(false); // Ensure the flashlight is initially inactive
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isPlayerInRange)
+            return;
+
+        if (Input.GetKeyDown(pickupKey))
+        {
+            if (playerFlashlightHolder == null)
+                playerFlashlightHolder.SetActive(false);
+
+            Destroy(gameObject); // Destroy the pickup object
+        }
     }
 }
