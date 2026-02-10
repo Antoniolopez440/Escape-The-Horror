@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 303fb48e00824934c8db2d12f254e8f8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Scene/Demo/LightingData.asset
+  uploadId: 638041
