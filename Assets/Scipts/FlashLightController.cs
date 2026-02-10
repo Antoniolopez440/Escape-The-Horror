@@ -17,6 +17,17 @@ public class FlashLightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(toggleKey))
+        {
+            Debug.Log("F pressed");
+
+            if (spotLight != null)
+            {
+                Debug.LogError("Spotlight is null");
+                return;
+            }
+
+            spotLight.enabled = !spotLight.enabled; //toggle the light
+        }
     }
 }
