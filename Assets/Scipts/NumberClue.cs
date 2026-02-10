@@ -17,20 +17,29 @@ public class NumberClue : MonoBehaviour
 
     private Renderer cachedRenderer; // Cached reference to the Renderer component
 
+
+
+    // Start is called before the first frame update
     private void Awake()
     {
         cachedRenderer = GetComponentInChildren<Renderer>();
         
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!playerInRange)
+            return;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Reveal();
+        }
+    }
+
+    private void Reveal()
+    {
+
     }
 }
