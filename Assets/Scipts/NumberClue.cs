@@ -40,6 +40,20 @@ public class NumberClue : MonoBehaviour
 
     private void Reveal()
     {
+        if (requireRendererVisible && cachedRenderer != null && !cachedRenderer.enabled)
+        {
+            UIManager.Instance.ShowMessage("It’s too dark to read..."); return;
+        }
 
+          // Always show the message when interacted (even after collected)
+            UIManager.Instance.ShowMessage(interactMessagePrefix + numberValue);
+
+        // Only count it once toward the code
+        
+        if (!collectedOnce)
+        {
+            collectedOnce = true;
+            if (CodeManager.Instance != null)
+                CodeManager.Instance.CollectNumber(numberValue); }
     }
 }
