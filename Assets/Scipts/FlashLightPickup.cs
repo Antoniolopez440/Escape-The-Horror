@@ -33,4 +33,20 @@ public class FlashLightPickup : MonoBehaviour
             Destroy(gameObject); // Destroy the pickup object
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(playerTag))
+        {
+            isPlayerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(playerTag))
+        {
+            isPlayerInRange = false;
+        }
+    }
 }
