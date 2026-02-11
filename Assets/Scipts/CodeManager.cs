@@ -18,15 +18,53 @@ public class CodeManager : MonoBehaviour
 
     public bool AllNumbersFound => foundSet.Count >= 3;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public string CurrentBuiltCode
     {
-        
+        get
+        { if (!string.IsNullOrEmpty(overrideCode))
+                return overrideCode;
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < foundOrder.Count; i++)
+                sb.Append(foundOrder[i]);
+
+            return sb.ToString();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); return;
+        }
+        Instance = this;
     }
-}
+
+    public void CollectNumber(int number)
+    { // HashSet prevents duplicates
+        if (foundSet.Add(number))
+        {
+            foundOrder.Add(number); Debug.Log($"Collected NEW number: {number}. Total unique: {foundSet.Count}. Code now: {CurrentBuiltCode}");
+        }
+        else
+        {
+            Debug.Log($"Number {number} already collected before. Code stays: {CurrentBuiltCode}");
+        }
+    }
+
+
+    public bool CheckCode(string input)
+    {
+        if (input == null) input = "";
+        input = input.Trim();
+
+        // Only allow checking once all numbers are found
+        if (!AllNumbersFound) return false;
+
+        // Compare to built/override code
+        return input == CurrentBuiltCode;
+    }
+
+ }
