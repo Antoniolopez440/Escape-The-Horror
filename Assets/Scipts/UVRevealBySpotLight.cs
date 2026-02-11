@@ -75,6 +75,12 @@ public class UVRevealBySpotLight : MonoBehaviour
 
     void SetVisible(bool on)
     {
-       
+       for (int i = 0; i < renderersToToggle.Length; i++)
+        {
+            if (renderersToToggle[i] != null)
+                renderersToToggle[i].enabled = on;
+        }
     }
+
+    public void SetBlackLight(Light l) => blackLight = l;
 }
