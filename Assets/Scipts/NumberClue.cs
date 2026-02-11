@@ -4,7 +4,7 @@ public class NumberClue : MonoBehaviour
 {
 
     [Header("Clue Settings")]
-    public int clueValue; // The number that represents the clue
+    public int numberValue; // The number that represents the clue
 
     [Header("Clue Display")]
     public string interactMessagePrefix = "number: "; // The message shown when the player can interact with the clue
@@ -55,5 +55,23 @@ public class NumberClue : MonoBehaviour
             collectedOnce = true;
             if (CodeManager.Instance != null)
                 CodeManager.Instance.CollectNumber(numberValue); }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) return;
+        
+            playerInRange = true;
+            UIManager.Instance.ShowHint("Press E");
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) return;
+        
+            playerInRange = false;
+            UIManager.Instance.HideHint();
+
     }
 }
