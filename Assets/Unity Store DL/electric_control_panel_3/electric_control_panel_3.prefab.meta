@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b26a6d4ad126af44bbd33dbb8daa0a70
+timeCreated: 1429909961
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 28538
+  packageName: Electrical Control Panel #3
+  packageVersion: v2.1
+  assetPath: Assets/Models/electric_control_panel_3/electric_control_panel_3.prefab
+  uploadId: 136770

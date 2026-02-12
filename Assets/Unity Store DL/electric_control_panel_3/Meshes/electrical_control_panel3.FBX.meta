@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: af9a33988e6bcb0479bc88f6202b6e0b
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: electric_panel_1a
+    100002: electric_panel_1b
+    100004: electric_panel_1c
+    100006: electric_panel_1d
+    100008: electric_panel_2a1
+    100010: electric_panel_2a2
+    100012: electric_panel_2b
+    100014: electric_panel_2c1
+    100016: electric_panel_2c2
+    100018: electric_panel_3a
+    100020: electric_panel_3b
+    100022: //RootNode
+    400000: electric_panel_1a
+    400002: electric_panel_1b
+    400004: electric_panel_1c
+    400006: electric_panel_1d
+    400008: electric_panel_2a1
+    400010: electric_panel_2a2
+    400012: electric_panel_2b
+    400014: electric_panel_2c1
+    400016: electric_panel_2c2
+    400018: electric_panel_3a
+    400020: electric_panel_3b
+    400022: //RootNode
+    2300000: electric_panel_1a
+    2300002: electric_panel_1b
+    2300004: electric_panel_1c
+    2300006: electric_panel_1d
+    2300008: electric_panel_2a1
+    2300010: electric_panel_2a2
+    2300012: electric_panel_2b
+    2300014: electric_panel_2c1
+    2300016: electric_panel_2c2
+    2300018: electric_panel_3a
+    2300020: electric_panel_3b
+    3300000: electric_panel_1a
+    3300002: electric_panel_1b
+    3300004: electric_panel_1c
+    3300006: electric_panel_1d
+    3300008: electric_panel_2a1
+    3300010: electric_panel_2a2
+    3300012: electric_panel_2b
+    3300014: electric_panel_2c1
+    3300016: electric_panel_2c2
+    3300018: electric_panel_3a
+    3300020: electric_panel_3b
+    4300000: electric_panel_1a
+    4300002: electric_panel_1b
+    4300004: electric_panel_1c
+    4300006: electric_panel_1d
+    4300008: electric_panel_2a1
+    4300010: electric_panel_2b
+    4300012: electric_panel_2c1
+    4300014: electric_panel_3a
+    4300016: electric_panel_3b
+    4300018: electric_panel_2c2
+    4300020: electric_panel_2a2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 28538
+  packageName: Electrical Control Panel #3
+  packageVersion: v2.1
+  assetPath: Assets/Models/electric_control_panel_3/Meshes/electrical_control_panel3.FBX
+  uploadId: 136770
