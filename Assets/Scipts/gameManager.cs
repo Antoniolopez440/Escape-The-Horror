@@ -44,6 +44,8 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerDamageScreen;
 
+    public CarPartsUI carPartsUI;
+
     public bool isPaused;
 
     float timeScaleOrig;

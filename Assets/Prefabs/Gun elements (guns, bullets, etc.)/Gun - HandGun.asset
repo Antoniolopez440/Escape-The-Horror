@@ -21,10 +21,10 @@ MonoBehaviour:
   shootForce: 100
   upwardForce: 0
   timeBetweenShooting: 5
-  spread: 1
+  spread: 0.5
   reloadTime: 10
   timeBetweenShots: 1
   magazineSize: 10
-  bulletsLeft: 10
+  bulletsLeft: 0
   bulletsPerTap: 1
   allowButtonHold: 0

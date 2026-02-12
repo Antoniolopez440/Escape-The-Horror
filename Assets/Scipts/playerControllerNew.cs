@@ -45,6 +45,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     public List<ProjectileGun> GetGunList() => gunList;
     public int GetCurrentGunIndex() => gunListPos;
 
+    [Header("----- Car Parts -----")]
+    [SerializeField] List<CarPart> carParts = new List<CarPart>();
+
+    public IReadOnlyList<CarPart> GetCarParts() => carParts;
+
     bool shooting;
     bool readyToShoot;
     bool reloading;
@@ -79,6 +84,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         movement();
         Sprint();
+
+        TryInteract();
 
         MyInput();
         locoAnim();
@@ -409,4 +416,32 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
+    public void GetCarPart(CarPart part)
+    {
+        carParts.Add(part);
+        Debug.Log($"Picked up art part: {part.partType}");
+
+        gameManager.instance.carPartsUI.Refresh(carParts);
+    }
+
+    public void TryInteract()
+    {
+        if (!Input.GetKeyDown(KeyCode.E)) return;
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        if(Physics.Raycast(ray, out RaycastHit hit, 3f))
+        {
+            CarRepair car = hit.collider.GetComponentInParent<CarRepair>();
+            if (car == null) return;
+
+            for (int i = carParts.Count - 1; i >= 0; i++)
+            {
+                carParts.RemoveAt(i);
+                gameManager.instance.carPartsUI.Refresh(carParts);
+                break;
+
+                
+            }
+        }
+    }
 }
