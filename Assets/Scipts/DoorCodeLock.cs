@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class DoorCodeLock : MonoBehaviour
 {
@@ -40,35 +40,30 @@ public class DoorCodeLock : MonoBehaviour
             if (CodeManager.Instance != null && CodeManager.Instance.AllNumbersFound)
             {
                 // 🔑 THIS IS WHAT YOU WERE MISSING
-                UIManager.Instance.OpenCodePanel(this, "Enter the code:");
+                UIManager.Instance.OpenCodePanel(UnlockAndOpen,"Enter the code:");
             }
             else
             {
                 UIManager.Instance.ShowMessage("Door is locked. Find the numbers.");
             }
         }
-    }
+    
 
+            if (opening)
+        {
+            doorHinge.localRotation = Quaternion.RotateTowards(
+                doorHinge.localRotation,
+                openRot,
+                openSpeed* Time.deltaTime
+            );
 
-    private void TryInteract()
-    {
-        if (unlocked)
-        {
-            Open();
-            return;
-        }
-
-        // Locked
-        if (CodeManager.Instance != null && CodeManager.Instance.AllNumbersFound)
-        {
-            UIManager.Instance.ShowHint("Press E to enter code");
-            UIManager.Instance.OpenCodePanel(this, "Enter Code:");
-        }
-        else
-        {
-            UIManager.Instance.ShowMessage("Door is locked. Find the numbers.");
-        }
-    }
+            if (Quaternion.Angle(doorHinge.localRotation, openRot) < 0.1f)
+            {
+                doorHinge.localRotation = openRot;
+                opening = false;
+            }
+         }
+      }
 
     public void UnlockAndOpen()
     {

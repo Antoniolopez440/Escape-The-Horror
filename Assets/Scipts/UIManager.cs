@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text codePromptText;
     [SerializeField] private TMP_InputField codeInput;
 
-    private DoorCodeLock activeDoor;
     private bool codeOpen = false;
+    private Action onCodeSuccess;
 
 
     private void Awake()
@@ -30,8 +31,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        if (messagePanel != null) messagePanel.SetActive(false);
-        if (codePanel != null) codePanel.SetActive(false);
+        if (messagePanel != null)
+            messagePanel.SetActive(false);
+
+        if (codePanel != null)
+            codePanel.SetActive(false);
+
         HideHint();
     }
 
@@ -40,20 +45,25 @@ public class UIManager : MonoBehaviour
     {
         if (messagePanel == null || messageText == null) return;
 
-        messagePanel.SetActive(true); messageText.text = msg;
+        messagePanel.SetActive(true);
+        messageText.text = msg;
 
         CancelInvoke(nameof(HideMessage));
-        if (autoHideSeconds > 0f) Invoke(nameof(HideMessage), autoHideSeconds);
+
+        if (autoHideSeconds > 0f)
+            Invoke(nameof(HideMessage), autoHideSeconds);
     }
 
     public void HideMessage()
     {
-        if (messagePanel != null) messagePanel.SetActive(false);
+        if (messagePanel != null)
+            messagePanel.SetActive(false);
     }
 
     public void ShowHint(string msg)
     {
         if (hintText == null) return;
+
         hintText.gameObject.SetActive(true);
         hintText.text = msg;
     }
@@ -61,15 +71,16 @@ public class UIManager : MonoBehaviour
     public void HideHint()
     {
         if (hintText == null) return;
+
         hintText.text = "";
         hintText.gameObject.SetActive(false);
     }
 
-    public void OpenCodePanel(DoorCodeLock door, string prompt)
+    public void OpenCodePanel(Action onSuccess, string prompt)
     {
         if (codePanel == null || codePromptText == null || codeInput == null) return;
 
-        activeDoor = door;
+        onCodeSuccess = onSuccess;
         codeOpen = true;
 
         codePanel.SetActive(true);
@@ -89,10 +100,11 @@ public class UIManager : MonoBehaviour
 
     public void CloseCodePanel()
     {
-        if (codePanel != null) codePanel.SetActive(false);
+        if (codePanel != null)
+            codePanel.SetActive(false);
 
-        activeDoor = null;
         codeOpen = false;
+        onCodeSuccess = null;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -105,14 +117,17 @@ public class UIManager : MonoBehaviour
     public void SubmitCode()
     {
         if (!codeOpen) return;
-        if (activeDoor == null) { CloseCodePanel(); return; }
+
+       
         string input = codeInput != null ? codeInput.text : "";
 
         bool correct = CodeManager.Instance != null && CodeManager.Instance.CheckCode(input);
+
+
         if (correct)
         {
             ShowMessage("Unlocked!");
-            activeDoor.UnlockAndOpen();
+            onCodeSuccess.Invoke();
             CloseCodePanel();
         }
         else
