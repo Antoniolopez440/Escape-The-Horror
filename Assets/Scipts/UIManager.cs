@@ -84,6 +84,8 @@ public class UIManager : MonoBehaviour
     {
         if (codePanel == null || codePromptText == null || codeInput == null) return;
 
+
+        HideHint(); // Hide any hints when opening code panel, since they might conflict
         onCodeSuccess = onSuccess;
         codeOpen = true;
 
