@@ -1,8 +1,7 @@
-using NUnit.Framework.Interfaces;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 {
@@ -234,7 +233,6 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             return;
         
 
-        Debug.Log("Shoot() called");
 
         readyToShoot = false;
 
@@ -360,7 +358,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
-        timeBetweenShooting = gun.shootRate;
+        timeBetweenShooting = gun.timeBetweenShooting; ;
 
         magazineSize = gun.magazineSize;
         bulletsPerTap = gun.bulletsPerTap;

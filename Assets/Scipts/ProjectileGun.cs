@@ -14,7 +14,6 @@ public class ProjectileGun : ScriptableObject
 
     [Range(1, 10)] public int shootDamage;
     [Range(3, 1000)] public int shootDist;
-    [Range(.01f, 3)] public float shootRate;
 
 
     public float shootForce;
