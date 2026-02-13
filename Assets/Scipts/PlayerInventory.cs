@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
 {
-   private Hash<string> keys = new Hash<string>();
+   private HashSet<string> keys = new HashSet<string>();
 
     public void AddKey(string keyId)
     {
