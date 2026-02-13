@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddKey(string keyId)
     {
-        if (!string.IsNullOrEmpty(keyId))
+        if (string.IsNullOrEmpty(keyId))
             return;
         keys.Add(keyId);
     }
