@@ -9,18 +9,21 @@ public class KeyPickup : MonoBehaviour
     private bool OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) return;
-        
-          var inventory = other.GetComponent<IInventory>();
-            if (inventory != null)
+
+    if (PlayerInventory.Instance != null)
         {
-            Debug.Log($"[KeyPickup] Player entered trigger, inventory found: {inventory}");
-            return;
+            PlayerInventory.Instance.AddKey(keyId);
+            if (UIManager.Instance != null)
+                UIManager.Instance.ShowMessage(pickupMessage);
+
+            if (destroyOnPickup)
+                Destroy(gameObject); // Destroy the pickup object
         }
-
-            inventory.AddKey(keyId);
-            UIManager.Instance.ShowMessage(pickupMessage);
-
-            Destroy(gameObject); // Destroy the pickup object
+        else
+        {
+            Debug.LogWarning("PlayerInventory.Instance is null. Add PlayerInventory to the scene.");
+        }
+      return true;
 
     }
 

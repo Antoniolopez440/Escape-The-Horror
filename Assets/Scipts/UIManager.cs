@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private MonoBehaviour playerControllerToDisable; // Optional reference to your player controller script for input locking
 
     private bool codeOpen = false;
+    public bool IsCodePanelOpen => codeOpen;
     private Action onCodeSuccess;
 
 
