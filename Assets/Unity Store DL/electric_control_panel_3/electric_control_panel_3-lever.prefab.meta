@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2635be41d2d06174794fbe43107f108d
+timeCreated: 1473681107
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 28538
+  packageName: Electrical Control Panel #3
+  packageVersion: v2.1
+  assetPath: Assets/Models/electric_control_panel_3/electric_control_panel_3-lever.prefab
+  uploadId: 136770

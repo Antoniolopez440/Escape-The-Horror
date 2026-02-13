@@ -94,11 +94,16 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         {
             gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
+            return;
         }
-        else
+        if (animator != null ) 
         {
-            StartCoroutine(flashRed()); // Start the flashRed coroutine
+            int hitIndex = Random.Range(0, 2);
+            animator.SetInteger("Hitindex", hitIndex);
+            animator.SetTrigger("Hit");
         }
+        // Start the flashRed coroutine
+        StartCoroutine(flashRed());
     }
 
     IEnumerator flashRed()
