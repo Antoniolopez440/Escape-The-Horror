@@ -80099,7 +80099,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2448218760836226880}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: SubmitCode
         m_Mode: 1
@@ -128029,7 +128029,6 @@ MonoBehaviour:
   codePanel: {fileID: 882112682}
   codePromptText: {fileID: 1240858543}
   codeInput: {fileID: 245223406}
-  playerControllerToDisable: {fileID: 1928025217}
 --- !u!4 &2671083859621127645
 Transform:
   m_ObjectHideFlags: 0

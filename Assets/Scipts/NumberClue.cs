@@ -42,7 +42,8 @@ public class NumberClue : MonoBehaviour
     {
         if (requireRendererVisible && cachedRenderer != null && !cachedRenderer.enabled)
         {
-            UIManager.Instance.ShowMessage("It’s too dark to read..."); return;
+            UIManager.Instance.ShowMessage("It’s too dark to read...");
+            return;
         }
 
           // Always show the message when interacted (even after collected)
@@ -59,7 +60,7 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+        
         
             playerInRange = true;
             UIManager.Instance.ShowHint("Press E");
@@ -68,7 +69,7 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+      
         
             playerInRange = false;
             UIManager.Instance.HideHint();

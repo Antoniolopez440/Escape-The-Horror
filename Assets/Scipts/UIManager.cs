@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject codePanel;
     [SerializeField] private TMP_Text codePromptText;
     [SerializeField] private TMP_InputField codeInput;
+
+    [SerializeField] private MonoBehaviour playerControllerToDisable; // Optional reference to your player controller script for input locking
 
     private bool codeOpen = false;
     private Action onCodeSuccess;
@@ -86,17 +90,33 @@ public class UIManager : MonoBehaviour
         codePanel.SetActive(true);
         codePromptText.text = prompt;
 
-        codeInput.text = "";
-        codeInput.ActivateInputField();
-        codeInput.Select();
+        // Stop player from eating keyboard input (BIG one)
+        if (playerControllerToDisable != null)
+            playerControllerToDisable.enabled = false;
 
         // Cursor + locking player look is the #1 reason people think UI "isn't opening"
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // Optional: if you have a player script, call something like:
-        // PlayerController.Instance.SetInputLocked(true);
-     }
+        StartCoroutine(FocusInputNextFrame());
+
+  
+    }
+
+    private IEnumerator FocusInputNextFrame()
+    {
+        yield return null; // wait 1 frame after enabling panel
+
+        codeInput.text = "";
+        codeInput.interactable = true;
+
+        // EventSystem selection is what actually routes typing
+        if (EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(codeInput.gameObject);
+
+        codeInput.ActivateInputField();
+        codeInput.Select();
+    }
 
     public void CloseCodePanel()
     {
@@ -109,7 +129,13 @@ public class UIManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Optional: PlayerController.Instance.SetInputLocked(false);
+        if (playerControllerToDisable != null)
+            playerControllerToDisable.enabled = true;
+
+        if (EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(null);
+
+       
     }
 
 
