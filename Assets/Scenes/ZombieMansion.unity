@@ -33613,8 +33613,8 @@ MonoBehaviour:
   speed: 6
   interactKey: 101
   zombieTag: Enemy
-  lockType: 0
-  startsLocked: 0
+  lockType: 2
+  startsLocked: 1
   requiredKeyId: DoubleDoorKey
 --- !u!65 &589353124
 BoxCollider:
@@ -33654,8 +33654,8 @@ MonoBehaviour:
   speed: 6
   interactKey: 101
   zombieTag: Enemy
-  lockType: 0
-  startsLocked: 0
+  lockType: 2
+  startsLocked: 1
   requiredKeyId: DoorKey
 --- !u!1001 &590081968
 PrefabInstance:
