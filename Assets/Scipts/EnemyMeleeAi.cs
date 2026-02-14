@@ -24,6 +24,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] bool hasEmerged = false;
     [SerializeField] float emergetime = 1.2F;
 
+    bool isDead;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -55,6 +57,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
         if (!hasEmerged)
         {
             return;
@@ -90,10 +93,25 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     {
         hp -= amount;
 
-        if (hp <= 0)
+        if (hp <= 0 && !isDead)
         {
+            isDead = true;
             gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
+
+            int deathIndex = Random.Range(0, 4);
+            Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
+            animator.SetInteger("DieIndex", deathIndex);
+            animator.SetTrigger("Die");
+            agent.isStopped = true;
+            agent.ResetPath();
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+            agent.enabled = false;
+
+            enabled = false;
+
+
+            Destroy(gameObject, 2.35f);
             return;
         }
         if (animator != null ) 
