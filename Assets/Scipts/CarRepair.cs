@@ -9,7 +9,7 @@ public class CarRepair : MonoBehaviour
     {
         public CarPartsType type;
         public int requiredAmount;
-        public Transform attatchPoint;
+        public Transform[] attachPoints;
     }
 
     public List<RequiredPart> requiredParts;
@@ -24,17 +24,25 @@ public class CarRepair : MonoBehaviour
 
     public bool TryInstallPart(CarPart part)
     {
-        if (!installedParts.ContainsKey(part.partType))
-            return false;
+      
 
         RequiredPart req = requiredParts.Find(r => r.type == part.partType);
-        if (installedParts[part.partType] >= req.requiredAmount)
+        if (req == null)
             return false;
 
-        installedParts[part.partType]++;
+        int installed = installedParts.ContainsKey(part.partType)
+            ? installedParts[part.partType]
+            : 0;
 
-        if (part.placedModel && req.attatchPoint)
-            Instantiate(part.placedModel, req.attatchPoint.position, req.attatchPoint.rotation, req.attatchPoint);
+        if (installed >= req.attachPoints.Length)
+            return false;
+
+        Transform point = req.attachPoints[installed];
+
+        if (part.placedModel && point)
+            Instantiate(part.placedModel, point.position, point.rotation, point);
+
+        installedParts[part.partType] = installed + 1;
 
         CheckIfComplete();
         return true;
@@ -44,7 +52,11 @@ public class CarRepair : MonoBehaviour
     {
         foreach (var req in requiredParts)
         {
-            if (installedParts[req.type] < req.requiredAmount)
+            int installed = installedParts.ContainsKey(req.type)
+                ? installedParts[req.type]
+                : 0;
+
+            if (installed < req.attachPoints.Length)
                 return;
         }
 
