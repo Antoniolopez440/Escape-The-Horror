@@ -22,7 +22,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     Color colorOrig;
 
     [SerializeField] bool hasEmerged = false;
-    [SerializeField] float emergetime = 1.2F;
+    [SerializeField] float emergetime = 4.0F;
+    [SerializeField] float screamTime = 1.833f;
 
     bool isDead;
 
@@ -133,7 +134,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     IEnumerator EmergeThenEnable()
     {
-        yield return new WaitForSeconds(emergetime);
+        yield return new WaitForSeconds(emergetime + screamTime);
         OnEmergeFinished();
     }
 
