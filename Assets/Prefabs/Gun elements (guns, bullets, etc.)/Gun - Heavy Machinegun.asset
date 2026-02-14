@@ -17,13 +17,13 @@ MonoBehaviour:
   bullet: {fileID: 8362927536016474687, guid: cbac91d84f8a0184f9fd77e418784e6e, type: 3}
   shootDamage: 2
   shootDist: 85
-  shootForce: 22
-  upwardForce: 0.1
+  shootForce: 28
+  upwardForce: 0.06
   timeBetweenShooting: 0.18
-  spread: 0.07
-  reloadTime: 3
+  spread: 0.05
+  reloadTime: 4
   timeBetweenShots: 0
   magazineSize: 30
-  bulletsLeft: 15
+  bulletsLeft: 0
   bulletsPerTap: 1
   allowButtonHold: 1
