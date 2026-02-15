@@ -6,6 +6,7 @@ public class VaseInteract : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private GameObject vaseRoot;
+    [SerializeField] private GameObject FlowerInteractText;
 
     private bool playerInRange;
     private bool used;
@@ -21,27 +22,39 @@ public class VaseInteract : MonoBehaviour
     {
         if (used) return;
 
+        // Always hide by default, then only show when valid
+        if (FlowerInteractText) FlowerInteractText.SetActive(false);
+
+        // Locked until note is read
         if (!NoteInteract.NoteRead) return;
+
+        // Must be inside trigger
         if (!playerInRange) return;
+
+        // Now we can show the prompt
+        if (FlowerInteractText) FlowerInteractText.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             used = true;
 
+            // Hide first so it never flashes after pickup
+            if (FlowerInteractText) FlowerInteractText.SetActive(false);
+
+            // Disable the vase
             vaseRoot.SetActive(false);
 
-            Debug.Log("Vase picked up after note read");
+            // Disable this script so it can't re-enable UI next frame
+            enabled = false;
         }
-
     }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
+    private void OnTriggerEnter(Collider other)
             {
-                playerInRange = true;
+                if (other.CompareTag("Player"))
+                {
+                    playerInRange = true;
+                }
             }
-    }
 
     private void OnTriggerExit(Collider other)
     {

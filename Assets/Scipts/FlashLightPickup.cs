@@ -10,6 +10,7 @@ public class FlashLightPickup : MonoBehaviour
     [SerializeField] private GameObject playerFlashlightHolder;
 
     private bool isPlayerInRange = false;
+    public static bool HasFlashlightt = false;
 
 
     private void Awake()
@@ -36,6 +37,8 @@ public class FlashLightPickup : MonoBehaviour
         
             if (playerFlashlightHolder != null)
                 playerFlashlightHolder.SetActive(true);
+
+               HasFlashlightt = true;
 
             Destroy(gameObject); // Destroy the pickup object
         }
