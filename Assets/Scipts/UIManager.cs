@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject messagePanel;
     [SerializeField] private TMP_Text messageText;
 
+
+
     [Header("Hint UI")]
     [SerializeField] private TMP_Text hintText;
+
     [Header("Code UI")]
     [SerializeField] private GameObject codePanel;
     [SerializeField] private TMP_Text codePromptText;

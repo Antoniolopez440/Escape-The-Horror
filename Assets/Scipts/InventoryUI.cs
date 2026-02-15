@@ -10,20 +10,22 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerInventory.Instance != null) return;
+        if (PlayerInventory.Instance == null) return;
 
         PlayerInventory.Instance.InventoryChanged += Refresh;
-        PlayerInventory.Instance.SelectedItemChanged += _ => Refresh();
+        PlayerInventory.Instance.SelectedItemChanged += OnSelectedChanged;
 
         Refresh();
     }
 
     private void OnDisable()
     {
-        if (PlayerInventory.Instance != null) return;
+        if (PlayerInventory.Instance == null) return;
         PlayerInventory.Instance.InventoryChanged -= Refresh;
-        PlayerInventory.Instance.SelectedItemChanged -= _ => Refresh();
+        PlayerInventory.Instance.SelectedItemChanged -= OnSelectedChanged;
     }
+
+    private void OnSelectedChanged(string id) => Refresh();
 
     private void Refresh()
     {
