@@ -16,6 +16,13 @@ public class PlayerInventory : MonoBehaviour
     public Action<string> SelectedItemChanged;
 
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectIndex(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectIndex(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectIndex(2);
+    }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -68,6 +75,15 @@ public class PlayerInventory : MonoBehaviour
             if (SelectedIndex == index) return;
             SelectedItemChanged?.Invoke(GetSelectedItem());
         }
+    }
+
+    private void SelectSlot(int index)
+    {
+        if (index < 0 || index >= items.Count) return;
+        if (SelectedIndex == index) return;
+        SelectedIndex = index;
+        SelectedItemChanged?.Invoke(items[SelectedIndex]);
+
     }
 
 
