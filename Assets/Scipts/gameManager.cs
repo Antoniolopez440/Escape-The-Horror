@@ -199,16 +199,23 @@ public class gameManager : MonoBehaviour
         Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
         
-        if(gameGoalCount<= 0)
-        {
-            NextLevelOrWin();
-        }
+        //if(gameGoalCount<= 0)
+        //{
+        //    NextLevelOrWin();
+        //}
     }
 
     public void youLose()
     {
         statePause();
         menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void WinGame()
+    {
+        statePause();
+        menuActive = menuWin;
         menuActive.SetActive(true);
     }
 }

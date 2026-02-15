@@ -232,6 +232,7 @@ MonoBehaviour:
   animator: {fileID: 627387189615509163}
   hasEmerged: 1
   emergetime: 3.34
+  dropObject: {fileID: 3867092246578444957, guid: 62c6c3c17e51f9a43ae96ac5152035b9, type: 3}
 --- !u!136 &6045977349178751051
 CapsuleCollider:
   m_ObjectHideFlags: 0

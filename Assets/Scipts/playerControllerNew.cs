@@ -428,20 +428,68 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         if (!Input.GetKeyDown(KeyCode.E)) return;
 
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-        if(Physics.Raycast(ray, out RaycastHit hit, 3f))
+
+        if (carParts == null || carParts.Count == 0)
         {
-            CarRepair car = hit.collider.GetComponentInParent<CarRepair>();
-            if (car == null) return;
-
-            for (int i = carParts.Count - 1; i >= 0; i++)
-            {
-                carParts.RemoveAt(i);
-                gameManager.instance.carPartsUI.Refresh(carParts);
-                break;
-
-                
-            }
+            Debug.Log("TryInteract called with empty inventory");
+            return;
         }
+
+        //if (selectedIndex < 0 || selectedIndex >= inventory.Count)
+        //{
+        //    Debug.Log($"Invalid selectedIndex: {selectedIndex}, inventory size: {carParts.Count}");
+        //    selectedIndex = Mathf.Clamp(selectedIndex, 0, inventory.Count - 1);
+
+        //}
+
+
+       
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        if (!Physics.Raycast(ray, out RaycastHit hit, 3f)) 
+            return;
+
+        CarRepair car = hit.collider.GetComponentInParent<CarRepair>();
+        if (car == null)
+            return;
+
+
+        int index = carParts.Count - 1;
+        CarPart part = carParts[index];
+
+        if(!car.TryInstallPart(part))
+        {
+            Debug.Log($"Cannot install{part.partType} yet");
+        }
+
+        carParts.RemoveAt(index);
+
+        gameManager.instance.carPartsUI.Refresh(carParts);
+
+        Debug.Log($"Installed {part.partType}");
+
+        //for (int i = carParts.Count - 1; i >= 0; i++)
+        //{
+        //    CarPart part = carParts[i];
+
+        //    if (car.TryInstallPart(part))
+        //    {
+        //        carParts.RemoveAt(i);
+        //        if (i >= carParts.Count)
+        //            i = carParts.Count - 1;
+
+        //        if(carParts.Count ==0)
+        //        { 
+        //          i = 0;
+        //          return;
+        //        }
+
+        //        gameManager.instance.carPartsUI.Refresh(carParts);
+        //        Debug.Log($"Installed{part.partType}");
+        //        break;
+        //    }
+                
+        //}
+        
     }
 }

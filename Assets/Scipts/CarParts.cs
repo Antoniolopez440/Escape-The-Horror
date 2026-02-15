@@ -4,7 +4,8 @@ public enum CarPartsType
 {
    Wheel,
    SteeringWheel,
-   StickShift
+   StickShift,
+   CarKey
 }
 
 [CreateAssetMenu(menuName = "Items/Car Part")]

@@ -24,6 +24,9 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] bool hasEmerged = false;
     [SerializeField] float emergetime = 1.2F;
 
+    [SerializeField] GameObject dropObject;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -93,6 +96,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (hp <= 0)
         {
             gameManager.instance.updateGameGoal(-1);
+            dropItem();
             Destroy(gameObject);
         }
         else
@@ -122,5 +126,10 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         }
 
         hasEmerged = true;
+    }
+
+    void dropItem()
+    {
+        Instantiate(dropObject, transform.position, transform. rotation);
     }
 }
