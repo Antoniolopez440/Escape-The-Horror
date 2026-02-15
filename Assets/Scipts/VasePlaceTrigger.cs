@@ -5,40 +5,77 @@ public class VasePlaceTrigger : MonoBehaviour
 
     [SerializeField] private GameObject vaseToPlace;
     [SerializeField] private Transform placePoint;
+    [SerializeField] private Transform player;
+    [SerializeField] private float activationRange = 3f;
+
+    [Header("Boss Spawner")]
     [SerializeField] private MiniBossSpawner bossSpawner;
 
-    private bool used = false;
 
-    private void OnTriggerEnter(Collider other)
+    private bool playerInRange;
+    private bool placed;
+
+    private void Start()
     {
-        if (used) return;
-        if (other.CompareTag("Player")) return;
+        if (vaseToPlace != null)
+            vaseToPlace.SetActive(false);
 
-        if (!VaseInteract.VasePickedUp) return;
+        if (placePoint == null)
+            placePoint = transform;
+     
 
-        used = true;
-
-        if (vaseToPlace != null && placePoint != null)
-        {
-            vaseToPlace.SetActive(true);
-            vaseToPlace.transform.position = placePoint.position;
-            vaseToPlace.transform.rotation = placePoint.rotation;
-        }
-
-        if (bossSpawner != null)
-        {
-            bossSpawner.StartLevel(1);
-        }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (placed) return;
+        if (!playerInRange) return;
+        if (!VaseInteract.HasVaseB) return;
+
+        if (player == null) return;
+        if (Vector3.Distance(player.position, transform.position) > activationRange) return;
+      
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            placed = true;
+
+            if (vaseToPlace != null && placePoint != null)
+            {
+                vaseToPlace.SetActive(true);
+                vaseToPlace.transform.SetPositionAndRotation(placePoint.position, placePoint.rotation);
+
+            }
+
+            VaseInteract.HasVaseB = false;
+
+            if (bossSpawner != null)
+                bossSpawner.StartLevel(1);
+            
+
+            gameObject.SetActive(false);
+        }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
+
+
+
+
+
 }

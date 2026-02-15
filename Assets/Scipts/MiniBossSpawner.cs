@@ -5,30 +5,25 @@ using UnityEngine.AI;
 
 public class MiniBossSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject objectToSpawn;
-    [SerializeField] int spawnRate;
-    [SerializeField] int spawnDist;
+    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private int spawnDist;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] int startAmount;
+    [SerializeField] private int startAmount = 1;
 
-    private bool playerInHouse = true;
+
 
     private int spawnAmount;
-    int spawnCount;
-    float spawnTimer;
+    private int spawnCount;
+    private float spawnTimer;
 
-    bool startSpawning;
+    private bool startSpawning = false;
 
-    private bool levelStarted;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         startSpawning = false;
-    }
-    public void SetPlayerInHouse(bool value)
-    {
-        playerInHouse = value;
     }
 
     // Update is called once per frame
@@ -38,16 +33,16 @@ public class MiniBossSpawner : MonoBehaviour
         spawnTimer += Time.deltaTime;
 
         if (spawnCount < spawnAmount && spawnTimer >= spawnRate)
-            spawn();
+        {
+            spawnOne();
+        }
+       
 
         if (spawnCount >= spawnAmount)
         {
             startSpawning = false;
         }
     }
-
-
-
 
     public void StartLevel(int amount)
     {
@@ -58,26 +53,29 @@ public class MiniBossSpawner : MonoBehaviour
         startSpawning = true;
 
     }
-    void spawn()
+    void spawnOne()
     {
-        spawnTimer = 0;
+        spawnTimer = 0f;
         spawnCount++;
 
+        if (objectToSpawn == null) return;
+
         Vector3 spawnPos;
-        if (playerInHouse && spawnPoints != null && spawnPoints.Length > 0)
+
+        if (spawnPoints != null && spawnPoints.Length > 0)
         {
             spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
         }
         else
         {
-            Vector3 ranPos = Random.insideUnitSphere * spawnDist;
-            ranPos += transform.position;
-
-            NavMeshHit hit;
-            NavMesh.SamplePosition(ranPos, out hit, spawnDist, 1);
+            Vector3 ranPos = Random.insideUnitSphere * spawnDist + transform.position;
+          
+          if (NavMesh.SamplePosition(ranPos, out NavMeshHit hit, spawnDist, NavMesh.AllAreas))
             spawnPos = hit.position;
+            else
+                spawnPos = transform.position;
         }
 
-        Instantiate(objectToSpawn, spawnPos, Quaternion.Euler(0f, Random.Range(0f, 300f), 0f));
+        Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
     }
 }

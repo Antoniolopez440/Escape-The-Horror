@@ -3,13 +3,14 @@ using UnityEngine;
 public class VaseInteract : MonoBehaviour
 {
 
-    [SerializeField] private Transform player;
-    [SerializeField] private float interactionDistance = 2f;
+ 
     [SerializeField] private GameObject vaseRoot;
     [SerializeField] private GameObject FlowerInteractText;
 
     private bool playerInRange;
     private bool used;
+
+    public static bool HasVaseB = false;
 
     private void Awake()
     {
@@ -37,9 +38,13 @@ public class VaseInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             used = true;
+           
+            HasVaseB = true;
 
             // Hide first so it never flashes after pickup
             if (FlowerInteractText) FlowerInteractText.SetActive(false);
+
+           
 
             // Disable the vase
             vaseRoot.SetActive(false);
