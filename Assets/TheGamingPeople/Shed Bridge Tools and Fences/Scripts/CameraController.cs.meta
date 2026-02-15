@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: a7660a89dca76384e866bbed49250c26
+timeCreated: 1512428322
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104216
+  packageName: Shed, Tools, Bridge and Fences
+  packageVersion: 1.0
+  assetPath: Assets/TheGamingPeople/Shed Bridge Tools and Fences/Scripts/CameraController.cs
+  uploadId: 308174
