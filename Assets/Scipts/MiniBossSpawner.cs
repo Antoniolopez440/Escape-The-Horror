@@ -24,7 +24,7 @@ public class MiniBossSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartLevel(startAmount);
+        startSpawning = false;
     }
     public void SetPlayerInHouse(bool value)
     {
