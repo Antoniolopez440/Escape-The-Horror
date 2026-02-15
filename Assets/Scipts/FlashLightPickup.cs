@@ -14,7 +14,7 @@ public class FlashLightPickup : MonoBehaviour
 
     private void Awake()
     {
-        if (playerFlashlightHolder == null)
+        if (playerFlashlightHolder != null)
         playerFlashlightHolder.SetActive(false); // Ensure the flashlight is initially inactive
     }
 
@@ -33,8 +33,9 @@ public class FlashLightPickup : MonoBehaviour
                 PlayerInventory.Instance.SelectIndex(0); // Automatically select the flashlight after picking it up
             }
 
-            if (playerFlashlightHolder == null)
-                playerFlashlightHolder.SetActive(false);
+        
+            if (playerFlashlightHolder != null)
+                playerFlashlightHolder.SetActive(true);
 
             Destroy(gameObject); // Destroy the pickup object
         }
