@@ -27,6 +27,12 @@ public class FlashLightPickup : MonoBehaviour
 
         if (Input.GetKeyDown(pickupKey))
         {
+            if (PlayerInventory.Instance != null)
+            {
+                PlayerInventory.Instance.AddItems("Flashlight");
+                PlayerInventory.Instance.SelectIndex(0); // Automatically select the flashlight after picking it up
+            }
+
             if (playerFlashlightHolder == null)
                 playerFlashlightHolder.SetActive(false);
 

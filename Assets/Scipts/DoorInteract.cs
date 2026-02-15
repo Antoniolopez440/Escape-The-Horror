@@ -153,6 +153,17 @@ public class DoorInteract : MonoBehaviour
         isMoving = false;
     }
 
+    public void ToggleFromController()
+    {
+        if (isMoving) return;
+        StartCoroutine(ToggleDoor());
+    }
+
+    public void SetLocked(bool locked)
+    {
+        unlocked = !locked;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
