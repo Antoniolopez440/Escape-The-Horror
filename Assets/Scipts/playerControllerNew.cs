@@ -284,6 +284,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         currentAmmo--;
         gun.bulletsLeft = currentAmmo;
         bulletsShot++;
+        gunUI.RefreshAmmo();
 
 
         if (allowInvoke)
@@ -338,6 +339,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         gun.bulletsLeft = currentAmmo;
 
         reloading = false;
+
+        gunUI.RefreshAmmo();
     }
 
 
@@ -353,6 +356,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         gunUI.BuildUI();
         gunUI.RefreshSelection();
+        gunUI.RefreshAmmo();
 
     }
 
@@ -402,6 +406,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             }
 
         gunUI.RefreshSelection(); 
+        gunUI.RefreshAmmo(); 
     }
 
     public void updateplayerUI()
@@ -435,15 +440,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             return;
         }
 
-        //if (selectedIndex < 0 || selectedIndex >= inventory.Count)
-        //{
-        //    Debug.Log($"Invalid selectedIndex: {selectedIndex}, inventory size: {carParts.Count}");
-        //    selectedIndex = Mathf.Clamp(selectedIndex, 0, inventory.Count - 1);
-
-        //}
-
-
-       
+      
 
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         if (!Physics.Raycast(ray, out RaycastHit hit, 3f)) 
@@ -468,28 +465,5 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         Debug.Log($"Installed {part.partType}");
 
-        //for (int i = carParts.Count - 1; i >= 0; i++)
-        //{
-        //    CarPart part = carParts[i];
-
-        //    if (car.TryInstallPart(part))
-        //    {
-        //        carParts.RemoveAt(i);
-        //        if (i >= carParts.Count)
-        //            i = carParts.Count - 1;
-
-        //        if(carParts.Count ==0)
-        //        { 
-        //          i = 0;
-        //          return;
-        //        }
-
-        //        gameManager.instance.carPartsUI.Refresh(carParts);
-        //        Debug.Log($"Installed{part.partType}");
-        //        break;
-        //    }
-                
-        //}
-        
     }
 }
