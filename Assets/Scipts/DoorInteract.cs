@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class DoorInteract : MonoBehaviour
 {
+    public enum LockType { None, Code, Key }
 
     [Header("Door parts")]
     [SerializeField] Transform hinge;
@@ -17,12 +19,21 @@ public class DoorInteract : MonoBehaviour
     [Header("Auto Open For Zombies")]
     [SerializeField] string zombieTag = "Enemy";
 
+    [Header("Lock Settings")]
+    [SerializeField] LockType lockType = LockType.Code;
+    [SerializeField] bool startsLocked = true;
+
+    [Header("Key Lock Settings (if using Key lock)")]
+    [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
+
 
     // State variables
     bool playerInRange;
     bool isOpen;
     bool isMoving;
     int zombiesInRange;
+
+    bool unlocked;
 
 
     // Rotations
@@ -39,6 +50,8 @@ public class DoorInteract : MonoBehaviour
 
         closedRotation = hinge.rotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+
+        unlocked = !startsLocked || lockType == LockType.None;
     }
 
 
@@ -49,10 +62,73 @@ public class DoorInteract : MonoBehaviour
         if (!playerInRange) return;
         if (isMoving) return;
 
+        if (UIManager.Instance != null && UIManager.Instance.IsCodePanelOpen)
+            return; // Don't allow interaction while code panel is open
+
         if (Input.GetKeyDown(interactKey))
         {
-            StartCoroutine(ToggleDoor());
+            TryInteract();
         }
+    }
+
+
+    void TryInteract()
+    {
+        // Always allow normal open/close once unlocked
+        if (unlocked)
+        {
+            StartCoroutine(ToggleDoor());
+            return;
+        }
+
+        // LOCKED behavior by type
+        if (lockType == LockType.Key)
+        {
+            bool hasKey = PlayerInventory.Instance != null && PlayerInventory.Instance.HasKey(requiredKeyId);
+
+            if (!hasKey)
+            {
+                if (UIManager.Instance != null)
+                    UIManager.Instance.ShowMessage("Door is locked. You need a key.");
+                return;
+            }
+
+            // Key found -> unlock and open (then free open/close forever)
+            unlocked = true;
+            if (UIManager.Instance != null)
+                UIManager.Instance.ShowMessage("Unlocked!");
+
+            StartCoroutine(ToggleDoor());
+            return;
+        }
+
+        if (lockType == LockType.Code)
+        {
+            // If they haven't found numbers yet
+            if (CodeManager.Instance == null || !CodeManager.Instance.AllNumbersFound)
+            {
+                if (UIManager.Instance != null)
+                    UIManager.Instance.ShowMessage("Door is locked. Find the numbers.");
+                return;
+            }
+
+            // They found all numbers -> open code panel
+            if (UIManager.Instance != null)
+                UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
+            else
+                Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
+
+            return;
+        }
+
+        // LockType.None fallback
+        StartCoroutine(ToggleDoor());
+    }
+
+    void OnCorrectCodeEntered()
+    {
+        unlocked = true;
+        StartCoroutine(ToggleDoor());
     }
 
 
@@ -71,6 +147,7 @@ public class DoorInteract : MonoBehaviour
             hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
+
         hinge.rotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
@@ -81,10 +158,26 @@ public class DoorInteract : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+
+            if (UIManager.Instance != null)
+            {
+                if (unlocked)
+                    UIManager.Instance.ShowHint("Press E to open");
+                else if (lockType == LockType.Key)
+                    UIManager.Instance.ShowHint("Find the key");
+                else if (lockType == LockType.Code && CodeManager.Instance != null && CodeManager.Instance.AllNumbersFound)
+                    UIManager.Instance.ShowHint("Press E to enter code");
+                else
+                    UIManager.Instance.ShowHint("Find the numbers");
+            }
         }
+
         if (other.CompareTag(zombieTag))
         {
-            if (!isOpen && !isMoving)
+            zombiesInRange++;
+
+            // Zombies can only open if unlocked (keeps your door puzzle intact)
+            if (unlocked && !isOpen && !isMoving)
             {
                 StartCoroutine(ToggleDoor());
             }
@@ -96,8 +189,16 @@ public class DoorInteract : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+
+            if (UIManager.Instance != null)
+                UIManager.Instance.HideHint();
+        }
+
+        if (other.CompareTag(zombieTag))
+        {
+            zombiesInRange--;
+            if (zombiesInRange < 0) zombiesInRange = 0;
         }
     }
-
-
 }
+

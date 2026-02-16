@@ -22,8 +22,7 @@ public class damage : MonoBehaviour
     void Start()
     {
         if(type == damageType.moving)
-        {
-            rb.linearVelocity = transform.forward * speed; // Set the velocity of the Rigidbody to move forward at the specified speed
+        { // Set the velocity of the Rigidbody to move forward at the specified speed
             Destroy(gameObject, destroyTime); // Destroy the game object after the specified time
         }
     }

@@ -58,25 +58,25 @@ public class gameManager : MonoBehaviour
 
     }
 
-    private void ShowLevelBanner(int levelNumber)
-    {
-        if (levelBanner == null || levelBannerText == null) return;
+    //private void ShowLevelBanner(int levelNumber)
+    //{
+    //    if (levelBanner == null || levelBannerText == null) return;
 
-        if(bannerRoutine != null) 
-            StopCoroutine(bannerRoutine);
+    //    if(bannerRoutine != null) 
+    //        StopCoroutine(bannerRoutine);
 
-        bannerRoutine = StartCoroutine(levelBannerRoutine(levelNumber));
-    }
+    //    bannerRoutine = StartCoroutine(levelBannerRoutine(levelNumber));
+    //}
 
-    private IEnumerator levelBannerRoutine(int levelNumber)
-    {
-        levelBannerText.text = "Level " + levelNumber;
-        levelBanner.SetActive(true);
-        yield return new WaitForSeconds(bannerTime);
-        levelBanner.SetActive(false);
+    //private IEnumerator levelBannerRoutine(int levelNumber)
+    //{
+    //    levelBannerText.text = "Level " + levelNumber;
+    //    levelBanner.SetActive(true);
+    //    yield return new WaitForSeconds(bannerTime);
+    //    levelBanner.SetActive(false);
 
-        bannerRoutine = null;
-    }
+    //    bannerRoutine = null;
+    //}
 
     private void StartLevel(int levelIndex)
     {
@@ -99,7 +99,7 @@ public class gameManager : MonoBehaviour
             levelText.text = "Level: " + (displayLevel);
         }
 
-        ShowLevelBanner(displayLevel);
+        //ShowLevelBanner(displayLevel);
 
         gameGoalCount = 0;
 

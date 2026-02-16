@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5489ca68c9f062943b958791e79e274e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Materials/Gate.mat
+  uploadId: 638041

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1eb32d270eff96f439ed6032167fd803
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Scene/Terrain/Terrain Material/Grass.terrainlayer
+  uploadId: 638041

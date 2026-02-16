@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bfca5be4fc092594fbb4a2b2f9cea263
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263707
+  packageName: Stylized Graveyard
+  packageVersion: 1.01
+  assetPath: Assets/Monaris_Graveyard/Materials/Custom Materials/Stone_CustomMaterial.mat
+  uploadId: 638041
