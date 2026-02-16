@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject messagePanel;
     [SerializeField] private TMP_Text messageText;
 
+
+
     [Header("Hint UI")]
     [SerializeField] private TMP_Text hintText;
+
     [Header("Code UI")]
     [SerializeField] private GameObject codePanel;
     [SerializeField] private TMP_Text codePromptText;
@@ -36,6 +39,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+     
+
         if (messagePanel != null)
             messagePanel.SetActive(false);
 
@@ -44,6 +49,7 @@ public class UIManager : MonoBehaviour
 
         HideHint();
     }
+
 
 
     public void ShowMessage(string msg, float autoHideSeconds = 2f)

@@ -26,6 +26,12 @@ public class UVRevealBySpotLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!FlashLightPickup.HasFlashlightt)
+        {
+            SetVisible(false);
+            return;
+        }
+
         if (blackLight == null || !blackLight.enabled || blackLight.type != LightType.Spot)
         {
             SetVisible(false);
