@@ -79,7 +79,7 @@ public class MiniBossLink : MonoBehaviour
 
     private void OnApplicationQuit() => quitting = true;
 
-    //
+    
     private void Notify()
     {
         if (alreadyNotified) return;

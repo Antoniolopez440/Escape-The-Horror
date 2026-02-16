@@ -101,8 +101,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         {
             isDead = true;
             gameManager.instance.updateGameGoal(-1);
-            dropItem();
-            Destroy(gameObject);
+           
 
             int deathIndex = Random.Range(0, 4);
             Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
@@ -116,7 +115,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
             enabled = false;
 
-
+            dropItem();
             Destroy(gameObject, 2.35f);
             return;
         }
