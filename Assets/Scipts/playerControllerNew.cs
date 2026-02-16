@@ -26,6 +26,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [Header("----- Guns -----")]
     [SerializeField] List<ProjectileGun> gunList = new List<ProjectileGun>();
 
+    [SerializeField] LayerMask aimMask;
     [SerializeField] GameObject gunModel;
     [SerializeField] public float shootForce;
     [SerializeField] public float upwardForce;
@@ -240,21 +241,22 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         RaycastHit hit;
 
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayer))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimMask)) {
             targetPoint = hit.point;
-        else
-            targetPoint = ray.GetPoint(75);
+        } else { 
+            targetPoint = ray.GetPoint(75f);
+        }
 
-        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+        Vector3 directionWithSpread = (targetPoint - attackPoint.position).normalized;
 
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
-
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        float x = Random.Range(-gun.spread, gun.spread);
+        float y = Random.Range(-gun.spread, gun.spread);
+        Quaternion spreadRot = Quaternion.Euler(y, x, 0f);
+        directionWithSpread = (spreadRot * directionWithSpread).normalized;
         Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
-        
-        GameObject currentBullet = Instantiate(gunList[gunListPos].bullet, attackPoint.position, Quaternion.identity);
-        currentBullet.transform.forward = directionWithSpread.normalized;
+
+        Quaternion rot = Quaternion.LookRotation(directionWithSpread);
+        GameObject currentBullet = Instantiate(gun.bullet, attackPoint.position, rot);
 
         // for normal bullet
         //currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
@@ -265,11 +267,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         Rigidbody rb = currentBullet.GetComponent<Rigidbody> ();
         if (rb != null)
         {
-            rb.AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+            rb.linearVelocity = (directionWithSpread * shootForce);
 
-            if (upwardForce != 0)
+            if (upwardForce != 0f)
             {
-                rb.AddForce(transform.up * upwardForce, ForceMode.Impulse);
+                rb.linearVelocity += playerCamera.transform.up * upwardForce;
             }
         }
         currentAmmo--;
