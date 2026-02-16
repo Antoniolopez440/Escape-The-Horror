@@ -11,7 +11,8 @@ public class MiniBossSpawner : MonoBehaviour
     [Header("Drop onDeath")]
     [SerializeField] private GameObject dropItem;
     [SerializeField] private Vector3 dropOffset = new Vector3(0, 0.5f, 0);
-    [SerializeField] private bool snapDropToGround = true;
+    [SerializeField] private bool snapToGround = true;
+    [SerializeField] private float groundCheckDistance = 10f;
 
 
     private GameObject bossInstance;
@@ -34,12 +35,21 @@ public class MiniBossSpawner : MonoBehaviour
         link.Init(this);
     }
 
-    public void OnBossRemoved(Vector3 position)
+    public void OnBossRemoved(Vector3 cachedDeathposition)
     {
         // Drop item
         if (dropItem != null)
         {
-            Instantiate(dropItem, position, Quaternion.identity);
+            Vector3 spawnPos = cachedDeathposition + dropOffset;
+
+            if (snapToGround)
+            {
+                if (Physics.Raycast(spawnPos + Vector3.up * 2f, Vector3.down, out RaycastHit hit, groundCheckDistance))
+                {
+                    spawnPos = hit.point + dropOffset;
+                }
+            }
+            Instantiate(dropItem, spawnPos, Quaternion.identity);
         }
 
         bossInstance = null;
@@ -52,17 +62,23 @@ public class MiniBossLink : MonoBehaviour
     private bool alreadyNotified;
     private bool quitting;
 
+    private Vector3 lastWorldPos;
+
     public void Init(MiniBossSpawner s)
     {
                spawner = s;
         alreadyNotified = false;
         quitting = false;
+        lastWorldPos = transform.position;
     }
 
-    private void OnApplicationQuit()
+    private void Update()
     {
-        quitting = true;
+            lastWorldPos = transform.position;
     }
+
+    private void OnApplicationQuit() => quitting = true;
+
 
     private void Notify()
     {
@@ -71,6 +87,7 @@ public class MiniBossLink : MonoBehaviour
         if (!Application.isPlaying) return;
 
         alreadyNotified = true;
+
         if (spawner != null)
         {
             spawner.OnBossRemoved(transform.position);
