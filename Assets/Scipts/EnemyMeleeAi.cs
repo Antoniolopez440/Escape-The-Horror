@@ -27,6 +27,9 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     bool isDead;
 
+    [SerializeField] GameObject dropObject;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -98,6 +101,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         {
             isDead = true;
             gameManager.instance.updateGameGoal(-1);
+            dropItem();
+            Destroy(gameObject);
 
             int deathIndex = Random.Range(0, 4);
             Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
@@ -146,5 +151,10 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         }
 
         hasEmerged = true;
+    }
+
+    void dropItem()
+    {
+        Instantiate(dropObject, transform.position, transform. rotation);
     }
 }

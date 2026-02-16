@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba734d176561974198e93fea8bfb329, type: 3}
+  m_Name: CarPart_Wheel
+  m_EditorClassIdentifier: Assembly-CSharp::CarPart
+  partType: 0
+  uIIcon: {fileID: 21300000, guid: 2990ace445dc80041a74316bcaab26e1, type: 3}
+  placedModel: {fileID: 1712375584849476879, guid: f34587e599f673342a73bc55e669ddc5, type: 3}
