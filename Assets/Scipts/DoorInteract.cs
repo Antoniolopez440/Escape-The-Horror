@@ -90,6 +90,7 @@ public class DoorInteract : MonoBehaviour
             {
                 if (UIManager.Instance != null)
                     UIManager.Instance.ShowMessage("Door is locked. You need a key.");
+                UIManager.Instance?.ShowMessage("Quest: Find the key.");
                 return;
             }
 
@@ -97,6 +98,7 @@ public class DoorInteract : MonoBehaviour
             unlocked = true;
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
+            UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
 
             StartCoroutine(ToggleDoor());
             return;
@@ -109,12 +111,16 @@ public class DoorInteract : MonoBehaviour
             {
                 if (UIManager.Instance != null)
                     UIManager.Instance.ShowMessage("Door is locked. Find the numbers.");
+                UIManager.Instance?.ShowMessage("Quest: Find the numbers.");
                 return;
             }
 
+            UIManager.Instance.ShowMessage("Enter the code to unlock.");
+
             // They found all numbers -> open code panel
             if (UIManager.Instance != null)
-                UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
+               
+            UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
             else
                 Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
 
