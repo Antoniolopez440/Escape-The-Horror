@@ -1541,6 +1541,7 @@ MonoBehaviour:
   hasEmerged: 1
   emergetime: 4
   screamTime: 1.833
+  dropObject: {fileID: 1645909782545393947, guid: 89892b4f3cb419644b7170afb74c48ad, type: 3}
 --- !u!195 &3286671881906617567
 NavMeshAgent:
   m_ObjectHideFlags: 0
