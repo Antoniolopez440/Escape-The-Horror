@@ -9,7 +9,7 @@ public class NoteInteract : MonoBehaviour
     [SerializeField] private float interactionDistance = 2.0f;
 
     private bool open;
-    public static bool NoteRead { get; private set; }
+    public static bool NoteRead = false;
 
 
     // Update is called once per frame
@@ -43,6 +43,8 @@ public class NoteInteract : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        NoteRead = true;
 
     }
 

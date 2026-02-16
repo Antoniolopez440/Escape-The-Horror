@@ -5,42 +5,37 @@ public class VasePlaceTrigger : MonoBehaviour
 
     [SerializeField] private GameObject vaseToPlace;
     [SerializeField] private Transform placePoint;
-    [SerializeField] private Transform player;
-    [SerializeField] private float activationRange = 3f;
+    [SerializeField] private GameObject placePromptText;
 
     [Header("Boss Spawner")]
     [SerializeField] private MiniBossSpawner bossSpawner;
 
 
     private bool playerInRange;
-    private bool placed;
+    private bool used;
 
     private void Start()
     {
-        if (vaseToPlace != null)
-            vaseToPlace.SetActive(false);
+        if (bossSpawner == null) bossSpawner = FindObjectOfType<MiniBossSpawner>();
 
-        if (placePoint == null)
-            placePoint = transform;
-     
-
+      if (vaseToPlace) vaseToPlace.SetActive(false);
+      if (placePromptText) placePromptText.SetActive(false);
+      used = false;
     }
     // Update is called once per frame
-    void Update()
+   private void Update()
     {
-        if (placed) return;
+        if (used) return;
+        if (placePromptText) placePromptText.SetActive(false);
         if (!playerInRange) return;
         if (!VaseInteract.HasVaseB) return;
-
-        if (player == null) return;
-        if (Vector3.Distance(player.position, transform.position) > activationRange) return;
-      
+        if (placePromptText) placePromptText.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            placed = true;
+            used = true;
 
-            if (vaseToPlace != null && placePoint != null)
+            if (vaseToPlace && placePoint)
             {
                 vaseToPlace.SetActive(true);
                 vaseToPlace.transform.SetPositionAndRotation(placePoint.position, placePoint.rotation);
@@ -50,10 +45,21 @@ public class VasePlaceTrigger : MonoBehaviour
             VaseInteract.HasVaseB = false;
 
             if (bossSpawner != null)
-                bossSpawner.StartLevel(1);
-            
+            {
+                Debug.Log("Spawning Boss");
+                bossSpawner.SpawnBoss();
+            }
+            else
+            {
+                Debug.LogError("BossSpawner is Null");
+            }
 
-            gameObject.SetActive(false);
+            if (placePromptText) placePromptText.SetActive(false);
+
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+
+            enabled = false;
         }
     }
 

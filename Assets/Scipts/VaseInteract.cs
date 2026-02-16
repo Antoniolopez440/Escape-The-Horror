@@ -18,6 +18,15 @@ public class VaseInteract : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        if (vaseRoot) vaseRoot.SetActive(true);
+
+        if (FlowerInteractText) FlowerInteractText.SetActive(false);
+
+        used = false;
+        HasVaseB = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -43,11 +52,8 @@ public class VaseInteract : MonoBehaviour
 
             // Hide first so it never flashes after pickup
             if (FlowerInteractText) FlowerInteractText.SetActive(false);
+            if (vaseRoot) vaseRoot.SetActive(false);
 
-           
-
-            // Disable the vase
-            vaseRoot.SetActive(false);
 
             // Disable this script so it can't re-enable UI next frame
             enabled = false;

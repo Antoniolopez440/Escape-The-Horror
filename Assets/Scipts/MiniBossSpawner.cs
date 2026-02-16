@@ -6,76 +6,22 @@ using UnityEngine.AI;
 public class MiniBossSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject objectToSpawn;
-    [SerializeField] private float spawnRate;
-    [SerializeField] private int spawnDist;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private int startAmount = 1;
 
 
-
-    private int spawnAmount;
-    private int spawnCount;
-    private float spawnTimer;
-
-    private bool startSpawning = false;
+    private GameObject bossInstance;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SpawnBoss()
     {
-        startSpawning = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!startSpawning) return;
-        spawnTimer += Time.deltaTime;
-
-        if (spawnCount < spawnAmount && spawnTimer >= spawnRate)
-        {
-            spawnOne();
-        }
-       
-
-        if (spawnCount >= spawnAmount)
-        {
-            startSpawning = false;
-        }
-    }
-
-    public void StartLevel(int amount)
-    {
-        spawnAmount = amount;
-        spawnCount = 0;
-        spawnTimer = 0f;
-
-        startSpawning = true;
-
-    }
-    void spawnOne()
-    {
-        spawnTimer = 0f;
-        spawnCount++;
+        // If a boss already exists, don't spawn another
+        if (bossInstance != null) return;
 
         if (objectToSpawn == null) return;
+        if (spawnPoints == null || spawnPoints.Length == 0) return;
 
-        Vector3 spawnPos;
-
-        if (spawnPoints != null && spawnPoints.Length > 0)
-        {
-            spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
-        }
-        else
-        {
-            Vector3 ranPos = Random.insideUnitSphere * spawnDist + transform.position;
-          
-          if (NavMesh.SamplePosition(ranPos, out NavMeshHit hit, spawnDist, NavMesh.AllAreas))
-            spawnPos = hit.position;
-            else
-                spawnPos = transform.position;
-        }
-
-        Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
+        Transform p = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        bossInstance = Instantiate(objectToSpawn, p.position, p.rotation);
     }
 }
