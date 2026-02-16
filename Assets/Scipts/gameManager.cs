@@ -44,6 +44,8 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerDamageScreen;
 
+    public CarPartsUI carPartsUI;
+
     public bool isPaused;
 
     float timeScaleOrig;
@@ -56,25 +58,25 @@ public class gameManager : MonoBehaviour
 
     }
 
-    private void ShowLevelBanner(int levelNumber)
-    {
-        if (levelBanner == null || levelBannerText == null) return;
+    //private void ShowLevelBanner(int levelNumber)
+    //{
+    //    if (levelBanner == null || levelBannerText == null) return;
 
-        if(bannerRoutine != null) 
-            StopCoroutine(bannerRoutine);
+    //    if(bannerRoutine != null) 
+    //        StopCoroutine(bannerRoutine);
 
-        bannerRoutine = StartCoroutine(levelBannerRoutine(levelNumber));
-    }
+    //    bannerRoutine = StartCoroutine(levelBannerRoutine(levelNumber));
+    //}
 
-    private IEnumerator levelBannerRoutine(int levelNumber)
-    {
-        levelBannerText.text = "Level " + levelNumber;
-        levelBanner.SetActive(true);
-        yield return new WaitForSeconds(bannerTime);
-        levelBanner.SetActive(false);
+    //private IEnumerator levelBannerRoutine(int levelNumber)
+    //{
+    //    levelBannerText.text = "Level " + levelNumber;
+    //    levelBanner.SetActive(true);
+    //    yield return new WaitForSeconds(bannerTime);
+    //    levelBanner.SetActive(false);
 
-        bannerRoutine = null;
-    }
+    //    bannerRoutine = null;
+    //}
 
     private void StartLevel(int levelIndex)
     {
@@ -97,7 +99,7 @@ public class gameManager : MonoBehaviour
             levelText.text = "Level: " + (displayLevel);
         }
 
-        ShowLevelBanner(displayLevel);
+        //ShowLevelBanner(displayLevel);
 
         gameGoalCount = 0;
 
@@ -197,16 +199,23 @@ public class gameManager : MonoBehaviour
         Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
         
-        if(gameGoalCount<= 0)
-        {
-            NextLevelOrWin();
-        }
+        //if(gameGoalCount<= 0)
+        //{
+        //    NextLevelOrWin();
+        //}
     }
 
     public void youLose()
     {
         statePause();
         menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void WinGame()
+    {
+        statePause();
+        menuActive = menuWin;
         menuActive.SetActive(true);
     }
 }

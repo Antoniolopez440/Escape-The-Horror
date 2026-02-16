@@ -52,4 +52,14 @@ public class gunDisplayManagerUI : MonoBehaviour
         }
 
     }
+
+    public void RefreshAmmo()
+    {
+        var guns = player.GetGunList();
+
+        for (int i = 0; i < icons.Count; i++)
+        {
+            icons[i].SetGun(guns[i], i == player.GetCurrentGunIndex());
+        }
+    }
 }

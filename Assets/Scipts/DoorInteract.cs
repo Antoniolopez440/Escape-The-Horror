@@ -27,10 +27,6 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
 
 
-    [Header("Key Lock Settings (if using Key lock)")]
-    [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
-
-
     // State variables
     bool playerInRange;
     bool isOpen;
@@ -139,55 +135,6 @@ public class DoorInteract : MonoBehaviour
     {
         unlocked = true;
         StartCoroutine(ToggleDoor());
-
-        // LOCKED behavior by type
-        if (lockType == LockType.Key)
-        {
-            bool hasKey = PlayerInventory.Instance != null && PlayerInventory.Instance.HasKey(requiredKeyId);
-
-            if (!hasKey)
-            {
-                if (UIManager.Instance != null)
-                    UIManager.Instance.ShowMessage("Door is locked. You need a key.");
-                return;
-            }
-
-            // Key found -> unlock and open (then free open/close forever)
-            unlocked = true;
-            if (UIManager.Instance != null)
-                UIManager.Instance.ShowMessage("Unlocked!");
-
-            StartCoroutine(ToggleDoor());
-            return;
-        }
-
-        if (lockType == LockType.Code)
-        {
-            // If they haven't found numbers yet
-            if (CodeManager.Instance == null || !CodeManager.Instance.AllNumbersFound)
-            {
-                if (UIManager.Instance != null)
-                    UIManager.Instance.ShowMessage("Door is locked. Find the numbers.");
-                return;
-            }
-
-            // They found all numbers -> open code panel
-            if (UIManager.Instance != null)
-                UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
-            else
-                Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
-
-            return;
-        }
-
-        // LockType.None fallback
-        StartCoroutine(ToggleDoor());
-    }
-
-    void OnCorrectCodeEntered()
-    {
-        unlocked = true;
-        StartCoroutine(ToggleDoor());
     }
 
 
@@ -241,7 +188,6 @@ public class DoorInteract : MonoBehaviour
                     UIManager.Instance.ShowHint("Find the numbers");
             }
         }
-
 
         if (other.CompareTag(zombieTag))
         {

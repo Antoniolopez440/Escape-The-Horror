@@ -45,6 +45,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     public List<ProjectileGun> GetGunList() => gunList;
     public int GetCurrentGunIndex() => gunListPos;
 
+    [Header("----- Car Parts -----")]
+    [SerializeField] List<CarPart> carParts = new List<CarPart>();
+
+    public IReadOnlyList<CarPart> GetCarParts() => carParts;
+
     bool shooting;
     bool readyToShoot;
     bool reloading;
@@ -79,6 +84,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         movement();
         Sprint();
+
+        TryInteract();
 
         MyInput();
         locoAnim();
@@ -277,6 +284,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         currentAmmo--;
         gun.bulletsLeft = currentAmmo;
         bulletsShot++;
+        gunUI.RefreshAmmo();
 
 
         if (allowInvoke)
@@ -331,6 +339,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         gun.bulletsLeft = currentAmmo;
 
         reloading = false;
+
+        gunUI.RefreshAmmo();
     }
 
 
@@ -346,6 +356,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         gunUI.BuildUI();
         gunUI.RefreshSelection();
+        gunUI.RefreshAmmo();
 
     }
 
@@ -395,6 +406,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             }
 
         gunUI.RefreshSelection(); 
+        gunUI.RefreshAmmo(); 
     }
 
     public void updateplayerUI()
@@ -409,4 +421,49 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
+    public void GetCarPart(CarPart part)
+    {
+        carParts.Add(part);
+        Debug.Log($"Picked up art part: {part.partType}");
+
+        gameManager.instance.carPartsUI.Refresh(carParts);
+    }
+
+    public void TryInteract()
+    {
+        if (!Input.GetKeyDown(KeyCode.E)) return;
+
+
+        if (carParts == null || carParts.Count == 0)
+        {
+            Debug.Log("TryInteract called with empty inventory");
+            return;
+        }
+
+      
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        if (!Physics.Raycast(ray, out RaycastHit hit, 3f)) 
+            return;
+
+        CarRepair car = hit.collider.GetComponentInParent<CarRepair>();
+        if (car == null)
+            return;
+
+
+        int index = carParts.Count - 1;
+        CarPart part = carParts[index];
+
+        if(!car.TryInstallPart(part))
+        {
+            Debug.Log($"Cannot install{part.partType} yet");
+        }
+
+        carParts.RemoveAt(index);
+
+        gameManager.instance.carPartsUI.Refresh(carParts);
+
+        Debug.Log($"Installed {part.partType}");
+
+    }
 }
