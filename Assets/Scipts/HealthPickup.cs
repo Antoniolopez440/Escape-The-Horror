@@ -14,7 +14,9 @@ public class HealthPickup : MonoBehaviour
     Vector3 startPos;
 
     MedkitSpawner spawner;
-
+   
+    
+    //sdfasdfsdf
     // NEW: which spawn point this pickup belongs to
     int spawnIndex = -1;
 

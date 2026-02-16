@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 467df76f39d04644692c8588025abb98
+timeCreated: 1429904623
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 28538
+  packageName: Electrical Control Panel #3
+  packageVersion: v2.1
+  assetPath: Assets/Models/electric_control_panel_3/Source/Materials/defaultMat.mat
+  uploadId: 136770

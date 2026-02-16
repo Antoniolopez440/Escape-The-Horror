@@ -22,7 +22,10 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     Color colorOrig;
 
     [SerializeField] bool hasEmerged = false;
-    [SerializeField] float emergetime = 1.2F;
+    [SerializeField] float emergetime = 4.0F;
+    [SerializeField] float screamTime = 1.833f;
+
+    bool isDead;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,6 +58,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
         if (!hasEmerged)
         {
             return;
@@ -90,15 +94,35 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     {
         hp -= amount;
 
-        if (hp <= 0)
+        if (hp <= 0 && !isDead)
         {
+            isDead = true;
             gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
+
+            int deathIndex = Random.Range(0, 4);
+            Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
+            animator.SetInteger("DieIndex", deathIndex);
+            animator.SetTrigger("Die");
+            agent.isStopped = true;
+            agent.ResetPath();
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+            agent.enabled = false;
+
+            enabled = false;
+
+
+            Destroy(gameObject, 2.35f);
+            return;
         }
-        else
+        if (animator != null ) 
         {
-            StartCoroutine(flashRed()); // Start the flashRed coroutine
+            int hitIndex = Random.Range(0, 2);
+            animator.SetInteger("Hitindex", hitIndex);
+            animator.SetTrigger("Hit");
         }
+        // Start the flashRed coroutine
+        StartCoroutine(flashRed());
     }
 
     IEnumerator flashRed()
@@ -110,7 +134,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     IEnumerator EmergeThenEnable()
     {
-        yield return new WaitForSeconds(emergetime);
+        yield return new WaitForSeconds(emergetime + screamTime);
         OnEmergeFinished();
     }
 
