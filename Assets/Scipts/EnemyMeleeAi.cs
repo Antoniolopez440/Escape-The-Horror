@@ -73,6 +73,9 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
         if (agent == null || player == null) return;
 
+        if (!agent.enabled || !agent.isOnNavMesh) return;
+    
+
         agent.SetDestination(player.transform.position);
 
         if (playerInsight && playerInAttackRange)
@@ -154,6 +157,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     void dropItem()
     {
+
         Instantiate(dropObject, transform.position, transform. rotation);
     }
 }
