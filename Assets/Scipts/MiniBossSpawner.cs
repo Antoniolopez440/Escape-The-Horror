@@ -93,14 +93,7 @@ public class MiniBossLink : MonoBehaviour
             spawner.OnBossRemoved(transform.position);
         }
     }
+    private void OnDestroy() => Notify();
+    private void OnDisable() => Notify();
 
-    private void OnDisable()
-    {
-        Notify();
-    }
-
-    private void OnDestroy()
-    {
-        Notify();
-    }
 }

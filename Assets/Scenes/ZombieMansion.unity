@@ -9282,6 +9282,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1601809bf7e232240a5bcc07afb50535, type: 3}
+--- !u!1001 &168445497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 455991394}
+    m_Modifications:
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18287659
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10484934
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12392998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332713137439048225, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: m_Name
+      value: VaseB
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311305815172001423, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d43cee46991e5ce428d68d848f78e89c, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
 --- !u!1001 &168902274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26598,7 +26671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &442072213
 Transform:
   m_ObjectHideFlags: 0
@@ -26608,7 +26681,7 @@ Transform:
   m_GameObject: {fileID: 442072211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.111, y: 4.01, z: -8.934}
+  m_LocalPosition: {x: 42.111, y: 3.26, z: -8.934}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27202,6 +27275,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2825748849389723463, guid: b298eb34f7a9f7241a022017361cdfc2, type: 3}
   m_PrefabInstance: {fileID: 1592181753}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &455991391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455991394}
+  - component: {fileID: 455991393}
+  - component: {fileID: 455991392}
+  m_Layer: 0
+  m_Name: VaseB_Placed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &455991392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455991391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab1d97a52a2c8044ac50307ad6f50d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VaseInteract
+  vaseRoot: {fileID: 1691887748}
+  FlowerInteractText: {fileID: 992570547}
+--- !u!65 &455991393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455991391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.17, y: 0, z: 0}
+--- !u!4 &455991394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455991391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.60152, y: 4.55485, z: 25.02493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1691887752}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456162040
 GameObject:
   m_ObjectHideFlags: 0
@@ -29798,11 +29940,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77814ba878d60c0428b360970c8c694d, type: 3}
---- !u!1 &490714911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1332713137439048225, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
-  m_PrefabInstance: {fileID: 1448387099}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &490714915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
@@ -35202,6 +35339,7 @@ GameObject:
   - component: {fileID: 589353123}
   - component: {fileID: 589353124}
   - component: {fileID: 589353125}
+  - component: {fileID: 589353126}
   m_Layer: 0
   m_Name: DoorHingeL
   m_TagString: Untagged
@@ -35284,9 +35422,29 @@ MonoBehaviour:
   speed: 6
   interactKey: 101
   zombieTag: Enemy
-  lockType: 0
+  lockType: 2
   startsLocked: 1
-  requiredKeyId: DoorKey
+  requiredKeyId: DoubleDoorKey
+--- !u!114 &589353126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589353121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6739437e7da0043ba79e3a0da5a5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
+  hinge: {fileID: 2948120684987531355}
+  openAngle: -90
+  speed: 6
+  interactKey: 101
+  zombieTag: Enemy
+  lockType: 2
+  startsLocked: 1
+  requiredKeyId: DoubleDoorKey
 --- !u!1001 &590081968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45854,11 +46012,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 253376830469430714, guid: 878f1047a223a914ca70834a43fa7665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.34
+      value: 2.94
       objectReference: {fileID: 0}
     - target: {fileID: 253376830469430714, guid: 878f1047a223a914ca70834a43fa7665, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 77.9
+      value: 63.49
       objectReference: {fileID: 0}
     - target: {fileID: 253376830469430714, guid: 878f1047a223a914ca70834a43fa7665, type: 3}
       propertyPath: m_LocalRotation.w
@@ -73267,7 +73425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57.93
+      value: 32.9
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalRotation.w
@@ -74473,9 +74631,9 @@ MonoBehaviour:
   speed: 4
   interactKey: 101
   zombieTag: Enemy
-  lockType: 0
+  lockType: 2
   startsLocked: 1
-  requiredKeyId: DoorKey
+  requiredKeyId: ShedKey
 --- !u!65 &1258179836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92007,9 +92165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1a0e4f2e6cbd5428bd1bd6dfae7e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VasePlaceTrigger
-  vaseToPlace: {fileID: 490714911}
+  vaseToPlace: {fileID: 455991391}
   placePoint: {fileID: 442072213}
-  placePromptText: {fileID: 0}
+  placePromptText: {fileID: 992570547}
   bossSpawner: {fileID: 8292080971273106142}
 --- !u!65 &1546027374
 BoxCollider:
@@ -92030,7 +92188,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.34, y: 1, z: 2.49}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1546576053 stripped
 Transform:
@@ -95991,7 +96149,7 @@ Transform:
   m_GameObject: {fileID: 1596314196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.768, y: 5.135, z: -6.393}
+  m_LocalPosition: {x: 40.51, y: 2.64, z: -4.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100995,6 +101153,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 756da541dc987174ba8e4153eb798537, type: 3}
+--- !u!1 &1691887748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1332713137439048225, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+  m_PrefabInstance: {fileID: 168445497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1691887752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1205845782449808459, guid: e552b2f7634ec0045a53e296378ed157, type: 3}
+  m_PrefabInstance: {fileID: 168445497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1692938298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110052,7 +110220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856256399}
   - component: {fileID: 1856256401}
-  - component: {fileID: 1856256400}
+  - component: {fileID: 1856256402}
   m_Layer: 0
   m_Name: VaseB_Pickup
   m_TagString: Untagged
@@ -110076,20 +110244,6 @@ Transform:
   - {fileID: 490714915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1856256400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856256398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab1d97a52a2c8044ac50307ad6f50d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VaseInteract
-  vaseRoot: {fileID: 1856256398}
-  FlowerInteractText: {fileID: 992570547}
 --- !u!65 &1856256401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110111,6 +110265,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.17, y: 0, z: 0}
+--- !u!114 &1856256402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856256398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab1d97a52a2c8044ac50307ad6f50d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VaseInteract
+  vaseRoot: {fileID: 1856256398}
+  FlowerInteractText: {fileID: 992570547}
 --- !u!1001 &1856988922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131793,6 +131961,10 @@ MonoBehaviour:
   objectToSpawn: {fileID: 4073382991170694282, guid: eba77b25cc7b264429a52aa05f0e1483, type: 3}
   spawnPoints:
   - {fileID: 1596314197}
+  dropItem: {fileID: 1645909782545393947, guid: 89892b4f3cb419644b7170afb74c48ad, type: 3}
+  dropOffset: {x: -50, y: 14.5, z: 43}
+  snapToGround: 1
+  groundCheckDistance: 50
 --- !u!65 &8292080971273106143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132102,6 +132274,7 @@ SceneRoots:
   - {fileID: 219668095}
   - {fileID: 1170989185}
   - {fileID: 1856256399}
+  - {fileID: 455991394}
   - {fileID: 1483400043}
   - {fileID: 442072213}
   - {fileID: 1546027372}
