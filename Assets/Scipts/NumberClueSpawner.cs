@@ -38,11 +38,40 @@ public class NumberClueSpawner : MonoBehaviour
             Debug.LogWarning("[NumberClueSpawner] Cannot spawn more than 10 unique digits without repeats.", this);
             return;
         }
+
+        activeAtPoint = new GameObject[spawnPoints.Length];
+
+        int[] digits = GenerateDigits(digitsToSpawn, allowRepeats);
     }
 
-    // Update is called once per frame
-    void Update()
+private int [] GenerateDigits(int count, bool allowRepeats)
     {
-        
+        int[] result = new int[count];
+
+        if (allowRepeats)
+        {
+            for (int i = 0; i < count; i++)
+                result[i] = Random.Range(0, 10);
+
+                    return result;
+
+        }
+
+        int[] pool = new int[10];
+        for (int i = 0; i < 10; i++) pool[i] = i;
+
+        for (int i = 0; i < pool.Length; i++)
+        {
+         int swap = Random.Range(i, pool.Length);
+            int temp = pool[i];
+            pool[i] = pool[swap];
+            pool[swap] = temp;
+        }
+
+        for (int i = 0; i < count; i++)
+            result[i] = pool[i];
+
+        return result;
+
     }
 }
