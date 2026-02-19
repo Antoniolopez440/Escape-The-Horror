@@ -42,6 +42,16 @@ public class NumberClueSpawner : MonoBehaviour
         activeAtPoint = new GameObject[spawnPoints.Length];
 
         int[] digits = GenerateDigits(digitsToSpawn, allowRepeats);
+
+        string code = "";
+        for (int i = 0; i < digits.Length; i++)
+            code += digits[i].ToString();
+
+        if (CodeManager.Instance != null)
+            CodeManager.Instance.SetCurrentCode(code);
+
+        for (int i = 0; i < digits.Length; i++)
+            spawnOne(digits[i]);
     }
 
 private int [] GenerateDigits(int count, bool allowRepeats)

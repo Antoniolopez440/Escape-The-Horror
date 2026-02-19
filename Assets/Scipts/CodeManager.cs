@@ -67,4 +67,10 @@ public class CodeManager : MonoBehaviour
         return input == CurrentBuiltCode;
     }
 
- }
+    public void SetCurrentCode(string code)
+        {
+        overrideCode = code;
+        Debug.Log($"CodeManager: Current code set to {overrideCode}");
+    }
+
+}
