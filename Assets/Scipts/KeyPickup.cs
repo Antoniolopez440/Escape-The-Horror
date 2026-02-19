@@ -13,7 +13,9 @@ public class KeyPickup : MonoBehaviour
 
     if (PlayerInventory.Instance != null)
         {
-            PlayerInventory.Instance.AddKey(keyId);
+            PlayerInventory.Instance.AddItems(keyId);
+
+          
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage(pickupMessage);
 

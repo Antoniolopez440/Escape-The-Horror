@@ -10,11 +10,12 @@ public class FlashLightPickup : MonoBehaviour
     [SerializeField] private GameObject playerFlashlightHolder;
 
     private bool isPlayerInRange = false;
+    public static bool HasFlashlightt = false;
 
 
     private void Awake()
     {
-        if (playerFlashlightHolder == null)
+        if (playerFlashlightHolder != null)
         playerFlashlightHolder.SetActive(false); // Ensure the flashlight is initially inactive
     }
 
@@ -27,8 +28,17 @@ public class FlashLightPickup : MonoBehaviour
 
         if (Input.GetKeyDown(pickupKey))
         {
-            if (playerFlashlightHolder == null)
-                playerFlashlightHolder.SetActive(false);
+            if (PlayerInventory.Instance != null)
+            {
+                PlayerInventory.Instance.AddItems("Flashlight");
+                PlayerInventory.Instance.SelectIndex(0); // Automatically select the flashlight after picking it up
+            }
+
+        
+            if (playerFlashlightHolder != null)
+                playerFlashlightHolder.SetActive(true);
+
+               HasFlashlightt = true;
 
             Destroy(gameObject); // Destroy the pickup object
         }
