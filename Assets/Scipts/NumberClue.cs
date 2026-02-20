@@ -63,7 +63,7 @@ public class NumberClue : MonoBehaviour
         
         
             playerInRange = true;
-            UIManager.Instance.ShowHint("Press E");
+            UIManager.Instance.ShowHint("Clue Nearby");
         
     }
 
