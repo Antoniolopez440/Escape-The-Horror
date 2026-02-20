@@ -2,8 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Text;
 
+
 public class CodeManager : MonoBehaviour
 {
+
+    public string CurrentCode { get; private set; } = "000";
 
     public static CodeManager Instance { get; private set; }
 
@@ -68,9 +71,17 @@ public class CodeManager : MonoBehaviour
     }
 
     public void SetCurrentCode(string code)
-        {
+    {
         overrideCode = code;
+        CurrentCode = code;
         Debug.Log($"CodeManager: Current code set to {overrideCode}");
+    }
+
+    public void ResetCode()
+    {
+        foundSet.Clear();
+        foundOrder.Clear();
+   
     }
 
 }

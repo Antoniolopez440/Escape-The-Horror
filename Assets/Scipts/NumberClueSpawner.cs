@@ -44,12 +44,15 @@ public class NumberClueSpawner : MonoBehaviour
 
         int[] digits = GenerateDigits(digitsToSpawn, allowRepeats);
 
-        string code = "";
+        string codeString = "";
         for (int i = 0; i < digits.Length; i++)
-            code += digits[i].ToString();
+            codeString += digits[i].ToString();
 
         if (CodeManager.Instance != null)
-            CodeManager.Instance.SetCurrentCode(code);
+        {
+            CodeManager.Instance.ResetCode();
+            CodeManager.Instance.SetCurrentCode(codeString);
+        }
 
         for (int i = 0; i < digits.Length; i++)
             spawnOne(digits[i]);
@@ -73,10 +76,11 @@ public class NumberClueSpawner : MonoBehaviour
         }
         else
         {
-                       Debug.LogWarning("[NumberClueSpawner] Spawned prefab does not have a NumberClue component.", this);
+          Debug.LogWarning("[NumberClueSpawner] Spawned prefab does not have a NumberClue component.", this);
         }
 
-        TextMeshPro tmp = clueObj.GetComponentInChildren<TextMeshPro>();
+        TMP_Text tmp = clueObj.GetComponentInChildren<TMP_Text>();
+        if (tmp != null)
         tmp.text = digit.ToString();
     }
 

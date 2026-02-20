@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7682244218790114974
+--- !u!1 &2286303214380970213
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 293419898932605477}
-  - component: {fileID: 7024261310140302917}
-  - component: {fileID: 2239833041449294869}
-  - component: {fileID: 1118249777426227556}
-  - component: {fileID: 5036612234257804473}
-  - component: {fileID: 9182445354652629678}
+  - component: {fileID: 3322920391360634621}
+  - component: {fileID: 5523389511646265814}
+  - component: {fileID: 6953770685279633219}
+  - component: {fileID: 1001349372608226409}
+  - component: {fileID: 1492160127879652745}
   m_Layer: 0
-  m_Name: Clues
+  m_Name: Text (TMP) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &293419898932605477
+--- !u!224 &3322920391360634621
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
-  m_LocalRotation: {x: -0.16992602, y: -0.6464654, z: 0.14862671, w: 0.7287783}
-  m_LocalPosition: {x: 0, y: 0, z: 20.889423}
-  m_LocalScale: {x: 0.7692307, y: 0.76923084, z: 0.769231}
+  m_GameObject: {fileID: 2286303214380970213}
+  m_LocalRotation: {x: -0.000656542, y: -0.7329294, z: 0.0006974, w: 0.6803041}
+  m_LocalPosition: {x: 0, y: 0, z: 28.21599}
+  m_LocalScale: {x: 0.7692307, y: 0.7692307, z: 0.7692308}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -3.182, y: -83.482, z: 25.913}
+  m_Father: {fileID: 869559148166581780}
+  m_LocalEulerAnglesHint: {x: 0.007, y: -93.865, z: 0.11}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.47847, y: 12.130463}
+  m_AnchoredPosition: {x: 61.15527, y: 15.676329}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!23 &7024261310140302917
+--- !u!23 &5523389511646265814
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
+  m_GameObject: {fileID: 2286303214380970213}
   m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -88,13 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2239833041449294869
+--- !u!114 &6953770685279633219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
+  m_GameObject: {fileID: 2286303214380970213}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
@@ -108,7 +107,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '7
+  m_text: '2
+
 
 '
   m_isRightToLeft: 0
@@ -182,30 +182,30 @@ MonoBehaviour:
   _SortingLayerID: 0
   _SortingOrder: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 7024261310140302917}
+  m_renderer: {fileID: 5523389511646265814}
   m_maskType: 0
---- !u!114 &1118249777426227556
+--- !u!114 &1001349372608226409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
+  m_GameObject: {fileID: 2286303214380970213}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdaa7d34ff93b284fbbe89adcc770de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumberClue
-  numberValue: 7
+  numberValue: 2
   interactMessagePrefix: 'number: '
   requireRendererVisible: 1
---- !u!65 &5036612234257804473
+--- !u!65 &1492160127879652745
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
+  m_GameObject: {fileID: 2286303214380970213}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -220,22 +220,56 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.22, y: 3.31, z: 3.86}
   m_Center: {x: 0.08, y: -0.76, z: -1.8}
---- !u!114 &9182445354652629678
+--- !u!1 &2576132042466038165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 869559148166581780}
+  - component: {fileID: 638124227420358189}
+  m_Layer: 0
+  m_Name: Clue13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &869559148166581780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2576132042466038165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3322920391360634621}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &638124227420358189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682244218790114974}
+  m_GameObject: {fileID: 2576132042466038165}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b62be4af9dbbc2b46a4438b5560c9f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UVRevealBySpotLight
   blackLight: {fileID: 0}
-  renderersToToggle: []
-  extraRange: 5
-  extraAngle: 10
+  renderersToToggle:
+  - {fileID: 5523389511646265814}
+  extraRange: 0.5
+  extraAngle: 5
   occlusionMask:
     serializedVersion: 2
     m_Bits: 4294967295
