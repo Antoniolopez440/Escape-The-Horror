@@ -35,6 +35,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] private TMP_Text levelBannerText;
     [SerializeField] private float bannerTime = 1.2f;
 
+    [Header("Quest System")]
+    [SerializeField] private int currentQuest = 1;
+    [SerializeField] private QuestSpawner regularQuestSpawner;
+    public int CurrentQuest => currentQuest;
+
     private Coroutine bannerRoutine;
 
     private int currentLevel = 0;
@@ -55,7 +60,7 @@ public class gameManager : MonoBehaviour
     private void Start()
     {
         StartLevel(0);
-
+        SetQuest(1);
     }
 
     //private void ShowLevelBanner(int levelNumber)
@@ -217,5 +222,15 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+    }
+    public void SetQuest(int quest)
+    {
+        Debug.Log($"[GM]SetQuest({quest}) -> currentQuest ={currentQuest} spawner={(regularQuestSpawner ? regularQuestSpawner.name : "NULL")}");
+        currentQuest = Mathf.Max(1, quest);
+
+        if (regularQuestSpawner != null)
+        {
+            regularQuestSpawner.SetQuest(currentQuest);
+        }
     }
 }

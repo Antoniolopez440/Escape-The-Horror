@@ -6,6 +6,8 @@ TagManager:
   tags:
   - wall
   - Enemy
+  - MansionZone
+  - FenceYardZone
   layers:
   - Default
   - TransparentFX

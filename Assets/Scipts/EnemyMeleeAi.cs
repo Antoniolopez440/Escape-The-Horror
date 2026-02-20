@@ -98,18 +98,23 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     //can be used for all game objects that take damage
     public void takeDamage(float amount)
     {
+        if (isDead) return;
         hp -= amount;
 
-        if (hp <= 0 && !isDead)
+        if (hp <= 0 )
         {
             isDead = true;
             gameManager.instance.updateGameGoal(-1);
+
+            animator.ResetTrigger("Hit");
+            animator.ResetTrigger("Attack");
            
 
             int deathIndex = Random.Range(0, 4);
-            Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
             animator.SetInteger("DieIndex", deathIndex);
             animator.SetTrigger("Die");
+            
+            
             agent.isStopped = true;
             agent.ResetPath();
             agent.updatePosition = false;

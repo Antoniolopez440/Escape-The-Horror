@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 
 public class DoorInteract : MonoBehaviour
@@ -25,6 +26,13 @@ public class DoorInteract : MonoBehaviour
 
     [Header("Key Lock Settings (if using Key lock)")]
     [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
+
+    [Header("Quest Update")]
+    [SerializeField] private bool adevanceQuest = false;
+    [SerializeField] private int questToSet = 2;
+    [SerializeField] private bool triggerOnce = true;
+
+    private bool questTriggered;
 
 
     // State variables
@@ -96,10 +104,10 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+            TryAdevanceQuest();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
             UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
-
             StartCoroutine(ToggleDoor());
             return;
         }
@@ -128,6 +136,10 @@ public class DoorInteract : MonoBehaviour
         }
 
         // LockType.None fallback
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        {
+            gameManager.instance.SetQuest(2);
+        }
         StartCoroutine(ToggleDoor());
     }
 
@@ -215,6 +227,23 @@ public class DoorInteract : MonoBehaviour
         {
             zombiesInRange--;
             if (zombiesInRange < 0) zombiesInRange = 0;
+        }
+    }
+
+    private void TryAdevanceQuest()
+    {
+        if (!adevanceQuest)
+        {
+            return;
+        }
+        if (triggerOnce && questTriggered)
+        {
+            return;
+        }
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        {
+            gameManager.instance.SetQuest(questToSet);
+            questTriggered = true;
         }
     }
 }
