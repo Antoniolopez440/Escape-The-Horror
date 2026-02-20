@@ -124,7 +124,6 @@ public class gameManager : MonoBehaviour
             entry.spawner.StartLevel(entry.amount);
             gameGoalCount += entry.amount;
         }
-        Debug.Log($"[GM] StartLevel done. gameGoalCount={gameGoalCount}");
         UpdateGoalText();
     }
     private void UpdateGoalText()

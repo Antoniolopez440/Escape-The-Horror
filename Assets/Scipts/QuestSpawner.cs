@@ -46,7 +46,8 @@ public class QuestSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"[QS] Quest={currentQuest} rate={spawnRateSeconds} plyer={(player?player.name : "NULL")} pc={(playerController?playerController.name:"NULL")} InFence={playerController?.InFenceYard} InMansion={playerController?.InMansion}");
+        
+        
         timer += Time.deltaTime;
         if (timer >= spawnRateSeconds)
         {
