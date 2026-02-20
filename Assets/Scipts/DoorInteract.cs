@@ -122,7 +122,7 @@ public class DoorInteract : MonoBehaviour
                
             UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
             else
-                Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
+            //    Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
 
             return;
         }

@@ -119,7 +119,7 @@ public class gameManager : MonoBehaviour
             entry.spawner.StartLevel(entry.amount);
             gameGoalCount += entry.amount;
         }
-        Debug.Log($"[GM] StartLevel done. gameGoalCount={gameGoalCount}");
+       // Debug.Log($"[GM] StartLevel done. gameGoalCount={gameGoalCount}");
         UpdateGoalText();
     }
     private void UpdateGoalText()
@@ -194,9 +194,9 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        Debug.Log($"[GM] updateGameGoal({amount}) BEFORE count={gameGoalCount}");
+      //  Debug.Log($"[GM] updateGameGoal({amount}) BEFORE count={gameGoalCount}");
         gameGoalCount += amount;
-        Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
+     //   Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
         
         //if(gameGoalCount<= 0)

@@ -35,17 +35,17 @@ public class CarRepair : MonoBehaviour
         {
             if(!fullyRepaired)
             {
-                Debug.Log("Car is not repaired yet!");
+              //  Debug.Log("Car is not repaired yet!");
                 return false;
             }
             if (keyInserted)
             {
-                Debug.Log("Key already inserted");
+               // Debug.Log("Key already inserted");
                 return false;
             }
 
             keyInserted = true;
-            Debug.Log("Car key insterted!");
+          //  Debug.Log("Car key insterted!");
             gameManager.instance.WinGame();
             return true;
         }
@@ -86,7 +86,7 @@ public class CarRepair : MonoBehaviour
         }
 
         fullyRepaired = true;
-        Debug.Log("Car fully repaired!");
+      //  Debug.Log("Car fully repaired!");
 
         if(bossSpawner != null)
         {

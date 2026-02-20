@@ -46,12 +46,12 @@ public class VasePlaceTrigger : MonoBehaviour
 
             if (bossSpawner != null)
             {
-                Debug.Log("Spawning Boss");
+            //    Debug.Log("Spawning Boss");
                 bossSpawner.SpawnBoss();
             }
             else
             {
-                Debug.LogError("BossSpawner is Null");
+               // Debug.LogError("BossSpawner is Null");
             }
 
             if (placePromptText) placePromptText.SetActive(false);

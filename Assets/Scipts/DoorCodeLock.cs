@@ -113,7 +113,7 @@ public class DoorCodeLock : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log($"[Door] Trigger ENTER by: {other.name} tage={other.name}");
+       // Debug.Log($"[Door] Trigger ENTER by: {other.name} tage={other.name}");
         if (!other.CompareTag("Player")) return;
 
         playerInRange = true;
@@ -134,7 +134,7 @@ public class DoorCodeLock : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        Debug.Log($"[Door] Trigger EXIT by: {other.name} tage={other.name}");
+     //   Debug.Log($"[Door] Trigger EXIT by: {other.name} tage={other.name}");
         if (!other.CompareTag("Player")) return;
 
         playerInRange = false;

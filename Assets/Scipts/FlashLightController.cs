@@ -26,11 +26,11 @@ public class FlashLightController : MonoBehaviour
     {
         if (Input.GetKeyDown(toggleKey))
         {
-            Debug.Log("F pressed");
+          //  Debug.Log("F pressed");
 
             if (spotLight == null)
             {
-                Debug.LogError("Spotlight is null");
+              //  Debug.LogError("Spotlight is null");
                 return;
             }
 

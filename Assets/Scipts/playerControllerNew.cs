@@ -172,7 +172,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         HP += amount;
         if (HP < HPOrig) HP = HPOrig;
-        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
+      //  Debug.Log($"[Player] Healed {amount}. HP now {HP}");
 
         updateplayerUI();
     }
@@ -227,7 +227,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         // Fill reserve to max mag size too (simple rule: reserve = another full mag)
         remainingShots = 0;
 
-        Debug.Log($"Refilled {gun.name} to {currentAmmo}/{magazineSize} + reserve {remainingShots}");
+      //  Debug.Log($"Refilled {gun.name} to {currentAmmo}/{magazineSize} + reserve {remainingShots}");
     }
 
 
@@ -260,7 +260,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         float y = Random.Range(-gun.spread, gun.spread);
         Quaternion spreadRot = Quaternion.Euler(y, x, 0f);
         directionWithSpread = (spreadRot * directionWithSpread).normalized;
-        Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
+      //  Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
 
         Quaternion rot = Quaternion.LookRotation(directionWithSpread);
         GameObject currentBullet = Instantiate(gun.bullet, attackPoint.position, rot);
@@ -424,7 +424,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     public void GetCarPart(CarPart part)
     {
         carParts.Add(part);
-        Debug.Log($"Picked up art part: {part.partType}");
+     //   Debug.Log($"Picked up art part: {part.partType}");
 
         gameManager.instance.carPartsUI.Refresh(carParts);
     }
@@ -436,7 +436,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         if (carParts == null || carParts.Count == 0)
         {
-            Debug.Log("TryInteract called with empty inventory");
+          //  Debug.Log("TryInteract called with empty inventory");
             return;
         }
 
@@ -456,14 +456,14 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         if(!car.TryInstallPart(part))
         {
-            Debug.Log($"Cannot install{part.partType} yet");
+           // Debug.Log($"Cannot install{part.partType} yet");
         }
 
         carParts.RemoveAt(index);
 
         gameManager.instance.carPartsUI.Refresh(carParts);
 
-        Debug.Log($"Installed {part.partType}");
+      //  Debug.Log($"Installed {part.partType}");
 
     }
 }
