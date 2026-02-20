@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class NumberClueSpawner : MonoBehaviour
@@ -52,6 +53,51 @@ public class NumberClueSpawner : MonoBehaviour
 
         for (int i = 0; i < digits.Length; i++)
             spawnOne(digits[i]);
+    }
+
+    private void spawnOne(int digit)
+    {
+        int idx = GetRandomFreeSpawnIndex();
+        if (idx == -1) return; // No free spawn points
+
+        Transform p = spawnPoints[idx];
+        if (p == null) return;
+
+        GameObject clueObj = Instantiate(cluePrefab, p.position, p.rotation);
+        activeAtPoint[idx] = clueObj;
+
+        NumberClue clue = clueObj.GetComponent<NumberClue>();
+        if (clue != null)
+        {
+            clue.numberValue = digit;
+        }
+        else
+        {
+                       Debug.LogWarning("[NumberClueSpawner] Spawned prefab does not have a NumberClue component.", this);
+        }
+
+        TextMeshPro tmp = clueObj.GetComponentInChildren<TextMeshPro>();
+        tmp.text = digit.ToString();
+    }
+
+    private int GetRandomFreeSpawnIndex()
+    {
+        int[] free = new int[activeAtPoint.Length];
+        int freeCount = 0;
+
+        for (int i = 0; i < activeAtPoint.Length; i++)
+        {
+            if (spawnPoints[i] == null) continue; // Skip null spawn points
+            if (activeAtPoint[i] == null)
+                free[freeCount++] = i;
+        }
+
+        if (freeCount == 0) return -1; // No free points
+
+        int pick = Random.Range(0, freeCount);
+        return free[pick];
+
+
     }
 
 private int [] GenerateDigits(int count, bool allowRepeats)
