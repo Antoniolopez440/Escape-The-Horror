@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -217,5 +218,7 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+
+
     }
 }

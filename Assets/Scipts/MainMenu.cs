@@ -8,9 +8,17 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadCredits()
+    {
+        Time.timeScale = 1f; // Ensure time scale is reset when loading credits
+        SceneManager.LoadScene("Credits");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit");
         Application.Quit();
     }
+
+
 }
