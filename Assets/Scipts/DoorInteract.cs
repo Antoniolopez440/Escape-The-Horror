@@ -26,6 +26,11 @@ public class DoorInteract : MonoBehaviour
     [Header("Key Lock Settings (if using Key lock)")]
     [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+
 
     // State variables
     bool playerInRange;
@@ -46,10 +51,17 @@ public class DoorInteract : MonoBehaviour
     // This happens before any Start functions and also just after a prefab is instantiated
     private void Awake()
     {
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (hinge == null) hinge = transform;
 
-        closedRotation = hinge.rotation;
+        closedRotation = hinge.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+
+        hinge.localRotation = closedRotation;
+        isOpen = false;
 
         unlocked = !startsLocked || lockType == LockType.None;
     }
@@ -140,6 +152,13 @@ public class DoorInteract : MonoBehaviour
 
     IEnumerator ToggleDoor()
     {
+        if (audioSource != null)
+        {
+            audioSource.clip = isOpen ? closeSound : openSound;
+            if (audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+        }
+
         isMoving = true;
 
         Quaternion start = hinge.localRotation;
@@ -150,11 +169,11 @@ public class DoorInteract : MonoBehaviour
         {
 
             t += Time.deltaTime * speed;
-            hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
+            hinge.localRotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
 
-        hinge.rotation = targetRotation;
+        hinge.localRotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
     }
@@ -165,10 +184,14 @@ public class DoorInteract : MonoBehaviour
         StartCoroutine(ToggleDoor());
     }
 
+
+
     public void SetLocked(bool locked)
     {
         unlocked = !locked;
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
