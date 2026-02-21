@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
       propertyPath: m_Name
-      value: Pickup - Gun - Heavey Machine Gun
+      value: Pickup - Gun - Heavy Machine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,6 +60,9 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 1485129125342705447}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: -6433754034865326857}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8658232586254572745}
   m_SourcePrefab: {fileID: 100100000, guid: ffa9e06975e572e4fa0f7a787ff53157, type: 3}
@@ -81,6 +84,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::pickupGunsNew
   gun: {fileID: 11400000, guid: eeb2da0f0730f8243882bac9ccc249a0, type: 2}
+--- !u!114 &-6433754034865326857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253376830469718426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bff1c60cb571c64ca3ef86bbb500eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pickupGunsNewAnimation
+  bobHeight: 0.3
+  bobSpeed: 2
+  rotationSpeed: 45
 --- !u!135 &8658232586254572745
 SphereCollider:
   m_ObjectHideFlags: 0

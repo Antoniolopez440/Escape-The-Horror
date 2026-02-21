@@ -62,12 +62,7 @@ public class CarRepair : MonoBehaviour
         req.partObjects[installed].SetActive(true);
         installedParts[part.partType]++;
 
-        //Transform point = req.attachPoints[installed];
-
-        //if (part.placedModel != null && point != null)
-        //    Instantiate(part.placedModel, point.position, point.rotation, point);
-
-        //installedParts[part.partType] = installed + 1;
+      
 
         CheckIfComplete();
         return true;
@@ -80,12 +75,7 @@ public class CarRepair : MonoBehaviour
             if (installedParts[req.type] < req.partObjects.Length)
                 return;
 
-            //int installed = installedParts.ContainsKey(req.type)
-            //    ? installedParts[req.type]
-            //    : 0;
-
-            //if (installed < req.attachPoints.Length)
-            //    return;
+            
         }
 
         fullyRepaired = true;

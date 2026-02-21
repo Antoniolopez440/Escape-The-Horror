@@ -21,8 +21,7 @@ public class CarPartsUI : MonoBehaviour
 
             img.sprite = part.uIIcon;
             img.preserveAspect = true;
-            //go.transform.SetParent(container, false);
-            //Image img = go.GetComponent<Image>();
+            
         }
     }
     
