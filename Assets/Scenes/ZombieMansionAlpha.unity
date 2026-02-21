@@ -5974,6 +5974,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 3430660529222456889, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5306493019192498773, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_01
@@ -6017,6 +6021,10 @@ PrefabInstance:
     - target: {fileID: 7440867266036915035, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886988506812645161, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7651,9 +7659,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 233497840238471309, guid: aae5b40208a44ff4191aca739e9bd64c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2638153227221603355, guid: aae5b40208a44ff4191aca739e9bd64c, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_07_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284447964447052089, guid: aae5b40208a44ff4191aca739e9bd64c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8375555649405298999, guid: aae5b40208a44ff4191aca739e9bd64c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8788,6 +8804,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1504175331911544117, guid: ed4dffb0f18259f468e5ad3da616dc34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2753490426452916867, guid: ed4dffb0f18259f468e5ad3da616dc34, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -8848,6 +8868,10 @@ PrefabInstance:
       propertyPath: bossSpawner
       value: 
       objectReference: {fileID: 423703297}
+    - target: {fileID: 8812798454077558760, guid: ed4dffb0f18259f468e5ad3da616dc34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10763,6 +10787,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3583464014615052438, guid: 060377a4ffa1fee44a91db30902515b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6831737082365402453, guid: 060377a4ffa1fee44a91db30902515b5, type: 3}
       propertyPath: m_Name
       value: SM_Building_Door_02R
@@ -12510,7 +12538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -790, y: 491}
+  m_AnchoredPosition: {x: -790, y: 424.2}
   m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &208364835
@@ -13010,6 +13038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Building_Door_03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4083520800827370424, guid: 5b7c049bd1c7b3242a5bc26583c27002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13172,7 +13204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &219169347
 GameObject:
   m_ObjectHideFlags: 0
@@ -13920,6 +13952,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4826599196016483020, guid: 764742e633597f94a93a24910d3858c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667892870542561225, guid: 764742e633597f94a93a24910d3858c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8643461417277282072, guid: 764742e633597f94a93a24910d3858c6, type: 3}
       propertyPath: m_Name
       value: Car_garage
@@ -15149,6 +15189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1775224365916670551}
+  pairedDoors: {fileID: 0}
   openAngle: 90
   speed: 1
   interactKey: 101
@@ -19287,6 +19328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 304477665}
+  pairedDoors: {fileID: 0}
   openAngle: 90
   speed: 6
   interactKey: 101
@@ -23880,6 +23922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 2854262047558215558}
+  pairedDoors: {fileID: 0}
   openAngle: -90
   speed: 1
   interactKey: 101
@@ -32722,6 +32765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 526401880}
+  pairedDoors: {fileID: 0}
   openAngle: 90
   speed: 6
   interactKey: 101
@@ -35311,9 +35355,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 4725077477226379866, guid: 719e059a7b6248d44bae14c55e38ab2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5025435748598825907, guid: 719e059a7b6248d44bae14c55e38ab2a, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175242825938179346, guid: 719e059a7b6248d44bae14c55e38ab2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8472550752761860007, guid: 719e059a7b6248d44bae14c55e38ab2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36186,6 +36238,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Kitchen_07_R
       objectReference: {fileID: 0}
+    - target: {fileID: 4612373781049172835, guid: 2a0b7f8f88787764799bb8446bbf310f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046254730456927105, guid: 2a0b7f8f88787764799bb8446bbf310f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6529722900721646753, guid: 2a0b7f8f88787764799bb8446bbf310f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.2
@@ -36396,6 +36456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 2948120684987531355}
+  pairedDoors: {fileID: 589353125}
   openAngle: -90
   speed: 6
   interactKey: 101
@@ -36440,6 +36501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 8761524457134500257}
+  pairedDoors: {fileID: 589353123}
   openAngle: 90
   speed: 6
   interactKey: 101
@@ -42713,7 +42775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -794, y: 425}
+  m_AnchoredPosition: {x: -794, y: 490.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698505367
@@ -53327,6 +53389,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1007994960658230087, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573585607913004324, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835011624394522857, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850560781468868009, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007357884382815167, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209208383778225279, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56953,6 +57039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 240078442}
+  pairedDoors: {fileID: 0}
   openAngle: 85
   speed: 1
   interactKey: 101
@@ -56976,6 +57063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1413056729}
+  pairedDoors: {fileID: 0}
   openAngle: -85
   speed: 1
   interactKey: 101
@@ -75966,6 +76054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1258179834}
+  pairedDoors: {fileID: 0}
   openAngle: -175
   speed: 3
   interactKey: 101
@@ -79333,6 +79422,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 1108308702815663412, guid: 2816b0f5b08341446a11bf0eee759380, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827026953515566732, guid: 2816b0f5b08341446a11bf0eee759380, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7950204441499662174, guid: 2816b0f5b08341446a11bf0eee759380, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_02
@@ -80759,6 +80856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 5371188116042574530, guid: 95c48772952738841a30c43983441fdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5776530002639606964, guid: 95c48772952738841a30c43983441fdc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.175
@@ -80798,6 +80899,10 @@ PrefabInstance:
     - target: {fileID: 5776530002639606964, guid: 95c48772952738841a30c43983441fdc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842980946181869318, guid: 95c48772952738841a30c43983441fdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9104524796278017332, guid: 95c48772952738841a30c43983441fdc, type: 3}
       propertyPath: m_Name
@@ -81494,6 +81599,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 3430660529222456889, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5306493019192498773, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_01 (1)
@@ -81537,6 +81646,10 @@ PrefabInstance:
     - target: {fileID: 7440867266036915035, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886988506812645161, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -83003,6 +83116,30 @@ PrefabInstance:
       value: Gate (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007994960658230087, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573585607913004324, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835011624394522857, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850560781468868009, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007357884382815167, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209208383778225279, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -87659,6 +87796,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 330194280039130049, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 482482833435377308, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.5757
@@ -87699,6 +87840,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2719134655216599194, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839756354221113192, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2850719138671750060, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9961979
@@ -87711,9 +87860,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 9.996
       objectReference: {fileID: 0}
+    - target: {fileID: 2872928775652654390, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3112683142207146271, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647120192260801859, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847296277321476315, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225430550232285564, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7217394732936384328, guid: 6189c089e79c3c24eb4aa18b1972aed6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -92654,6 +92823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1284833156}
+  pairedDoors: {fileID: 0}
   openAngle: 85
   speed: 1
   interactKey: 101
@@ -92677,6 +92847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1619267261}
+  pairedDoors: {fileID: 0}
   openAngle: -85
   speed: 1
   interactKey: 101
@@ -93857,6 +94028,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Kitchen_06 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 994960906248326978, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290521978499955436, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6899486242976517391, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.2
@@ -94189,6 +94368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1536497505}
+  pairedDoors: {fileID: 0}
   openAngle: -90
   speed: 3
   interactKey: 101
@@ -98621,6 +98801,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2000142327}
     m_Modifications:
+    - target: {fileID: 634488211284829181, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2761594437583926302, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.789476
@@ -98704,6 +98888,18 @@ PrefabInstance:
     - target: {fileID: 6844863595257696516, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -24.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456933139402647290, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647649472008755975, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133164352292123119, guid: 5ae56a8702196b34a9ff1c2997bb0291, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99006,6 +99202,14 @@ PrefabInstance:
     - target: {fileID: 656641917132156217, guid: 48bd59c90bdd92248b7c3eab3a328eac, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_04_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661829580031501786, guid: 48bd59c90bdd92248b7c3eab3a328eac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125175542858377092, guid: 48bd59c90bdd92248b7c3eab3a328eac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -101309,7 +101513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1647364116
 Transform:
   m_ObjectHideFlags: 0
@@ -102018,6 +102222,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1007994960658230087, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573585607913004324, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835011624394522857, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850560781468868009, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007357884382815167, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209208383778225279, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -102479,6 +102707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Kitchen_06
       objectReference: {fileID: 0}
+    - target: {fileID: 994960906248326978, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1618533055257950499, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.94455355
@@ -102490,6 +102722,10 @@ PrefabInstance:
     - target: {fileID: 1618533055257950499, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 38.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290521978499955436, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6899486242976517391, guid: b1abf45458df7c74db7190d6e4cfbf1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -104025,6 +104261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877013692573979614, guid: 90c9b5e23dd129d4d83156db1c8627b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104978,7 +105218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1714110057
 Transform:
   m_ObjectHideFlags: 0
@@ -105151,6 +105391,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 379777096}
     m_Modifications:
+    - target: {fileID: 3430660529222456889, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5306493019192498773, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_Name
       value: SM_Kitchen_01 (2)
@@ -105194,6 +105438,10 @@ PrefabInstance:
     - target: {fileID: 7440867266036915035, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886988506812645161, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7923643527447890668, guid: fa63123163e4f274fa017c6d78778d75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -106012,7 +106260,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.49, y: 3.32, z: 3.15}
+  m_Size: {x: 6.61, y: 5.33, z: 5.92}
   m_Center: {x: -0.0011165998, y: 0.49126625, z: 0.41}
 --- !u!114 &1728899046
 MonoBehaviour:
@@ -107364,7 +107612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1753329293
 Transform:
   m_ObjectHideFlags: 0
@@ -111699,6 +111947,10 @@ PrefabInstance:
     - target: {fileID: 4083520800827370424, guid: 5b7c049bd1c7b3242a5bc26583c27002, type: 3}
       propertyPath: m_Name
       value: SM_Building_Door_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083520800827370424, guid: 5b7c049bd1c7b3242a5bc26583c27002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -121315,6 +121567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
   hinge: {fileID: 1984416095}
+  pairedDoors: {fileID: 0}
   openAngle: -90
   speed: 6
   interactKey: 101
@@ -124123,6 +124376,10 @@ PrefabInstance:
     - target: {fileID: 6829589703789352714, guid: 90c9b5e23dd129d4d83156db1c8627b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877013692573979614, guid: 90c9b5e23dd129d4d83156db1c8627b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -128167,6 +128424,30 @@ PrefabInstance:
       value: Gate (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007994960658230087, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573585607913004324, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835011624394522857, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850560781468868009, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007357884382815167, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209208383778225279, guid: 389833b53ecfb064a9494a51f679072c, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

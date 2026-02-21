@@ -44,6 +44,10 @@ public class VasePlaceTrigger : MonoBehaviour
 
             VaseInteract.HasVaseB = false;
 
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems("VaseB");
+            
+
             if (bossSpawner != null)
             {
                 Debug.Log("Spawning Boss");

@@ -9,6 +9,8 @@ public class DoorInteract : MonoBehaviour
     [Header("Door parts")]
     [SerializeField] Transform hinge;
 
+    [SerializeField] private DoorInteract pairedDoors;
+
     [Header("Open Settings")]
     [SerializeField] float openAngle = 90f;
     [SerializeField] float speed = 6f;
@@ -108,6 +110,16 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+
+            if (pairedDoors != null)
+            {
+                pairedDoors.SetLocked(false);
+                pairedDoors.StartCoroutine(pairedDoors.ToggleDoor());
+            }
+
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems(requiredKeyId);
+
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
             UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
