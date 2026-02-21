@@ -2773,7 +2773,9 @@ MonoBehaviour:
   hasEmerged: 1
   emergetime: 3.3
   screamTime: 1.833
-  dropObject: {fileID: 7137325725984719907, guid: d3942c7da195a16468bf85b72fccb196, type: 3}
+  dropsItem: 0
+  dropObject: {fileID: 0}
+  dropPoint: {fileID: 0}
 --- !u!136 &8308146201217418856
 CapsuleCollider:
   m_ObjectHideFlags: 0

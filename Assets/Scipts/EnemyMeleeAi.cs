@@ -27,8 +27,12 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     bool isDead;
 
+    [SerializeField] bool dropsItem = true;
     [SerializeField] GameObject dropObject;
+    [SerializeField] Transform dropPoint;
 
+    Vector3 deathPos;
+    Quaternion deathRot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -104,7 +108,10 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (hp <= 0 )
         {
             isDead = true;
-            gameManager.instance.updateGameGoal(-1);
+            deathPos = (dropPoint != null) ? dropPoint.position : transform.position;
+
+            if (animator != null)
+                animator.applyRootMotion = false;
 
             animator.ResetTrigger("Hit");
             animator.ResetTrigger("Attack");
@@ -123,8 +130,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
             enabled = false;
 
-            dropItem();
-            Destroy(gameObject, 2.35f);
+            StartCoroutine(DieRoutine());
             return;
         }
         if (animator != null ) 
@@ -150,6 +156,16 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         OnEmergeFinished();
     }
 
+    IEnumerator DieRoutine()
+    {
+        Debug.Log($"[DieRoutine start] enemy pos = {transform.position}");
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log($"[before drop] enemy pos = {transform.position}");
+        dropItem();
+
+        Destroy(gameObject);
+    }
+
     public void OnEmergeFinished()
     {
         if (agent != null)
@@ -162,7 +178,18 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     void dropItem()
     {
+        if (!dropsItem) return;
+        if (!dropObject) return;
 
-        Instantiate(dropObject, transform.position, transform. rotation);
+        Vector3 pos = deathPos;
+
+        Vector3 rayStart = pos + Vector3.up * 1f;
+        Debug.Log($"[DropItem] base pos = {pos} rayStart={rayStart}");
+        if (Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, 50f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log($"[DropItem] ray git = {hit.collider.name} at {hit.point}");
+            pos = hit.point + Vector3.up * 1f;
+        }
+        Instantiate(dropObject, pos, Quaternion.identity);
     }
 }
