@@ -14,6 +14,18 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // Ensure time scale is reset when restarting the game
+        SceneManager.LoadScene("ZombieMansionAlpha");
+    }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f; // Ensure time scale is reset when loading main menu
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit");
