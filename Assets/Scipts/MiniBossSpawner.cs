@@ -31,7 +31,7 @@ public class MiniBossSpawner : MonoBehaviour
         bossInstance = Instantiate(objectToSpawn, p.position, p.rotation);
 
         MiniBossLink link = bossInstance.AddComponent<MiniBossLink>();
-        if (link != null) link = bossInstance.AddComponent<MiniBossLink>();
+        if (link == null) link = bossInstance.AddComponent<MiniBossLink>();
         link.Init(this);
     }
 
@@ -66,7 +66,7 @@ public class MiniBossLink : MonoBehaviour
 
     public void Init(MiniBossSpawner s)
     {
-               spawner = s;
+        spawner = s;
         alreadyNotified = false;
         quitting = false;
         lastWorldPos = transform.position;
@@ -90,10 +90,10 @@ public class MiniBossLink : MonoBehaviour
 
         if (spawner != null)
         {
-            spawner.OnBossRemoved(transform.position);
+            spawner.OnBossRemoved(lastWorldPos);
         }
     }
     private void OnDestroy() => Notify();
-    private void OnDisable() => Notify();
+
 
 }

@@ -1,0 +1,379 @@
+commit 9c01a59419bed0b450ebb6f0837c7c10c15cbe67
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Mon Feb 16 00:39:01 2026 -0500
+
+    pull from scott
+
+commit 53402e10c2f5c3a1be1538914f6bf15d6f0e63f0
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 21:39:42 2026 -0500
+
+    small push
+
+commit 9397c631549808e5b185a2c1bceb0659a75e727a
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 21:14:04 2026 -0500
+
+    Ignore zip builds
+
+commit 0312133f22b585a194e6f880b1b6a728436c9284
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 21:03:36 2026 -0500
+
+    Re-add Assets so LFS rules apply
+
+commit 3e572511f7e7784a5535bbee0f410f341fa3be06
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 21:02:28 2026 -0500
+
+    Track additional large file types with LFS
+
+commit 6ad32304cc5a0292e51a92a367462e38f540e970
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 20:52:27 2026 -0500
+
+    Re-add Assets so LFS takes over
+
+commit 10b981b40104d96396cd08c51e3b615ea13d4540
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 20:46:52 2026 -0500
+
+    Add LFS tracking rules
+
+commit ed5fa6806167239f9f2d8e61e28ebbf20ad28e23
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Feb 15 20:26:55 2026 -0500
+
+    Clean initial commit
+
+commit 87891b815fd6850766a29a21e96c13db62520762
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sat Feb 14 23:48:26 2026 -0500
+
+    Ready to merge into main
+
+commit ba4e6f40074b2f7a7d74e1886804b85b678cb308
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sat Feb 14 23:48:26 2026 -0500
+
+    Ready to merge into main
+
+commit 7a47ce19a76b5a225ca0df1c2d65878782482105
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 23:45:28 2026 -0500
+
+    gun stats changes
+
+commit 1fd7f2ec37f1cdf25d2e220007617f16c38c947f
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 23:45:28 2026 -0500
+
+    gun stats changes
+
+commit c6a657770b8e4968a2e745dd4b3736d834275c0f
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 23:17:09 2026 -0500
+
+    Fixed bullets bouncing in the mansion
+
+commit d58a32908d8c62ea811c6f75740d50f8742354e9
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 23:17:09 2026 -0500
+
+    Fixed bullets bouncing in the mansion
+
+commit a975f5b2c59266c4a8e9db501661fa9b17a97330
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 20:47:06 2026 -0500
+
+    added a scream animation to the zombie
+
+commit 1e76994276b140ddc215c85252c291dcc7899ef8
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 20:47:06 2026 -0500
+
+    added a scream animation to the zombie
+
+commit 73821bf0afd0269d8ff3b1d5f079743cdb830b61
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 20:20:22 2026 -0500
+
+    Added zombie Death Animations
+
+commit 5b16d4d92d96d4c5dab18253c0c77d0319eeb380
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 20:20:22 2026 -0500
+
+    Added zombie Death Animations
+
+commit 307b3487ad14390f809b0cb68769fa604fd6af87
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 00:32:58 2026 -0500
+
+    I created the Main Menu and I also adjusted the shooting for the guns to shoot straight and have a slight spread to each gun and the shootrate is fixed now.
+
+commit 838240e8eb68c52415d99f06b29a3884eb3871ea
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 13 00:32:58 2026 -0500
+
+    I created the Main Menu and I also adjusted the shooting for the guns to shoot straight and have a slight spread to each gun and the shootrate is fixed now.
+
+commit a6aa017413b48f2a1948aec209d022a7b5d34d5f
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 23:20:21 2026 -0500
+
+    changes didn't fully inplement after merge. doing changes to fully run
+
+commit 166fd97ed5850462474a29422124aa789da067aa
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 23:20:21 2026 -0500
+
+    changes didn't fully inplement after merge. doing changes to fully run
+
+commit 752ebe2ac0f1d0ddb831bf00ceec97c6649b1813
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 22:12:01 2026 -0500
+
+    damage animation added to zombies
+
+commit 09e8bdb9963dd66f740e7d105612bf2573c57c55
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 22:12:01 2026 -0500
+
+    damage animation added to zombies
+
+commit 7df564ccb70d11ccc06ddcba4a254cbf20ba7332
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 21:14:30 2026 -0500
+
+    lights switch working
+
+commit 12d13e7950a29180cdda12fb9a73a076a258d0c9
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Feb 11 21:14:30 2026 -0500
+
+    lights switch working
+
+commit 9a6c6349eabca496c6637b16e67f5d6814ba7971
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 6 22:37:40 2026 -0500
+
+    zombies follow in house and fixed attack damage
+
+commit 153043bd394f83466618af04703f90f13f6dd556
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Fri Feb 6 22:37:40 2026 -0500
+
+    zombies follow in house and fixed attack damage
+
+commit e3433f073de16feda1cfe504d621f1b3627eac45
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 18:33:45 2026 -0500
+
+    final changes
+
+commit ff83527d11456d888c493534af891a9eeb371328
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 18:33:45 2026 -0500
+
+    final changes
+
+commit cec761a36e1cb3fa7f2ff3f8437fc4283611d61b
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 18:32:25 2026 -0500
+
+    Final Changes
+
+commit 7188a0c4457407bd60ac27c850e2f6b08a3bb209
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 18:32:25 2026 -0500
+
+    Final Changes
+
+commit fb3cc097a1236d28e4a4a4476c3c4cf1e7710e4e
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 04:50:13 2026 -0500
+
+    Final version-exculding audio
+
+commit 20cd53ec6773d335e3608e35a23902b0ae058247
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 29 04:50:13 2026 -0500
+
+    Final version-exculding audio
+
+commit 2dc5a201ef89e74aefe0b83016d53e727f31d584
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Jan 28 23:06:18 2026 -0500
+
+    changes
+
+commit 4cc210f0a9e61e983b6feb89253b9c251efc8c85
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Jan 28 23:06:18 2026 -0500
+
+    changes
+
+commit a01e872ff784dc8f7cecec249a8ab2938d7662f2
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Jan 28 23:02:52 2026 -0500
+
+    Fixed zombie emerge an dremoved KeyleePlayer
+
+commit 72294273c2bfad09b7dc0f311a592d1f614aeed1
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Wed Jan 28 23:02:52 2026 -0500
+
+    Fixed zombie emerge an dremoved KeyleePlayer
+
+commit f78808f87efb5271906de95793f79d2f6c948cb5
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Tue Jan 27 23:49:49 2026 -0500
+
+    gun stats change
+
+commit f465181b2e10e0517216af98a03c678161563f4a
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Tue Jan 27 23:49:49 2026 -0500
+
+    gun stats change
+
+commit 56a749b32b1de37fc35a5d3e4236946000542e71
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Tue Jan 27 18:02:20 2026 -0500
+
+    Save my current work
+
+commit 99096f8349f1585aacbcbe90ae22edff2eaad9f0
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Tue Jan 27 18:02:20 2026 -0500
+
+    Save my current work
+
+commit 6601f9ba0fb14e5e3c72a0b9dc78717b0facff20
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Mon Jan 26 09:20:36 2026 -0500
+
+    lava working and few level design chnages
+
+commit 5fd837739df70006f2b48480259e1e264875701e
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Mon Jan 26 09:20:36 2026 -0500
+
+    lava working and few level design chnages
+
+commit d78ea633e6ba2684730d11210890602f41f7c1de
+Author: Antoniolopez440 <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 20:27:52 2026 -0500
+
+    Add files via upload
+    
+    the scene
+
+commit 1d48851d86b9b92645c5b531770c4cc8c29cd090
+Author: Antoniolopez440 <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 20:27:52 2026 -0500
+
+    Add files via upload
+    
+    the scene
+
+commit 15a4e8d3fd832dadc3b5b8b9972188a20c09c769
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 20:05:33 2026 -0500
+
+    safe change
+
+commit 2432ab9342c915c133070f01d3cb03238b106602
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:45:53 2026 -0500
+
+    changes
+
+commit b8298678652f32f468a38ed363f02d10cc1a8941
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:45:53 2026 -0500
+
+    changes
+
+commit e8e50b783ca43ba09168585db60cf67f973fc25e
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:34:47 2026 -0500
+
+    changes
+
+commit c5e65f181409e8c04082945e663b778adcaf19df
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:34:47 2026 -0500
+
+    changes
+
+commit a4bf3061430bcb4f27b0518c63364c07989a3db8
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:28:59 2026 -0500
+
+    recent changes 1
+
+commit 925e1ed26c773a5e218e3dd392b846c57e92d5e9
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:28:59 2026 -0500
+
+    recent changes 1
+
+commit c8c74c87ed1eb31c257e3a050f1975778cd72131
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 19:20:55 2026 -0500
+
+    recent changes
+
+commit 8d3ffca3d95fb3f6e72cf146210f110d4551d2c0
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 18:18:31 2026 -0500
+
+    My changes with levels and shooting working.
+
+commit 40a9c1ed2695865e9fa488b10e95836388893fc3
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Sun Jan 25 18:18:31 2026 -0500
+
+    My changes with levels and shooting working.
+
+commit b28d8f649d18129d08a932f78b7a32048b9180f5
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 21:48:54 2026 -0500
+
+    main push
+
+commit 371b83cedcdbe5326e8f3569355f99f0bbdefbf5
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 21:48:54 2026 -0500
+
+    main push
+
+commit d0294791dab972cce17a08ed631c7ffd05a004f6
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 01:11:52 2026 -0500
+
+    Revert "finish working on enemy animation and attacking."
+    
+    This reverts commit f820f2dd6de663111333df6fe92b315aecb78252.
+
+commit 48c191c6e795e7342acbdb2c1013ec79b344fea3
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 01:11:52 2026 -0500
+
+    Revert "finish working on enemy animation and attacking."
+    
+    This reverts commit f820f2dd6de663111333df6fe92b315aecb78252.
+
+commit f820f2dd6de663111333df6fe92b315aecb78252
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 01:03:58 2026 -0500
+
+    finish working on enemy animation and attacking.
+
+commit c1d64d858c55f2a9f5f66374f1a693690d18658e
+Author: Antonio <aflopez@student.fullsail.edu>
+Date:   Thu Jan 15 01:03:58 2026 -0500
+
+    finish working on enemy animation and attacking.

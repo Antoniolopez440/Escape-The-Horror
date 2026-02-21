@@ -61,6 +61,10 @@ public class GateBoardLock : MonoBehaviour
 
                     UIManager.Instance.ShowMessage("Planks Removed");
                     SetGateLocked(false);
+                    if (gameManager.instance != null && gameManager.instance.CurrentQuest == 2)
+                    {
+                        gameManager.instance.SetQuest(3);
+                    }
                     return;
 
 

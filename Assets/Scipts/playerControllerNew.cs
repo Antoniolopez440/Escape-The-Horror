@@ -70,6 +70,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     float shootTimer;
 
+    public bool InMansion { get; private set; }
+    public bool InFenceYard { get; private set; }
+
     Vector3 moveDir;
     Vector3 playerVel;
 
@@ -465,5 +468,41 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         Debug.Log($"Installed {part.partType}");
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MansionZone"))
+        {
+            InMansion = true;
+        }
+        if (other.CompareTag("FenceYardZone"))
+        {
+            InFenceYard = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("MansionZone"))
+        {
+            InMansion = true;
+        }
+        if (other.CompareTag("FenceYardZone"))
+        {
+            InFenceYard = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("MansionZone"))
+        {
+            InMansion = false;
+        }
+        if (other.CompareTag("FenceYardZone"))
+        {
+            InFenceYard = false;
+        }
     }
 }
