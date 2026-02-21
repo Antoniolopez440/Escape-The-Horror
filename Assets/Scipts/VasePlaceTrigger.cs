@@ -42,6 +42,7 @@ public class VasePlaceTrigger : MonoBehaviour
 
             }
 
+
             VaseInteract.HasVaseB = false;
 
             if (PlayerInventory.Instance != null)
