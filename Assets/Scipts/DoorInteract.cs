@@ -130,7 +130,7 @@ public class DoorInteract : MonoBehaviour
             TryAdevanceQuest();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
-            UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
+            UIManager.Instance?.ShowMessage("Quest Updated: ");
             StartCoroutine(ToggleDoor());
             return;
         }
