@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fee6a02ea99075499b2b679f5784042, type: 3}
-  m_Name: Gun - Submachinegun
+  m_Name: Gun - HandGun
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileGun
-  gunModel: {fileID: 100000, guid: a59670924a782844eba004b28831683c, type: 3}
-  gunModelSprite: {fileID: 21300000, guid: 23ebb8d8cf8d0e44989a8ae6ad0f7144, type: 3}
-  bullet: {fileID: 8362927536016474687, guid: c421c722e003e154d975d520d942c509, type: 3}
+  gunModel: {fileID: 100000, guid: 5977258d1679e6c43bceba1941e91837, type: 3}
+  gunModelSprite: {fileID: 21300000, guid: 77f253c74a67bb647b1f862ded488a29, type: 3}
+  bullet: {fileID: 8362927536016474687, guid: ec8321e5bc816f24992e993c7381cc62, type: 3}
   shootDamage: 1
-  shootDist: 70
-  shootForce: 20
-  upwardForce: 0.03
-  timeBetweenShooting: 0.15
-  spread: 0.035
-  reloadTime: 2
+  shootDist: 3
+  shootForce: 18
+  upwardForce: 0.01
+  timeBetweenShooting: 1
+  spread: 0.015
+  reloadTime: 1.3
   timeBetweenShots: 0
-  magazineSize: 50
-  bulletsLeft: 50
+  magazineSize: 12
+  bulletsLeft: 12
   bulletsPerTap: 1
-  allowButtonHold: 1
+  allowButtonHold: 0

@@ -54,6 +54,16 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     bool readyToShoot;
     bool reloading;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+
+
+    bool isSprinting;
+    bool isPlayingSteps;
+
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     //[SerializeField] float shootRate;
@@ -120,6 +130,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             jumpCount = 0;
             playerVel = Vector3.zero;
+
+            if(moveDir.normalized.magnitude > 0.3f && !isPlayingSteps)
+            {
+                StartCoroutine(playStep());
+            }
         }
         else
         {
@@ -144,6 +159,20 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             speed /= sprintMod;
         }
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+
+        if (isSprinting)
+            yield return new WaitForSeconds(0.3f);
+        else
+            yield return new WaitForSeconds(0.5f);
+
+        isPlayingSteps = false;
+
     }
 
     void jump()
