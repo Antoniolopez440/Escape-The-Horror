@@ -21771,6 +21771,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c97fe64b8b7be499cd78928ff1ee7a, type: 3}
+--- !u!1001 &342236834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.823
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695860947160641020, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379386174754858281, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+      propertyPath: m_Name
+      value: Mini-Boss Spawner Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
 --- !u!1001 &342844796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68385,6 +68442,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1928025217}
+    - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
+      propertyPath: mansionSpawnpoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4676460248979991551, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.65
@@ -95575,7 +95636,7 @@ MonoBehaviour:
   vaseToPlace: {fileID: 455991391}
   placePoint: {fileID: 442072213}
   placePromptText: {fileID: 992570547}
-  bossSpawner: {fileID: 1822162387}
+  bossSpawner: {fileID: 1708244599}
   bossSpawnAmount: 1
 --- !u!65 &1546027374
 BoxCollider:
@@ -105616,6 +105677,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7459580205025546799, guid: bd94fcf1f35bc964e9c3f56fa89900dd, type: 3}
   m_PrefabInstance: {fileID: 1707606000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1708244599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1825894264295972487, guid: a32664ebb016d664a9631127ba2ddd0e, type: 3}
+  m_PrefabInstance: {fileID: 342236834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ed89710f9bec043a77aeed52485d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::spawner
 --- !u!1001 &1709216797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132636,7 +132708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8255516857405204318, guid: 428aebc699fa07048b08a5dd37c07337, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9025753037483893381, guid: 428aebc699fa07048b08a5dd37c07337, type: 3}
       propertyPath: m_Radius
@@ -136365,6 +136437,7 @@ SceneRoots:
   - {fileID: 1554020192}
   - {fileID: 1963003583}
   - {fileID: 1099841198}
+  - {fileID: 342236834}
   - {fileID: 853846591258273578}
   - {fileID: 8292080971273106141}
   - {fileID: 466779307}
