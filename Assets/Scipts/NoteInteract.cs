@@ -10,6 +10,7 @@ public class NoteInteract : MonoBehaviour
 
     private bool open;
     public static bool NoteRead = false;
+    private bool hintShowing = false;
 
 
     // Update is called once per frame
@@ -20,20 +21,47 @@ public class NoteInteract : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
 
         if (!open)
-        {
-            if (distance <= interactionDistance && Input.GetKeyDown(KeyCode.E))
+            if (distance < interactionDistance)
             {
+                if (!hintShowing && UIManager.Instance != null)
+                {
+                    UIManager.Instance.ShowMessage("Press E to Read");
+                    hintShowing = true;
+                }
+            }
+            else
+            {
+                if (hintShowing && UIManager.Instance != null)
+                {
+                    UIManager.Instance.HideMessage();
+                    hintShowing = false;
+                }
+            }
 
-                Open();
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+        if (!open)
             {
-                Close();
+                if (distance <= interactionDistance && Input.GetKeyDown(KeyCode.E))
+                {
+
+                if (UIManager.Instance != null)
+                    UIManager.Instance.HideMessage();
+
+                hintShowing = false;
+
+                    Open();
+                }
             }
-        }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Close();
+
+                hintShowing = false;
+                if (UIManager.Instance != null)
+                    UIManager.Instance.HideMessage();
+                }
+            }
     }
 
     private void Open()
