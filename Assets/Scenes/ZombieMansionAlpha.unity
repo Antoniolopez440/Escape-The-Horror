@@ -13944,71 +13944,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6921324378748164124, guid: 8d105943caff04c41abae80733df54cf, type: 3}
   m_PrefabInstance: {fileID: 221046772}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &221051552
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4826599196016483020, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5667892870542561225, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643461417277282072, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_Name
-      value: Car_garage
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 88.38347
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 83.681366
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7165755
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6975096
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -88.455
-      objectReference: {fileID: 0}
-    - target: {fileID: 8987055040806718882, guid: 764742e633597f94a93a24910d3858c6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 764742e633597f94a93a24910d3858c6, type: 3}
 --- !u!23 &221437057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15197,9 +15132,9 @@ MonoBehaviour:
   lockType: 2
   startsLocked: 1
   requiredKeyId: DoorUnlocked
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: a51b6d3a7a2728241be0972f0268ce40, type: 3}
-  closeSound: {fileID: 8300000, guid: a8b04f522e8bda54dbf48d31db249afa, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!82 &227887579
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19563,9 +19498,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!82 &304477668
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24157,9 +24092,9 @@ MonoBehaviour:
   lockType: 2
   startsLocked: 1
   requiredKeyId: DoorUnlocked
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: a51b6d3a7a2728241be0972f0268ce40, type: 3}
-  closeSound: {fileID: 8300000, guid: a8b04f522e8bda54dbf48d31db249afa, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!135 &388067861
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -33000,9 +32935,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!82 &526401883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36691,9 +36626,9 @@ MonoBehaviour:
   lockType: 2
   startsLocked: 1
   requiredKeyId: DoubleDoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &589353124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36736,9 +36671,9 @@ MonoBehaviour:
   lockType: 2
   startsLocked: 1
   requiredKeyId: DoubleDoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!82 &589353126
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40813,6 +40748,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3547466418240031934, guid: 1f1410cbedbae0f4f814e88abd7be445, type: 3}
   m_PrefabInstance: {fileID: 657680212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &657713177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 88.30417
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1170712
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 83.71
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5934239916821401062, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f5a3a02417e6784faa07e0acc4ee207, type: 2}
+    - target: {fileID: -5895566610176245041, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a5bf6360a37454ebe975a3a5f8511f, type: 2}
+    - target: {fileID: -5369120129689168114, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f5a3a02417e6784faa07e0acc4ee207, type: 2}
+    - target: {fileID: -1701208420778116722, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f5a3a02417e6784faa07e0acc4ee207, type: 2}
+    - target: {fileID: 176640943312723962, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b5a7ad65a5681f548a70c5797882e9cc, type: 2}
+    - target: {fileID: 176640943312723962, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b5a7ad65a5681f548a70c5797882e9cc, type: 2}
+    - target: {fileID: 919132149155446097, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: m_Name
+      value: Car_Garage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748230892802553376, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f5a3a02417e6784faa07e0acc4ee207, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27bcae3dc66dd024ab190b8dd3344528, type: 3}
 --- !u!1001 &657979762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57274,9 +57294,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: a51b6d3a7a2728241be0972f0268ce40, type: 3}
-  closeSound: {fileID: 8300000, guid: a8b04f522e8bda54dbf48d31db249afa, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!114 &940468036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57298,9 +57318,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: a51b6d3a7a2728241be0972f0268ce40, type: 3}
-  closeSound: {fileID: 8300000, guid: a8b04f522e8bda54dbf48d31db249afa, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &940468037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75077,7 +75097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.58
+      value: 32.5
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalRotation.w
@@ -76289,9 +76309,9 @@ MonoBehaviour:
   lockType: 2
   startsLocked: 1
   requiredKeyId: ShedKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &1258179836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93058,9 +93078,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: a51b6d3a7a2728241be0972f0268ce40, type: 3}
-  closeSound: {fileID: 8300000, guid: a8b04f522e8bda54dbf48d31db249afa, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!114 &1513584801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93082,9 +93102,9 @@ MonoBehaviour:
   lockType: 0
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &1513584802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94603,9 +94623,9 @@ MonoBehaviour:
   lockType: 1
   startsLocked: 0
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &1536497507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95174,7 +95194,8 @@ MonoBehaviour:
   vaseToPlace: {fileID: 455991391}
   placePoint: {fileID: 442072213}
   placePromptText: {fileID: 992570547}
-  bossSpawner: {fileID: 8292080971273106142}
+  bossSpawner: {fileID: 0}
+  bossSpawnAmount: 1
 --- !u!65 &1546027374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121799,12 +121820,12 @@ MonoBehaviour:
   speed: 6
   interactKey: 101
   zombieTag: Enemy
-  lockType: 1
+  lockType: 0
   startsLocked: 1
   requiredKeyId: DoorKey
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
 --- !u!65 &1984416097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -135867,7 +135888,6 @@ SceneRoots:
   - {fileID: 1667147381}
   - {fileID: 622993732}
   - {fileID: 1505711622}
-  - {fileID: 221051552}
   - {fileID: 219668095}
   - {fileID: 1170989185}
   - {fileID: 1856256399}
@@ -135885,3 +135905,4 @@ SceneRoots:
   - {fileID: 1358387432}
   - {fileID: 9206129700262255392}
   - {fileID: 294142643}
+  - {fileID: 657713177}

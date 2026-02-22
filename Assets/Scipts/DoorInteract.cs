@@ -10,6 +10,8 @@ public class DoorInteract : MonoBehaviour
     [Header("Door parts")]
     [SerializeField] Transform hinge;
 
+    [SerializeField] private DoorInteract pairedDoors;
+
     [Header("Open Settings")]
     [SerializeField] float openAngle = 90f;
     [SerializeField] float speed = 6f;
@@ -31,6 +33,11 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private bool adevanceQuest = false;
     [SerializeField] private int questToSet = 2;
     [SerializeField] private bool triggerOnce = true;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
 
     private bool questTriggered;
 
@@ -54,10 +61,16 @@ public class DoorInteract : MonoBehaviour
     // This happens before any Start functions and also just after a prefab is instantiated
     private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (hinge == null) hinge = transform;
 
-        closedRotation = hinge.rotation;
+        closedRotation = hinge.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+
+        hinge.localRotation = closedRotation;
+        isOpen = false;
 
         unlocked = !startsLocked || lockType == LockType.None;
     }
@@ -104,6 +117,16 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+
+            if (pairedDoors != null)
+            {
+                pairedDoors.SetLocked(false);
+                pairedDoors.StartCoroutine(pairedDoors.ToggleDoor());
+            }
+
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems(requiredKeyId);
+
             TryAdevanceQuest();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
@@ -152,6 +175,13 @@ public class DoorInteract : MonoBehaviour
 
     IEnumerator ToggleDoor()
     {
+        if (audioSource != null)
+        {
+            audioSource.clip = isOpen ? closeSound : openSound;
+            if (audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+        }
+
         isMoving = true;
 
         Quaternion start = hinge.localRotation;
@@ -162,11 +192,11 @@ public class DoorInteract : MonoBehaviour
         {
 
             t += Time.deltaTime * speed;
-            hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
+            hinge.localRotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
 
-        hinge.rotation = targetRotation;
+        hinge.localRotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
     }
