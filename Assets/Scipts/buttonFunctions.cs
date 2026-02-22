@@ -22,4 +22,10 @@ public class buttonFunctions : MonoBehaviour
     Application.Quit();
 #endif
     }
+
+    public void LoadCredits()
+    {
+        Time.timeScale = 1f; // Ensure time scale is reset when loading credits
+        SceneManager.LoadScene("Credits");
+    }
 }

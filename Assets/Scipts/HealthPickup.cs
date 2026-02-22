@@ -43,7 +43,7 @@ public class HealthPickup : MonoBehaviour
         transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime, Space.Self);
 
         float y = Mathf.Sin(Time.time * bobSpeed) * bobHeight;
-        transform.localPosition = startPos + new Vector3(0f, y, 0f);
+        //transform.localPosition = startPos + new Vector3(0f, y, 0f);
     }
 
     private void OnTriggerEnter(Collider other)

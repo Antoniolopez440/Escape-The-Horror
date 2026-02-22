@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 
 public class DoorInteract : MonoBehaviour
@@ -8,6 +9,8 @@ public class DoorInteract : MonoBehaviour
 
     [Header("Door parts")]
     [SerializeField] Transform hinge;
+
+    [SerializeField] private DoorInteract pairedDoors;
 
     [Header("Open Settings")]
     [SerializeField] float openAngle = 90f;
@@ -25,6 +28,18 @@ public class DoorInteract : MonoBehaviour
 
     [Header("Key Lock Settings (if using Key lock)")]
     [SerializeField] string requiredKeyId = "DoorKey"; // The name of the
+
+    [Header("Quest Update")]
+    [SerializeField] private bool adevanceQuest = false;
+    [SerializeField] private int questToSet = 2;
+    [SerializeField] private bool triggerOnce = true;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+
+    private bool questTriggered;
 
 
     // State variables
@@ -46,10 +61,16 @@ public class DoorInteract : MonoBehaviour
     // This happens before any Start functions and also just after a prefab is instantiated
     private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (hinge == null) hinge = transform;
 
-        closedRotation = hinge.rotation;
+        closedRotation = hinge.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+
+        hinge.localRotation = closedRotation;
+        isOpen = false;
 
         unlocked = !startsLocked || lockType == LockType.None;
     }
@@ -96,10 +117,20 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+
+            if (pairedDoors != null)
+            {
+                pairedDoors.SetLocked(false);
+                pairedDoors.StartCoroutine(pairedDoors.ToggleDoor());
+            }
+
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems(requiredKeyId);
+
+            TryAdevanceQuest();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
-            UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
-
+            UIManager.Instance?.ShowMessage("Quest Updated: ");
             StartCoroutine(ToggleDoor());
             return;
         }
@@ -128,6 +159,10 @@ public class DoorInteract : MonoBehaviour
         }
 
         // LockType.None fallback
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        {
+            gameManager.instance.SetQuest(2);
+        }
         StartCoroutine(ToggleDoor());
     }
 
@@ -140,6 +175,13 @@ public class DoorInteract : MonoBehaviour
 
     IEnumerator ToggleDoor()
     {
+        if (audioSource != null)
+        {
+            audioSource.clip = isOpen ? closeSound : openSound;
+            if (audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+        }
+
         isMoving = true;
 
         Quaternion start = hinge.localRotation;
@@ -150,11 +192,11 @@ public class DoorInteract : MonoBehaviour
         {
 
             t += Time.deltaTime * speed;
-            hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
+            hinge.localRotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
 
-        hinge.rotation = targetRotation;
+        hinge.localRotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
     }
@@ -215,6 +257,23 @@ public class DoorInteract : MonoBehaviour
         {
             zombiesInRange--;
             if (zombiesInRange < 0) zombiesInRange = 0;
+        }
+    }
+
+    private void TryAdevanceQuest()
+    {
+        if (!adevanceQuest)
+        {
+            return;
+        }
+        if (triggerOnce && questTriggered)
+        {
+            return;
+        }
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        {
+            gameManager.instance.SetQuest(questToSet);
+            questTriggered = true;
         }
     }
 }

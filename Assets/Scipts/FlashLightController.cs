@@ -6,10 +6,18 @@ public class FlashLightController : MonoBehaviour
     [SerializeField] private Light spotLight;
     [SerializeField] private KeyCode toggleKey = KeyCode.F;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip toggleSound;
+
     void Awake()
     {
         if (spotLight == null)
             spotLight = GetComponentInChildren<Light>(true); //try to find the light component in children
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>(); //try to find an audio source on the same
     }
 
 
@@ -35,6 +43,11 @@ public class FlashLightController : MonoBehaviour
             }
 
             spotLight.enabled = !spotLight.enabled; //toggle the light
+
+            if (audioSource != null && toggleSound != null)
+            {
+                audioSource.PlayOneShot(toggleSound); //play the toggle sound
+            }
         }
     }
 }

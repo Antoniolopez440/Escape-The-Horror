@@ -24,33 +24,103 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645909782545393947}
   serializedVersion: 2
-  m_LocalRotation: {x: 2.1788554e-16, y: 0.2439444, z: -3.546026e-15, w: 0.96978927}
-  m_LocalPosition: {x: 5.060996, y: 17.081, z: 7.5409913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5919203538765694231}
+  - {fileID: 2196396708083499148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2892225155477872530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2196396708083499148}
+  - component: {fileID: 674238621283169581}
+  - component: {fileID: 4823923102432353268}
+  m_Layer: 0
+  m_Name: KeyRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2196396708083499148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892225155477872530}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -6.617444e-24, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5919203538765694231}
+  m_Father: {fileID: 2051463209011586486}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674238621283169581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892225155477872530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed38dfa5e323c445a1bf81a90ed29b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  keyId: ShedKey
+  pickupMessage: You picked up a key!
+  destroyOnPickup: 1
+--- !u!65 &4823923102432353268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892225155477872530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23, y: 0.18, z: 0.27}
+  m_Center: {x: 0, y: 0, z: 0.02}
 --- !u!1001 &6174300109709255420
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2051463209011586486}
+    m_TransformParent: {fileID: 2196396708083499148}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.754
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.822
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,11 +132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1.4462884e-31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1.6696774e-16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -91,57 +161,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5893477912119224565}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1215251387668909092}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
 --- !u!4 &5919203538765694231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
   m_PrefabInstance: {fileID: 6174300109709255420}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6444348620604776365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
-  m_PrefabInstance: {fileID: 6174300109709255420}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5893477912119224565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444348620604776365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed38dfa5e323c445a1bf81a90ed29b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
-  keyId: ShedKey
-  pickupMessage: You picked up a key!
-  destroyOnPickup: 1
---- !u!65 &1215251387668909092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444348620604776365}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: -0.41, y: -0.39, z: 0.4}
-  m_Center: {x: 0.0016031377, y: -0.0000006731134, z: 0.015742023}

@@ -67,14 +67,20 @@ public class PlayerInventory : MonoBehaviour
 
     public void SelectIndex(int index)
     {
-        if (items.Count == 0) { SelectedIndex = -1;
+        if (items.Count == 0)
+        {
+            SelectedIndex = -1;
             SelectedItemChanged?.Invoke(null);
             return;
+        }
 
             index = Mathf.Clamp(index, 0, items.Count - 1);
+
             if (SelectedIndex == index) return;
+
+            SelectedIndex = index;
             SelectedItemChanged?.Invoke(GetSelectedItem());
-        }
+      
     }
 
     private void SelectSlot(int index)

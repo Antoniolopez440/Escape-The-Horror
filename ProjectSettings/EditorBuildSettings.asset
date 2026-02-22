@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 29b70ee01a36e554784bcc7b06f885fc
   - enabled: 1
-    path: Assets/Scenes/ZombieMansion.unity
-    guid: e2f56d8b49dfa444aa641a2c5631464e
+    path: Assets/Scenes/ZombieMansionAlpha.unity
+    guid: 71d7edd5aba3a074e8d025464ae5aa56
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 65955752433e64142840426ca76e62b7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

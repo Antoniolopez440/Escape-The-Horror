@@ -7,8 +7,9 @@ public class VasePlaceTrigger : MonoBehaviour
     [SerializeField] private Transform placePoint;
     [SerializeField] private GameObject placePromptText;
 
-    [Header("Boss Spawner")]
-    [SerializeField] private MiniBossSpawner bossSpawner;
+    [Header("Mini-Boss Spawner")]
+    [SerializeField] spawner bossSpawner;
+    [SerializeField] int bossSpawnAmount = 1;
 
 
     private bool playerInRange;
@@ -16,11 +17,9 @@ public class VasePlaceTrigger : MonoBehaviour
 
     private void Start()
     {
-        if (bossSpawner == null) bossSpawner = FindObjectOfType<MiniBossSpawner>();
-
-      if (vaseToPlace) vaseToPlace.SetActive(false);
-      if (placePromptText) placePromptText.SetActive(false);
-      used = false;
+        if (vaseToPlace) vaseToPlace.SetActive(false);
+        if (placePromptText) placePromptText.SetActive(false);
+        used = false;
     }
     // Update is called once per frame
    private void Update()
@@ -42,12 +41,17 @@ public class VasePlaceTrigger : MonoBehaviour
 
             }
 
+
             VaseInteract.HasVaseB = false;
+
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems("VaseB");
+            
 
             if (bossSpawner != null)
             {
             //    Debug.Log("Spawning Boss");
-                bossSpawner.SpawnBoss();
+             //   bossSpawner.SpawnBoss();
             }
             else
             {

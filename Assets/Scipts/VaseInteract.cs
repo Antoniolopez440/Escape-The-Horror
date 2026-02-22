@@ -50,6 +50,9 @@ public class VaseInteract : MonoBehaviour
            
             HasVaseB = true;
 
+            if (PlayerInventory. Instance != null)
+                PlayerInventory.Instance.AddItems("VaseB");
+
             // Hide first so it never flashes after pickup
             if (FlowerInteractText) FlowerInteractText.SetActive(false);
             if (vaseRoot) vaseRoot.SetActive(false);
