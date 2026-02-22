@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarPart_SteeringWheel
   m_EditorClassIdentifier: Assembly-CSharp::CarPart
   partType: 1
-  uIIcon: {fileID: 21300000, guid: 5756cc09d3be93245af46a04a3a3720a, type: 3}
+  uIIcon: {fileID: 21300000, guid: 1b1cb762c31d3b841abe561608853c0e, type: 3}
   placedModel: {fileID: 4237275480780861375, guid: cb191a55995bd6d47b3788f320985d4d, type: 3}

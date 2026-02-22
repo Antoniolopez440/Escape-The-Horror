@@ -26,7 +26,7 @@ public class MedkitSpawner : MonoBehaviour
         // Spawn up to maxAlive at the start
         if (spawnPoints == null || spawnPoints.Length == 0)
         {
-            Debug.LogWarning("[MedkitSpawner] No spawn points assigned.", this);
+           // Debug.LogWarning("[MedkitSpawner] No spawn points assigned.", this);
             return;
         }
 
@@ -91,7 +91,7 @@ public class MedkitSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[MedkitSpawner] Spawned medkitPrefab has no HealthPickup component.", kit);
+          //  Debug.LogWarning("[MedkitSpawner] Spawned medkitPrefab has no HealthPickup component.", kit);
         }
     }
 

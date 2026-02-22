@@ -118,6 +118,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
            
 
             int deathIndex = Random.Range(0, 4);
+            //Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
             animator.SetInteger("DieIndex", deathIndex);
             animator.SetTrigger("Die");
             

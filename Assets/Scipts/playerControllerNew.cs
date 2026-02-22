@@ -54,6 +54,16 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     bool readyToShoot;
     bool reloading;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+
+
+    bool isSprinting;
+    bool isPlayingSteps;
+
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     //[SerializeField] float shootRate;
@@ -123,6 +133,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             jumpCount = 0;
             playerVel = Vector3.zero;
+
+            if(moveDir.normalized.magnitude > 0.3f && !isPlayingSteps)
+            {
+                StartCoroutine(playStep());
+            }
         }
         else
         {
@@ -147,6 +162,20 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         {
             speed /= sprintMod;
         }
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+
+        if (isSprinting)
+            yield return new WaitForSeconds(0.3f);
+        else
+            yield return new WaitForSeconds(0.5f);
+
+        isPlayingSteps = false;
+
     }
 
     void jump()
@@ -175,7 +204,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     {
         HP += amount;
         if (HP < HPOrig) HP = HPOrig;
-        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
+      //  Debug.Log($"[Player] Healed {amount}. HP now {HP}");
 
         updateplayerUI();
     }
@@ -230,7 +259,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         // Fill reserve to max mag size too (simple rule: reserve = another full mag)
         remainingShots = 0;
 
-        Debug.Log($"Refilled {gun.name} to {currentAmmo}/{magazineSize} + reserve {remainingShots}");
+      //  Debug.Log($"Refilled {gun.name} to {currentAmmo}/{magazineSize} + reserve {remainingShots}");
     }
 
 
@@ -263,7 +292,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         float y = Random.Range(-gun.spread, gun.spread);
         Quaternion spreadRot = Quaternion.Euler(y, x, 0f);
         directionWithSpread = (spreadRot * directionWithSpread).normalized;
-        Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
+      //  Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
 
         Quaternion rot = Quaternion.LookRotation(directionWithSpread);
         GameObject currentBullet = Instantiate(gun.bullet, attackPoint.position, rot);
@@ -427,7 +456,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     public void GetCarPart(CarPart part)
     {
         carParts.Add(part);
-        Debug.Log($"Picked up art part: {part.partType}");
+     //   Debug.Log($"Picked up art part: {part.partType}");
 
         gameManager.instance.carPartsUI.Refresh(carParts);
     }
@@ -439,7 +468,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         if (carParts == null || carParts.Count == 0)
         {
-            Debug.Log("TryInteract called with empty inventory");
+          //  Debug.Log("TryInteract called with empty inventory");
             return;
         }
 
@@ -459,14 +488,14 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         if(!car.TryInstallPart(part))
         {
-            Debug.Log($"Cannot install{part.partType} yet");
+           // Debug.Log($"Cannot install{part.partType} yet");
         }
 
         carParts.RemoveAt(index);
 
         gameManager.instance.carPartsUI.Refresh(carParts);
 
-        Debug.Log($"Installed {part.partType}");
+      //  Debug.Log($"Installed {part.partType}");
 
     }
 
