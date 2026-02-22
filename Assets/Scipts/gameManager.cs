@@ -227,6 +227,11 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
     }
 
     public void WinGame()
@@ -234,6 +239,11 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
 
 
     }
