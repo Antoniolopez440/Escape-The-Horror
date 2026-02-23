@@ -38,6 +38,7 @@ public class gameManager : MonoBehaviour
     [Header("Quest System")]
     [SerializeField] private int currentQuest = 1;
     [SerializeField] private QuestSpawner regularQuestSpawner;
+    [SerializeField] private ObjectiveUI objectiveUI;
     public int CurrentQuest => currentQuest;
 
     private Coroutine bannerRoutine;
@@ -55,6 +56,10 @@ public class gameManager : MonoBehaviour
 
     float timeScaleOrig;
     int gameGoalCount;
+
+    private int wheelsCollected = 0;
+    private bool steeringFound = false;
+    private bool stickFound = false;
 
 
     private void Start()
@@ -109,13 +114,13 @@ public class gameManager : MonoBehaviour
         gameGoalCount = 0;
 
         LevelEnemies level = enemiesPerLevelNew[currentLevel];
-        if( level == null || level.enemies == null)
+        if (level == null || level.enemies == null)
         {
 
             UpdateGoalText();
             return;
         }
-        for(int i = 0; i < level.enemies.Length; i++)
+        for (int i = 0; i < level.enemies.Length; i++)
         {
             SpawnerAmount entry = level.enemies[i];
             if (entry == null || entry.spawner == null || entry.amount <= 0)
@@ -165,7 +170,7 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if(menuActive == null)
+            if (menuActive == null)
             {
                 statePause();
                 menuActive = menuPause;
@@ -175,7 +180,7 @@ public class gameManager : MonoBehaviour
             {
                 StateUnpaused();
             }
-        } 
+        }
     }
 
     public void statePause()
@@ -202,7 +207,7 @@ public class gameManager : MonoBehaviour
         gameGoalCount += amount;
         Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        
+
         //if(gameGoalCount<= 0)
         //{
         //    NextLevelOrWin();
@@ -230,6 +235,103 @@ public class gameManager : MonoBehaviour
         if (regularQuestSpawner != null)
         {
             regularQuestSpawner.SetQuest(currentQuest);
+        }
+
+        if (objectiveUI != null)
+        {
+            switch (currentQuest)
+            {
+                case 1:
+                    objectiveUI.SetMain("Escape the Mansion");
+                    objectiveUI.SetSubObjectivesInOrder(new string[]
+                    {
+                        "Find a flashlight",
+                        "Find a Gun",
+                        "Find the Key",
+                        "Unlock the Front Door"
+                    });
+                    break;
+                case 2:
+                    objectiveUI.SetMain("Open The Main Gate");
+                    objectiveUI.SetSubObjectivesInOrder(new string[]
+                    {
+                        "Find the Key to the Shed",
+                        "Find a Crowbar",
+                        "Remove the Wooden Planks",
+                        "Open Main Gate"
+                    });
+                    break;
+                case 3:
+                    wheelsCollected = 0;
+                    steeringFound = false;
+                    stickFound = false;
+
+                    objectiveUI.SetChecklist("Escape the Horror", new (string id, string text)[]
+                    {
+                        ("wheels", "Wheels (0/4)"),
+                        ("steering", "Steering Wheel"),
+                        ("stick", "Stick Shift")
+                    });
+                    break;
+                default:
+                    objectiveUI.SetMain("Survive");
+                    objectiveUI.SetSubObjectivesInOrder(new string[]
+                    {
+                        "Keep moving",
+                        "Stay alive"
+                    });
+                    break;
+            }
+        }
+    }
+
+    public void OnCarPartPicked(CarPartsType type)
+    {
+        if(objectiveUI == null || CurrentQuest != 3) return;
+
+        switch (type)
+        {
+            case CarPartsType.Wheel:
+                wheelsCollected = Mathf.Min(4, wheelsCollected + 1);
+                objectiveUI.SetChecklistItemText("wheels", $"Wheels ({wheelsCollected}/4");
+
+                if (wheelsCollected >= 4)
+                {
+                    objectiveUI.CheckOff("wheels");
+                }
+                break;
+
+            case CarPartsType.SteeringWheel:
+                if (!steeringFound)
+                {
+                    steeringFound = true;
+                    objectiveUI.CheckOff("steering");
+                }
+                break;
+
+            case CarPartsType.StickShift:
+                if (!stickFound)
+                {
+                    stickFound = true;
+                    objectiveUI.CheckOff("stick");
+                }
+                break;
+        }
+    }
+
+    public void CompleteSubObjective()
+    {
+        if (objectiveUI == null) return;
+        objectiveUI.CompleteCurrentSub();
+        StartCoroutine(CheckQuestDoneAfterUI());
+    }
+
+    public IEnumerator CheckQuestDoneAfterUI()
+    {
+        yield return new WaitForSeconds(1.1f);
+        if (objectiveUI != null && !objectiveUI.HasMoreSubs())
+        {
+            SetQuest(currentQuest + 1);
         }
     }
 }

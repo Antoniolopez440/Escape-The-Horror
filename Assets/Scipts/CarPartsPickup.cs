@@ -10,6 +10,11 @@ public class CarPartsPickup : MonoBehaviour
         if(pickup != null)
         {
             pickup.GetCarPart(part);
+
+            if(gameManager.instance != null)
+            {
+                gameManager.instance.OnCarPartPicked(part.partType);
+            }
             Destroy(gameObject);
         }
     }
