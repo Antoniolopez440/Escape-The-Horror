@@ -10,6 +10,11 @@ public class KeyPickup : MonoBehaviour
     [SerializeField] private bool completesObjectStep = false;
     [SerializeField] private int questRequired = 1;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField][Range(0f, 1f)] private float pickupVolume;
+
     private bool pickedUp;
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +33,23 @@ public class KeyPickup : MonoBehaviour
         }
 
         if (destroyOnPickup)
-          Destroy(gameObject); // Destroy the pickup object
+        {
+            if (audioSource != null && pickupSound != null)
+            {
+                audioSource.PlayOneShot(pickupSound, pickupVolume);
+                
+            }
+
+
+            if (destroyOnPickup)
+            {
+                if (pickupSound != null)
+                    Destroy(gameObject, pickupSound.length); // Destroy after sound finishes
+                else
+                    Destroy(gameObject); // Destroy immediately if no sound
+            }
+            
+       
         }
+    }
 }
