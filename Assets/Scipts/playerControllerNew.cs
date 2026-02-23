@@ -1,7 +1,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 {
@@ -38,6 +40,13 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [SerializeField] public int bulletsPerTap;
     [SerializeField] public bool allowButtonHold;
     [SerializeField] int bulletsShot;
+
+    [Header("Extrta Health")]
+    [SerializeField] private TMP_Text healPopupText;
+    [SerializeField] private bool showPlusSign = true;
+
+    private int overFlowHP = 0;
+    private Coroutine healPopupRoutine;
 
 
     [SerializeField] public gunDisplayManagerUI gunUI;
@@ -160,11 +169,28 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     public void takeDamage(float amount)
     {
-        HP -= (int)amount;
+        int dmg = (int)amount;
+
+        // NEW: overflow absorbs damage first
+        if (overFlowHP > 0 && dmg > 0)
+        {
+            int used = Mathf.Min(overFlowHP, dmg);
+            overFlowHP -= used;
+            dmg -= used;
+            RefreshHealPopup();
+        }
+
+
+        if (dmg <= 0)
+        {
+            return;
+        }
+
+        HP -= dmg;
+
         updateplayerUI();
         StartCoroutine(flashRed());
 
-        //Check if the player is dead
         if (HP <= 0)
         {
             gameManager.instance.youLose();
@@ -173,11 +199,54 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     public void Heal(int amount)
     {
-        HP += amount;
-        if (HP < HPOrig) HP = HPOrig;
-        Debug.Log($"[Player] Healed {amount}. HP now {HP}");
+        // NEW: fill real HP first up to HPOrig
+        int need = HPOrig - HP;
 
+        if (need > 0)
+        {
+            int toReal = Mathf.Min(need, amount);
+            HP += toReal;
+            amount -= toReal;
+        }
+
+        // NEW: anything leftover becomes overflow
+        if (amount > 0)
+        {
+            overFlowHP += amount;
+        }
+
+        // Keep your existing UI update call(s)
         updateplayerUI();
+        RefreshHealPopup();
+    }
+
+    private void RefreshHealPopup()
+    {
+        if (healPopupText == null) return;
+
+        if (overFlowHP > 0)
+        {
+            healPopupText.text = "+" + overFlowHP.ToString();
+            healPopupText.gameObject.SetActive(true);
+
+            if (healPopupRoutine != null)
+            
+                StopCoroutine(healPopupRoutine);
+
+            healPopupRoutine = StartCoroutine(HideHealPopup());
+
+        }
+        else
+        {
+            healPopupText.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator HideHealPopup()
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (overFlowHP <= 0 && healPopupText != null)
+            healPopupText.gameObject.SetActive(false);
     }
 
 
