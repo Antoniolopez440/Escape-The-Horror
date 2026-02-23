@@ -77488,6 +77488,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 790605820}
     - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
+      propertyPath: quest1SpawnRate
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1928025217}
@@ -92012,7 +92016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413106718410534983, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.028137
+      value: -30.028076
       objectReference: {fileID: 0}
     - target: {fileID: 2701755837125371988, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchorMax.x
@@ -92042,9 +92046,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4541628560767772676, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688873483621185167, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5058297328085040891, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512534887537517380, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5734093001284940277, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_fontSize
@@ -92090,10 +92106,18 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6482234982495358516, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7260283104227527332, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: playerControllerToDisable
       value: 
       objectReference: {fileID: 1928025217}
+    - target: {fileID: 7609194554303362986, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8400927499867332681, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_fontSize
       value: 38
