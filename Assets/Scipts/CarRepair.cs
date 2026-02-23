@@ -70,12 +70,17 @@ public class CarRepair : MonoBehaviour
 
     void CheckIfComplete()
     {
+        if (fullyRepaired)
+            return;
+
         foreach (var req in requiredParts)
         {
-            if (installedParts[req.type] < req.partObjects.Length)
-                return;
+            int installed = installedParts.ContainsKey(req.type)
+                ? installedParts[req.type]
+                : 0;
 
-            
+            if (installed < req.partObjects.Length)
+                return;
         }
 
         fullyRepaired = true;

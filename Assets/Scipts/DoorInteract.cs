@@ -33,6 +33,7 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private bool adevanceQuest = false;
     [SerializeField] private int questToSet = 2;
     [SerializeField] private bool triggerOnce = true;
+    [SerializeField] private int onlyRunOnQuest = 1;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -98,6 +99,7 @@ public class DoorInteract : MonoBehaviour
         // Always allow normal open/close once unlocked
         if (unlocked)
         {
+            TryAdvanceObjectiveStep();
             StartCoroutine(ToggleDoor());
             return;
         }
@@ -126,8 +128,8 @@ public class DoorInteract : MonoBehaviour
 
             if (PlayerInventory.Instance != null)
                 PlayerInventory.Instance.RemoveItems(requiredKeyId);
+            TryAdvanceObjectiveStep();
 
-            TryAdevanceQuest();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
             UIManager.Instance?.ShowMessage("Quest Updated: ");
@@ -161,7 +163,7 @@ public class DoorInteract : MonoBehaviour
         // LockType.None fallback
         if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
         {
-            gameManager.instance.SetQuest(2);
+            TryAdvanceObjectiveStep();
         }
         StartCoroutine(ToggleDoor());
     }
@@ -265,7 +267,7 @@ public class DoorInteract : MonoBehaviour
         }
     }
 
-    private void TryAdevanceQuest()
+    private void TryAdvanceObjectiveStep()
     {
         if (!adevanceQuest)
         {
@@ -275,9 +277,9 @@ public class DoorInteract : MonoBehaviour
         {
             return;
         }
-        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == onlyRunOnQuest)
         {
-            gameManager.instance.SetQuest(questToSet);
+            gameManager.instance.CompleteSubObjective();
             questTriggered = true;
         }
     }

@@ -12,6 +12,11 @@ public class VasePlaceTrigger : MonoBehaviour
     [SerializeField] int bossSpawnAmount = 1;
 
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip  placeSound;
+    [SerializeField][Range(0f, 1f)] private float placeVolume;
+
     private bool playerInRange;
     private bool used;
 
@@ -38,6 +43,8 @@ public class VasePlaceTrigger : MonoBehaviour
             {
                 vaseToPlace.SetActive(true);
                 vaseToPlace.transform.SetPositionAndRotation(placePoint.position, placePoint.rotation);
+
+               
 
             }
 
