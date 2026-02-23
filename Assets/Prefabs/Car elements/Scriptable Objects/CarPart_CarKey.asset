@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarPart_CarKey
   m_EditorClassIdentifier: Assembly-CSharp::CarPart
   partType: 3
-  uIIcon: {fileID: 21300000, guid: 060f456cce3d12841a0c1103629f4194, type: 3}
+  uIIcon: {fileID: 21300000, guid: 51e618fe861a6f94397c0ec9b69dc56d, type: 3}
   placedModel: {fileID: 0}

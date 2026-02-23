@@ -16,9 +16,12 @@ public class CarPartsUI : MonoBehaviour
 
         foreach (var part in parts)
         {
-            var go = Instantiate(iconPrefab);
-            go.transform.SetParent(container, false);
+            var go = Instantiate(iconPrefab, container, false);
             Image img = go.GetComponent<Image>();
+
+            img.sprite = part.uIIcon;
+            img.preserveAspect = true;
+            
         }
     }
     

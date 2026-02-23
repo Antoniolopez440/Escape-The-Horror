@@ -80,7 +80,7 @@ public class AmmoSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[AmmoSpawner] Spawned ammoPrefab has no AmmoPickUP component.", ammo);
+          //  Debug.LogWarning("[AmmoSpawner] Spawned ammoPrefab has no AmmoPickUP component.", ammo);
         }
     }
 

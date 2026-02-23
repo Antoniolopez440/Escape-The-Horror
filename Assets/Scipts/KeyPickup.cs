@@ -24,7 +24,7 @@ public class KeyPickup : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("PlayerInventory.Instance is null. Add PlayerInventory to the scene.");
+          //  Debug.LogWarning("PlayerInventory.Instance is null. Add PlayerInventory to the scene.");
         }
   
 

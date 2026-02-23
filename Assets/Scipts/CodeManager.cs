@@ -49,11 +49,12 @@ public class CodeManager : MonoBehaviour
     { // HashSet prevents duplicates
         if (foundSet.Add(number))
         {
-            foundOrder.Add(number); Debug.Log($"Collected NEW number: {number}. Total unique: {foundSet.Count}. Code now: {CurrentBuiltCode}");
+            foundOrder.Add(number); 
+            //Debug.Log($"Collected NEW number: {number}. Total unique: {foundSet.Count}. Code now: {CurrentBuiltCode}");
         }
         else
         {
-            Debug.Log($"Number {number} already collected before. Code stays: {CurrentBuiltCode}");
+         //   Debug.Log($"Number {number} already collected before. Code stays: {CurrentBuiltCode}");
         }
     }
 
