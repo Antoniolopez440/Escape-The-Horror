@@ -5,7 +5,7 @@ public class GateBoardLock : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
-    [SerializeField] private string requiredKeyId = "Crowbar";
+    [SerializeField] private string requiredKeyId = "CrowbarKey";
 
     [Header("Planks to rremove (IN Order)")]
     [SerializeField] private GameObject[] planks;
@@ -63,7 +63,7 @@ public class GateBoardLock : MonoBehaviour
                     SetGateLocked(false);
                     if (gameManager.instance != null && gameManager.instance.CurrentQuest == 2)
                     {
-                        gameManager.instance.CompleteSubObjective();
+                        gameManager.instance.OnQuest2PlanksRemoved();
                     }
                     return;
 

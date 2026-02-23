@@ -39,7 +39,7 @@ public class FlashLightPickup : MonoBehaviour
             if (PlayerInventory.Instance != null)
             {
                 PlayerInventory.Instance.AddItems("Flashlight");
-                gameManager.instance.CompleteSubObjective();
+                gameManager.instance.OnQuest1FlashlightFound();
                 PlayerInventory.Instance.SelectIndex(0); // Automatically select the flashlight after picking it up
 
                 if (audioSource != null && pickupSound != null)

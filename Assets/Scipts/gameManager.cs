@@ -42,6 +42,18 @@ public class gameManager : MonoBehaviour
     [SerializeField] private int currentQuest = 1;
     [SerializeField] private QuestSpawner regularQuestSpawner;
     [SerializeField] private ObjectiveUI objectiveUI;
+    [SerializeField] private DoorInteract frontDoor;
+    private bool q1FlashlightDone;
+    private bool q1GunDone;
+    private bool q1KeyDone;
+    private bool q1DoorDone;
+
+    private bool q2ShedKeyDone;
+    private bool q2CrowbarDone;
+    private bool q2PlanksDone;
+    private bool q2GateDone;
+
+    private Coroutine autoAdvanceRoutine;
     public int CurrentQuest => currentQuest;
 
     private Coroutine bannerRoutine;
@@ -276,6 +288,8 @@ public class gameManager : MonoBehaviour
                         "Find the Key",
                         "Unlock the Front Door"
                     });
+                    SyncQuest1Flags();
+                    StartAutoAdvance();
                     break;
                 case 2:
                     objectiveUI.SetMain("Open The Main Gate");
@@ -286,6 +300,8 @@ public class gameManager : MonoBehaviour
                         "Remove the Wooden Planks",
                         "Open Main Gate"
                     });
+                    SyncQuest2Flags();
+                    StartAutoAdvance();
                     break;
                 case 3:
                     wheelsCollected = 0;
@@ -359,5 +375,129 @@ public class gameManager : MonoBehaviour
         {
             SetQuest(currentQuest + 1);
         }
+    }
+
+    private bool InventoryHas(string id)
+    {
+        var inv = PlayerInventory.Instance;
+        if (inv == null) return false;
+        var items = inv.GetItems();
+        if(items == null) return false;
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == id) return true;
+        }
+        return false;
+    }
+
+    private void SyncQuest1Flags()
+    {
+        q1FlashlightDone = InventoryHas("Flashlight");
+        q1KeyDone = InventoryHas("DoubleDoorKey");
+        q1DoorDone = (frontDoor != null && frontDoor.IsUnlocked);
+    }
+    private void SyncQuest2Flags()
+    {
+        q2ShedKeyDone = InventoryHas("ShedKey");
+        q2CrowbarDone = InventoryHas("CrowbarKey");
+    }
+
+    private void StartAutoAdvance()
+    {
+        if (objectiveUI == null) return;
+        if (autoAdvanceRoutine != null) StopCoroutine(autoAdvanceRoutine);
+        autoAdvanceRoutine = StartCoroutine(AutoAdvanceRoutine());
+    }
+
+    IEnumerator AutoAdvanceRoutine()
+    {
+        yield return null;
+
+        while (objectiveUI != null && objectiveUI.CurrentSubRaw != null)
+        {
+            string cur = objectiveUI.CurrentSubRaw;
+
+            if (!IsCurrentStepAlreadyDone(cur))
+                break;
+
+            objectiveUI.CompleteCurrentSub();
+
+            yield return new WaitForSeconds(objectiveUI.DoneDisplaySeconds + 0.05f);
+        }
+        if (objectiveUI != null && !objectiveUI.HasMoreSubs())
+        {
+            SetQuest(currentQuest + 1);
+
+        }
+        autoAdvanceRoutine = null;
+    }
+
+    private bool IsCurrentStepAlreadyDone(string stepText)
+    {
+        if (currentQuest == 1)
+        {
+            if (stepText == "Find a flashlight") return q1FlashlightDone;
+            if (stepText == "Find a Gun") return q1GunDone;
+            if (stepText == "Find the Key") return q1KeyDone;
+            if (stepText == "Unlock the Front Door") return q1DoorDone;
+        }
+        else if (currentQuest == 2)
+        {
+            if (stepText == "Find the Key to the Shed") return q2ShedKeyDone;
+            if (stepText == "Find a Crowbar") return q2CrowbarDone;
+            if (stepText == "Remove the Wooden Planks") return q2PlanksDone;
+            if (stepText == "Open Main Gate") return q2GateDone;
+        }
+
+        return false;
+    }
+
+    public void OnQuest1FlashlightFound()
+    {
+        q1FlashlightDone = true;
+        StartAutoAdvance();
+    }
+
+    public void OnQuest1GunFound()
+    {
+        q1GunDone = true;
+        StartAutoAdvance();
+    }
+
+    public void OnQuest1KeyFound()
+    {
+        q1KeyDone = true;
+        StartAutoAdvance();
+    }
+    public void OnQuest1FrontDoorUnlocked()
+    {
+        q1DoorDone = true;
+        StartAutoAdvance();
+    }
+
+    public void OnQuest2ShedKeyFound()
+    {
+        q2ShedKeyDone = true;
+        StartAutoAdvance();
+    }
+
+    public void OnQuest2CrowbarFound()
+    {
+        q2CrowbarDone = true;
+        StartAutoAdvance();
+    }
+
+
+    public void OnQuest2PlanksRemoved()
+    {
+        q2PlanksDone = true;
+        StartAutoAdvance();
+    }
+
+    public void OnQuest2MainGateOpened()
+    {
+        q2GateDone = true;
+        StartAutoAdvance();
     }
 }

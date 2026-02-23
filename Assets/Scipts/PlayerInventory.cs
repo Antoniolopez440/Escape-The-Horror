@@ -104,4 +104,14 @@ public class PlayerInventory : MonoBehaviour
         if (string.IsNullOrEmpty(Id)) return false;
         return items.Contains(Id);
     }
+
+    public bool HasItem(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return false;
+        foreach (string item in items)
+        {
+            if (item == id) return true;
+        }
+        return false;
+    }
 }

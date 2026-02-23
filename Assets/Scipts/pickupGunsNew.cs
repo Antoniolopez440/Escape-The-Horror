@@ -1,4 +1,4 @@
-using NUnit.Framework.Interfaces;
+
 using UnityEngine;
 
 public class pickupGunsNew : MonoBehaviour
@@ -23,7 +23,7 @@ public class pickupGunsNew : MonoBehaviour
 
         if (CountsForFindGunObjective && gameManager.instance != null && gameManager.instance.CurrentQuest == questRequired)
         {
-            gameManager.instance.CompleteSubObjective();
+            gameManager.instance.OnQuest1GunFound(); ;
         }
 
         Destroy(gameObject);
