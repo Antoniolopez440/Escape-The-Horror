@@ -81,15 +81,15 @@ public class ObjectiveUI : MonoBehaviour
         GameObject obj = Instantiate(subObjectivePrefab, subObjectiveContainer);
         currentSubText = obj.GetComponent<TMP_Text>();
         currentSubText.fontStyle = FontStyles.Normal;
-        currentSubText.text = "☐ " + next;
+        currentSubText.text = "[  ] " + next;
     }
 
     private IEnumerator CompleteThenNext()
     {
         isCompleting = true;
 
-        string raw = currentSubText.text.StartsWith("☐ ") ? currentSubText.text.Substring(2) : currentSubText.text;
-        currentSubText.text = "✔ " + raw;
+        string raw = currentSubText.text.StartsWith("[  ] ") ? currentSubText.text.Substring(2) : currentSubText.text;
+        currentSubText.text = "[ X" + raw;
         currentSubText.fontStyle = FontStyles.Strikethrough;
         currentSubText.color = Color.gray;
 
@@ -114,7 +114,7 @@ public class ObjectiveUI : MonoBehaviour
             TMP_Text text = obj.GetComponent<TMP_Text>();
             text.fontStyle = FontStyles.Normal;
             text.color = Color.white;
-            text.text = "☐ " + item.text;
+            text.text = "[  ] " + item.text;
 
             checklist[item.id] = text;
         }
@@ -124,8 +124,8 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        string raw = text.text.StartsWith("☐ ") ? text.text.Substring(2) : text.text;
-        text.text = "✔ " + raw;
+        string raw = text.text.StartsWith("[  ] ") ? text.text.Substring(2) : text.text;
+        text.text = "[ X" + raw;
         text.fontStyle = FontStyles.Strikethrough;
         text.color = Color.gray;
 
@@ -160,8 +160,8 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        bool checkedOff = text.text.StartsWith("✔ ");
-        text.text = (checkedOff ? "✔ " : "☐ ") + newText;
+        bool checkedOff = text.text.StartsWith("[ X");
+        text.text = (checkedOff ? "[ X" : "[  ]  ") + newText;
     }
 
     public bool IsChecklistFullyChecked()
@@ -170,7 +170,7 @@ public class ObjectiveUI : MonoBehaviour
         {
             TMP_Text text = kv.Value;
             if (text == null) continue;
-            if (!text.text.StartsWith("✔ ")) return false;
+            if (!text.text.StartsWith("[ X")) return false;
         }
 
         return true;
