@@ -10,6 +10,8 @@ public class GateBoardLock : MonoBehaviour
     [Header("Planks to rremove (IN Order)")]
     [SerializeField] private GameObject[] planks;
 
+
+
     [Header("Gate Door Interaction")]
     [SerializeField] private DoorInteract LeftGateDoor;
     [SerializeField] private DoorInteract RightGateDoor;
@@ -51,6 +53,9 @@ public class GateBoardLock : MonoBehaviour
                 if (planks[plankIndex] != null)
                 {
                     planks[plankIndex].SetActive(false);
+
+                    
+
                     plankIndex++;
                     if (plankIndex < planks.Length)
                     {
