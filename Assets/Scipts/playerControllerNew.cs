@@ -486,7 +486,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (!HasValidGun()) return;
 
         if (aud != null && gunSwitchSounds.Length > 0)
-            aud.PlayOneShot(gunSwitchSounds[Random.Range(0, gunSwitchSounds.Length)], gunSwitchVol);w
+            aud.PlayOneShot(gunSwitchSounds[Random.Range(0, gunSwitchSounds.Length)], gunSwitchVol);
 
         ProjectileGun gun = gunList[gunListPos];
         currentAmmo = gun.bulletsLeft;
