@@ -63,7 +63,7 @@ public class GateBoardLock : MonoBehaviour
                     SetGateLocked(false);
                     if (gameManager.instance != null && gameManager.instance.CurrentQuest == 2)
                     {
-                        gameManager.instance.SetQuest(3);
+                        gameManager.instance.CompleteSubObjective();
                     }
                     return;
 
@@ -76,6 +76,7 @@ public class GateBoardLock : MonoBehaviour
 
                 if (RightGateDoor != null)
                     RightGateDoor.ToggleFromController();
+
             }
         }
     }

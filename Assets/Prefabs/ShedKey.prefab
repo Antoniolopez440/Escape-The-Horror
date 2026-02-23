@@ -78,9 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed38dfa5e323c445a1bf81a90ed29b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
-  keyId: ShedKey
+  KeyId: ShedKey
   pickupMessage: You picked up a key!
   destroyOnPickup: 1
+  completesObjectStep: 1
+  questRequired: 2
 --- !u!65 &4823923102432353268
 BoxCollider:
   m_ObjectHideFlags: 0

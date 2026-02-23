@@ -2,32 +2,33 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour
 {
-    [SerializeField] private string keyId = "DoubleDoorKey"; // Unique ID for this key
+    [SerializeField] private string KeyId = "DoubleDoorKey"; // Unique ID for this key
     [SerializeField] private string pickupMessage = "You picked up a key!"; // Message to show on pickup
     [SerializeField] private bool destroyOnPickup = true; // Whether to destroy the pickup object after picking up
 
+    [Header("Objective Step")]
+    [SerializeField] private bool completesObjectStep = false;
+    [SerializeField] private int questRequired = 1;
+
+    private bool pickedUp;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        if (pickedUp) return;
 
-    if (PlayerInventory.Instance != null)
+        pickedUp = true;
+
+        PlayerInventory.Instance.AddItems(KeyId);
+        UIManager.Instance.ShowMessage(pickupMessage);
+
+        if (completesObjectStep && gameManager.instance != null && gameManager.instance.CurrentQuest == questRequired)
         {
-            PlayerInventory.Instance.AddItems(keyId);
-
-          
-            if (UIManager.Instance != null)
-                UIManager.Instance.ShowMessage(pickupMessage);
-
-            if (destroyOnPickup)
-                Destroy(gameObject); // Destroy the pickup object
+            gameManager.instance.CompleteSubObjective();
         }
-        else
-        {
-          //  Debug.LogWarning("PlayerInventory.Instance is null. Add PlayerInventory to the scene.");
-        }
-  
 
+        //if (destroyOnPickup)
+        //    Destroy(gameObject); // Destroy the pickup object
+        //}
     }
-
 }
