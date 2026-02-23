@@ -51,7 +51,7 @@ public class VasePlaceTrigger : MonoBehaviour
             if (bossSpawner != null)
             {
             //    Debug.Log("Spawning Boss");
-             //   bossSpawner.SpawnBoss();
+                bossSpawner.StartLevel(bossSpawnAmount);
             }
             else
             {
