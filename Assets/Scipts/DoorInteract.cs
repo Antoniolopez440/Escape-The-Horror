@@ -199,6 +199,11 @@ public class DoorInteract : MonoBehaviour
         hinge.localRotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
+
+        if (playerInRange && UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowHint(isOpen ? "Press E to close" : "Press E to open");
+        }
     }
 
     public void ToggleFromController()
@@ -221,7 +226,7 @@ public class DoorInteract : MonoBehaviour
             if (UIManager.Instance != null)
             {
                 if (unlocked)
-                    UIManager.Instance.ShowHint("Press E to open");
+                    UIManager.Instance.ShowHint(isOpen ? "Press E to close" : "Press E to open");
                 else if (lockType == LockType.Key)
                     UIManager.Instance.ShowHint("Find the key");
                 else if (lockType == LockType.Code && CodeManager.Instance != null && CodeManager.Instance.AllNumbersFound)

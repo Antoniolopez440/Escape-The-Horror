@@ -15,6 +15,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text gameGoalCountText;
 
+    [SerializeField] private AudioSource pauseMusic;
+
     [System.Serializable]
     public class SpawnerAmount
     {
@@ -186,6 +188,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
     }
 
     public void StateUnpaused()
@@ -196,6 +203,11 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+
+            if (pauseMusic != null)
+            {
+                pauseMusic.Stop();
+        }
     }
 
     public void updateGameGoal(int amount)
@@ -216,6 +228,11 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
     }
 
     public void WinGame()
@@ -223,6 +240,11 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
 
 
     }

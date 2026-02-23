@@ -67,6 +67,8 @@ public class VaseInteract : MonoBehaviour
                 if (other.CompareTag("Player"))
                 {
                     playerInRange = true;
+
+
                 }
             }
 

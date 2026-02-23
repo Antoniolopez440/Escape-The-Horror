@@ -15,6 +15,9 @@ public class FlashLightPickup : MonoBehaviour
 
     private void Awake()
     {
+
+        HasFlashlightt = false;
+
         if (playerFlashlightHolder != null)
         playerFlashlightHolder.SetActive(false); // Ensure the flashlight is initially inactive
     }
@@ -40,6 +43,9 @@ public class FlashLightPickup : MonoBehaviour
 
                HasFlashlightt = true;
 
+            if (UIManager.Instance != null)
+                UIManager.Instance.HideMessage();
+
             Destroy(gameObject); // Destroy the pickup object
         }
     }
@@ -49,7 +55,12 @@ public class FlashLightPickup : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             isPlayerInRange = true;
+
+            if (!HasFlashlightt && UIManager.Instance != null)
+                UIManager.Instance.ShowMessage("Press E to Pickup");
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -57,6 +68,9 @@ public class FlashLightPickup : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             isPlayerInRange = false;
+
+            if (UIManager.Instance != null)
+                UIManager.Instance.HideMessage();
         }
     }
 }
