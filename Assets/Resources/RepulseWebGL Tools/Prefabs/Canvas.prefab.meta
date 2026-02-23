@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 78235ca2a179844a7af668427b55c7f9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Prefabs/Canvas.prefab
+  uploadId: 454732

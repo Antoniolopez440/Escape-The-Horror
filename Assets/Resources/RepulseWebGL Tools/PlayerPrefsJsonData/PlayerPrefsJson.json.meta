@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8274b5e4f2f3e7840a39c333924dfd9b
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/PlayerPrefsJsonData/PlayerPrefsJson.json
+  uploadId: 454732

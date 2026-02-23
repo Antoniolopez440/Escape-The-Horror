@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e4f38fe377bfe484d9bffe132174b8fd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Scripts/Repulse/Prefabs/IngameControlBehavior.cs
+  uploadId: 454732
