@@ -31,6 +31,7 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private bool adevanceQuest = false;
     [SerializeField] private int questToSet = 2;
     [SerializeField] private bool triggerOnce = true;
+    [SerializeField] private int onlyRunOnQuest = 1;
 
     private bool questTriggered;
 
@@ -85,6 +86,7 @@ public class DoorInteract : MonoBehaviour
         // Always allow normal open/close once unlocked
         if (unlocked)
         {
+            TryAdvanceObjectiveStep();
             StartCoroutine(ToggleDoor());
             return;
         }
@@ -104,7 +106,7 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
-            TryAdevanceObjectiveStep();
+            TryAdvanceObjectiveStep();
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
             UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
@@ -138,7 +140,7 @@ public class DoorInteract : MonoBehaviour
         // LockType.None fallback
         if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
         {
-            TryAdevanceObjectiveStep();
+            TryAdvanceObjectiveStep();
         }
         StartCoroutine(ToggleDoor());
     }
@@ -230,7 +232,7 @@ public class DoorInteract : MonoBehaviour
         }
     }
 
-    private void TryAdevanceObjectiveStep()
+    private void TryAdvanceObjectiveStep()
     {
         if (!adevanceQuest)
         {
@@ -240,7 +242,7 @@ public class DoorInteract : MonoBehaviour
         {
             return;
         }
-        if (gameManager.instance != null && gameManager.instance.CurrentQuest == 1)
+        if (gameManager.instance != null && gameManager.instance.CurrentQuest == onlyRunOnQuest)
         {
             gameManager.instance.CompleteSubObjective();
             questTriggered = true;
