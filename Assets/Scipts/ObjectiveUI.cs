@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +17,9 @@ public class ObjectiveUI : MonoBehaviour
     private readonly Queue<string> subQueue = new Queue<string>();
     private readonly Dictionary<string, TMP_Text> checklist = new Dictionary<string, TMP_Text>();
     private TMP_Text currentSubText;
+    private string currentSubRaw;
+    public string CurrentSubRaw => currentSubRaw;
+    public float DoneDisplaySeconds => doneDisplaySeconds;
     private bool isCompleting;
 
     public void SetMain(string main)
@@ -48,6 +51,8 @@ public class ObjectiveUI : MonoBehaviour
         ClearAllSubs();
         foreach (var s in subs)
             subQueue.Enqueue(s);
+        currentSubRaw = null;
+
         ShowNextSub();
     }
 
@@ -67,22 +72,24 @@ public class ObjectiveUI : MonoBehaviour
         if (subQueue.Count == 0)
         {
             currentSubText = null;
+            currentSubRaw = null;
             return;
         }
 
         string next = subQueue.Dequeue();
+        currentSubRaw = next;
         GameObject obj = Instantiate(subObjectivePrefab, subObjectiveContainer);
         currentSubText = obj.GetComponent<TMP_Text>();
         currentSubText.fontStyle = FontStyles.Normal;
-        currentSubText.text = "[   ] " + next;
+        currentSubText.text = "[  ] " + next;
     }
 
     private IEnumerator CompleteThenNext()
     {
         isCompleting = true;
 
-        string raw = currentSubText.text.StartsWith("[   ] ") ? currentSubText.text.Substring(2) : currentSubText.text;
-        currentSubText.text = "X " + raw;
+        string raw = currentSubText.text.StartsWith("[  ] ") ? currentSubText.text.Substring(2) : currentSubText.text;
+        currentSubText.text = "[ X" + raw;
         currentSubText.fontStyle = FontStyles.Strikethrough;
         currentSubText.color = Color.gray;
 
@@ -107,7 +114,7 @@ public class ObjectiveUI : MonoBehaviour
             TMP_Text text = obj.GetComponent<TMP_Text>();
             text.fontStyle = FontStyles.Normal;
             text.color = Color.white;
-            text.text = "[   ] " + item.text;
+            text.text = "[  ] " + item.text;
 
             checklist[item.id] = text;
         }
@@ -117,8 +124,8 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        string raw = text.text.StartsWith("[   ] ") ? text.text.Substring(2) : text.text;
-        text.text = "X " + raw;
+        string raw = text.text.StartsWith("[  ] ") ? text.text.Substring(2) : text.text;
+        text.text = "[ X" + raw;
         text.fontStyle = FontStyles.Strikethrough;
         text.color = Color.gray;
 
@@ -153,8 +160,20 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        bool checkedOff = text.text.StartsWith("X ");
-        text.text = (checkedOff ? "X " : "[   ] ") + newText;
+        bool checkedOff = text.text.StartsWith("[ X");
+        text.text = (checkedOff ? "[ X" : "[  ]  ") + newText;
+    }
+
+    public bool IsChecklistFullyChecked()
+    {
+        foreach (var kv in checklist)
+        {
+            TMP_Text text = kv.Value;
+            if (text == null) continue;
+            if (!text.text.StartsWith("[ X")) return false;
+        }
+
+        return true;
     }
 }
 

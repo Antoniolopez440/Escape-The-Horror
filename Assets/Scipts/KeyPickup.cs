@@ -29,7 +29,12 @@ public class KeyPickup : MonoBehaviour
 
         if (completesObjectStep && gameManager.instance != null && gameManager.instance.CurrentQuest == questRequired)
         {
-            gameManager.instance.CompleteSubObjective();
+            if(questRequired == 1 && KeyId == "DoubleDoorKey")
+                gameManager.instance.OnQuest1KeyFound();
+            if (questRequired == 2 && KeyId == "ShedKey")
+                gameManager.instance.OnQuest2ShedKeyFound();
+            if (questRequired == 2 && KeyId == "CrowbarKey")
+                gameManager.instance.OnQuest2CrowbarFound();
         }
 
         if (destroyOnPickup)

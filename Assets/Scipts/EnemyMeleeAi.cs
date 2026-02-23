@@ -25,11 +25,16 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] float emergetime = 4.0F;
     [SerializeField] float screamTime = 1.833f;
 
+    [SerializeField] private bool canTakeDamage = false;
+
+
     bool isDead;
 
     [SerializeField] bool dropsItem = true;
     [SerializeField] GameObject dropObject;
     [SerializeField] Transform dropPoint;
+    [SerializeField] private GameObject[] attackHitboxes;
+    private Collider[] attackColliders;
 
     Vector3 deathPos;
     Quaternion deathRot;
@@ -57,7 +62,15 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             agent.enabled = false;
         }
 
-        StartCoroutine(EmergeThenEnable());
+        attackColliders = new Collider[attackHitboxes.Length];
+        for (int i = 0; i < attackHitboxes.Length; i++)
+        {
+            if (attackHitboxes[i] != null)
+            {
+                attackColliders[i] = attackHitboxes[i].GetComponent<Collider>();
+            }
+            StartCoroutine(EmergeThenEnable());
+        }
     }
 
 
@@ -93,6 +106,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         animator.SetTrigger("Attack");
         agent.SetDestination(transform.position);
     }
+    
 
     public int GetV(float amount)
     {
@@ -103,11 +117,13 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     public void takeDamage(float amount)
     {
         if (isDead) return;
+        if (!canTakeDamage) return;
         hp -= amount;
 
         if (hp <= 0 )
         {
             isDead = true;
+            DisableAttackColliders();
             deathPos = (dropPoint != null) ? dropPoint.position : transform.position;
 
             if (animator != null)
@@ -175,6 +191,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         }
 
         hasEmerged = true;
+        canTakeDamage = true;
     }
 
     void dropItem()
@@ -192,5 +209,17 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             pos = hit.point + Vector3.up * 1f;
         }
         Instantiate(dropObject, pos, Quaternion.identity);
+    }
+
+    void DisableAttackColliders()
+    {
+        if (attackColliders == null) return;
+
+        foreach( Collider col in attackColliders)
+        {
+            if ( col != null) {
+                col.enabled = false;
+            }
+        }
     }
 }
