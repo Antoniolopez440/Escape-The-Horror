@@ -35898,6 +35898,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719e059a7b6248d44bae14c55e38ab2a, type: 3}
+--- !u!1 &570091633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1cbd7fac3172af24e841c4a716efd97d, type: 3}
+  m_PrefabInstance: {fileID: 1657901174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &570769069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8498634972111561313, guid: 57d0a7a012101bb46b0519b42af18713, type: 3}
@@ -36954,8 +36959,8 @@ MonoBehaviour:
   questToSet: 2
   triggerOnce: 1
   audioSource: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
+  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
 --- !u!65 &589353124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37002,8 +37007,8 @@ MonoBehaviour:
   questToSet: 2
   triggerOnce: 1
   audioSource: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
+  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
 --- !u!82 &589353126
 AudioSource:
   m_ObjectHideFlags: 0
@@ -103467,13 +103472,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1cbd7fac3172af24e841c4a716efd97d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1657901178}
   m_SourcePrefab: {fileID: 100100000, guid: 1cbd7fac3172af24e841c4a716efd97d, type: 3}
 --- !u!4 &1657901175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1cbd7fac3172af24e841c4a716efd97d, type: 3}
   m_PrefabInstance: {fileID: 1657901174}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1657901178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570091633}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.78, y: 1.29, z: 0.83481866}
+  m_Center: {x: -0.012558599, y: -0.000030479394, z: -0.029231723}
 --- !u!4 &1658013806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1009283274776912724, guid: 14f51bc840f88d64bbfb8c06d6f33b99, type: 3}
