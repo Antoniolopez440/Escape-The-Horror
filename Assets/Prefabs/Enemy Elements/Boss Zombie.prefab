@@ -166,15 +166,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: 22826f1d6b6963145be8187826ecafd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.689365
+      value: 39.649525
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: 22826f1d6b6963145be8187826ecafd2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 8.66
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: 22826f1d6b6963145be8187826ecafd2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.9392977
+      value: 28.033203
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: 22826f1d6b6963145be8187826ecafd2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -264,12 +264,15 @@ MonoBehaviour:
   meleeDamage: 4
   hp: 10
   animator: {fileID: 627387189615509163}
-  hasEmerged: 1
+  hasEmerged: 0
   emergetime: 3.34
   screamTime: 1.833
+  canTakeDamage: 0
   dropsItem: 1
   dropObject: {fileID: 3867092246578444957, guid: 62c6c3c17e51f9a43ae96ac5152035b9, type: 3}
   dropPoint: {fileID: 8087810412772628735}
+  attackHitboxes:
+  - {fileID: 5507304685470259115}
 --- !u!136 &6045977349178751051
 CapsuleCollider:
   m_ObjectHideFlags: 0

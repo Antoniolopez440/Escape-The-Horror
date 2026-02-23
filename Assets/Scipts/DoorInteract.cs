@@ -42,6 +42,7 @@ public class DoorInteract : MonoBehaviour
 
     private bool questTriggered;
 
+    public bool IsUnlocked => unlocked;
 
     // State variables
     bool playerInRange;
@@ -119,6 +120,10 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+            if(gameManager.instance != null)
+            {
+                gameManager.instance.OnQuest1FrontDoorUnlocked();
+            }
 
             if (pairedDoors != null)
             {
@@ -279,7 +284,10 @@ public class DoorInteract : MonoBehaviour
         }
         if (gameManager.instance != null && gameManager.instance.CurrentQuest == onlyRunOnQuest)
         {
-            gameManager.instance.CompleteSubObjective();
+            if (onlyRunOnQuest == 1)
+                gameManager.instance.OnQuest1FrontDoorUnlocked();
+            else if (onlyRunOnQuest == 2)
+                gameManager.instance.OnQuest2MainGateOpened();
             questTriggered = true;
         }
     }

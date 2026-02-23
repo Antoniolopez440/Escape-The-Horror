@@ -17,6 +17,9 @@ public class ObjectiveUI : MonoBehaviour
     private readonly Queue<string> subQueue = new Queue<string>();
     private readonly Dictionary<string, TMP_Text> checklist = new Dictionary<string, TMP_Text>();
     private TMP_Text currentSubText;
+    private string currentSubRaw;
+    public string CurrentSubRaw => currentSubRaw;
+    public float DoneDisplaySeconds => doneDisplaySeconds;
     private bool isCompleting;
 
     public void SetMain(string main)
@@ -48,6 +51,8 @@ public class ObjectiveUI : MonoBehaviour
         ClearAllSubs();
         foreach (var s in subs)
             subQueue.Enqueue(s);
+        currentSubRaw = null;
+
         ShowNextSub();
     }
 
@@ -67,10 +72,12 @@ public class ObjectiveUI : MonoBehaviour
         if (subQueue.Count == 0)
         {
             currentSubText = null;
+            currentSubRaw = null;
             return;
         }
 
         string next = subQueue.Dequeue();
+        currentSubRaw = next;
         GameObject obj = Instantiate(subObjectivePrefab, subObjectiveContainer);
         currentSubText = obj.GetComponent<TMP_Text>();
         currentSubText.fontStyle = FontStyles.Normal;
@@ -155,6 +162,18 @@ public class ObjectiveUI : MonoBehaviour
 
         bool checkedOff = text.text.StartsWith("✔ ");
         text.text = (checkedOff ? "✔ " : "☐ ") + newText;
+    }
+
+    public bool IsChecklistFullyChecked()
+    {
+        foreach (var kv in checklist)
+        {
+            TMP_Text text = kv.Value;
+            if (text == null) continue;
+            if (!text.text.StartsWith("✔ ")) return false;
+        }
+
+        return true;
     }
 }
 

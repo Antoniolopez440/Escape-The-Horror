@@ -2772,12 +2772,15 @@ MonoBehaviour:
   meleeDamage: 1
   hp: 5
   animator: {fileID: 6816722868616745833}
-  hasEmerged: 1
+  hasEmerged: 0
   emergetime: 3.3
   screamTime: 1.833
+  canTakeDamage: 0
   dropsItem: 0
   dropObject: {fileID: 0}
   dropPoint: {fileID: 0}
+  attackHitboxes:
+  - {fileID: 5527911718402748403}
 --- !u!136 &8308146201217418856
 CapsuleCollider:
   m_ObjectHideFlags: 0
