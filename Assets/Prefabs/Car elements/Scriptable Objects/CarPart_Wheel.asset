@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarPart_Wheel
   m_EditorClassIdentifier: Assembly-CSharp::CarPart
   partType: 0
-  uIIcon: {fileID: 21300000, guid: 2990ace445dc80041a74316bcaab26e1, type: 3}
+  uIIcon: {fileID: 21300000, guid: a6ff590f861c98748a3413766aa8407c, type: 3}
   placedModel: {fileID: 1712375584849476879, guid: f34587e599f673342a73bc55e669ddc5, type: 3}

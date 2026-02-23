@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class HealthPickup : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class HealthPickup : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float bobHeight;
     [SerializeField] float bobSpeed;
+
+    [SerializeField] private TMP_Text healPopupText;
+    [SerializeField] private float popupTime = 1f;
 
     Vector3 startPos;
 
@@ -62,11 +67,21 @@ public class HealthPickup : MonoBehaviour
 
         pc.Heal(healAmount);
 
+
+
         // IMPORTANT: notify BEFORE destroying so the spawn point frees up
         if (spawner != null)
             spawner.NotifyMedkitPickedUp(spawnIndex);
 
         if (destroyOnPickup)
             Destroy(gameObject);
+    }
+
+    private IEnumerator HideHealPopup()
+    {
+        yield return new WaitForSeconds(popupTime);
+
+        if (healPopupText != null)
+            healPopupText.gameObject.SetActive(false);
     }
 }

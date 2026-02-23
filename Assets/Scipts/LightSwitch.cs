@@ -38,7 +38,7 @@ public class LightSwitch : MonoBehaviour
 
         if (Input.GetButtonDown("Light Switch"))
         {
-            Debug.Log("Interact Pressed");
+          //  Debug.Log("Interact Pressed");
             Toggle();
         }
     }

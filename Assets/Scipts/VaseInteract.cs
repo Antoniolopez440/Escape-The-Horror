@@ -7,6 +7,11 @@ public class VaseInteract : MonoBehaviour
     [SerializeField] private GameObject vaseRoot;
     [SerializeField] private GameObject FlowerInteractText;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField][Range(0f, 1f)] private float pickupVolume;
+
     private bool playerInRange;
     private bool used;
 
@@ -50,6 +55,12 @@ public class VaseInteract : MonoBehaviour
            
             HasVaseB = true;
 
+            if (audioSource != null)
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position, pickupVolume);
+
+            if (PlayerInventory. Instance != null)
+                PlayerInventory.Instance.AddItems("VaseB");
+
             // Hide first so it never flashes after pickup
             if (FlowerInteractText) FlowerInteractText.SetActive(false);
             if (vaseRoot) vaseRoot.SetActive(false);
@@ -64,6 +75,8 @@ public class VaseInteract : MonoBehaviour
                 if (other.CompareTag("Player"))
                 {
                     playerInRange = true;
+
+
                 }
             }
 

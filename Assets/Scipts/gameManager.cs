@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -13,6 +14,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text gameGoalCountText;
+
+    [SerializeField] private AudioSource pauseMusic;
 
     [System.Serializable]
     public class SpawnerAmount
@@ -129,6 +132,7 @@ public class gameManager : MonoBehaviour
             entry.spawner.StartLevel(entry.amount);
             gameGoalCount += entry.amount;
         }
+       // Debug.Log($"[GM] StartLevel done. gameGoalCount={gameGoalCount}");
         UpdateGoalText();
     }
     private void UpdateGoalText()
@@ -189,6 +193,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
     }
 
     public void StateUnpaused()
@@ -199,13 +208,18 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+
+            if (pauseMusic != null)
+            {
+                pauseMusic.Stop();
+        }
     }
 
     public void updateGameGoal(int amount)
     {
-        Debug.Log($"[GM] updateGameGoal({amount}) BEFORE count={gameGoalCount}");
+      //  Debug.Log($"[GM] updateGameGoal({amount}) BEFORE count={gameGoalCount}");
         gameGoalCount += amount;
-        Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
+     //   Debug.Log($"[GM] updateGameGoal({amount}) AFTER  count={gameGoalCount}");
         gameGoalCountText.text = gameGoalCount.ToString("F0");
 
         //if(gameGoalCount<= 0)
@@ -219,6 +233,11 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
     }
 
     public void WinGame()
@@ -226,6 +245,13 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+
+        if (pauseMusic != null)
+        {
+            pauseMusic.Play();
+        }
+
+
     }
     public void SetQuest(int quest)
     {

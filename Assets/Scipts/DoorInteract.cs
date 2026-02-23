@@ -10,6 +10,8 @@ public class DoorInteract : MonoBehaviour
     [Header("Door parts")]
     [SerializeField] Transform hinge;
 
+    [SerializeField] private DoorInteract pairedDoors;
+
     [Header("Open Settings")]
     [SerializeField] float openAngle = 90f;
     [SerializeField] float speed = 6f;
@@ -33,6 +35,11 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private bool triggerOnce = true;
     [SerializeField] private int onlyRunOnQuest = 1;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+
     private bool questTriggered;
 
 
@@ -55,10 +62,16 @@ public class DoorInteract : MonoBehaviour
     // This happens before any Start functions and also just after a prefab is instantiated
     private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (hinge == null) hinge = transform;
 
-        closedRotation = hinge.rotation;
+        closedRotation = hinge.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+
+        hinge.localRotation = closedRotation;
+        isOpen = false;
 
         unlocked = !startsLocked || lockType == LockType.None;
     }
@@ -106,10 +119,20 @@ public class DoorInteract : MonoBehaviour
 
             // Key found -> unlock and open (then free open/close forever)
             unlocked = true;
+
+            if (pairedDoors != null)
+            {
+                pairedDoors.SetLocked(false);
+                pairedDoors.StartCoroutine(pairedDoors.ToggleDoor());
+            }
+
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems(requiredKeyId);
             TryAdvanceObjectiveStep();
+
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Unlocked!");
-            UIManager.Instance?.ShowMessage("Quest Updated: Escape!");
+            UIManager.Instance?.ShowMessage("Quest Updated: ");
             StartCoroutine(ToggleDoor());
             return;
         }
@@ -132,7 +155,7 @@ public class DoorInteract : MonoBehaviour
                
             UIManager.Instance.OpenCodePanel(OnCorrectCodeEntered, "Enter the code:");
             else
-                Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
+            //    Debug.LogWarning("UIManager.Instance is null. Add UIManager to the scene.");
 
             return;
         }
@@ -154,6 +177,13 @@ public class DoorInteract : MonoBehaviour
 
     IEnumerator ToggleDoor()
     {
+        if (audioSource != null)
+        {
+            audioSource.clip = isOpen ? closeSound : openSound;
+            if (audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+        }
+
         isMoving = true;
 
         Quaternion start = hinge.localRotation;
@@ -164,13 +194,18 @@ public class DoorInteract : MonoBehaviour
         {
 
             t += Time.deltaTime * speed;
-            hinge.rotation = Quaternion.Slerp(start, targetRotation, t);
+            hinge.localRotation = Quaternion.Slerp(start, targetRotation, t);
             yield return null;
         }
 
-        hinge.rotation = targetRotation;
+        hinge.localRotation = targetRotation;
         isOpen = !isOpen;
         isMoving = false;
+
+        if (playerInRange && UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowHint(isOpen ? "Press E to close" : "Press E to open");
+        }
     }
 
     public void ToggleFromController()
@@ -193,7 +228,7 @@ public class DoorInteract : MonoBehaviour
             if (UIManager.Instance != null)
             {
                 if (unlocked)
-                    UIManager.Instance.ShowHint("Press E to open");
+                    UIManager.Instance.ShowHint(isOpen ? "Press E to close" : "Press E to open");
                 else if (lockType == LockType.Key)
                     UIManager.Instance.ShowHint("Find the key");
                 else if (lockType == LockType.Code && CodeManager.Instance != null && CodeManager.Instance.AllNumbersFound)

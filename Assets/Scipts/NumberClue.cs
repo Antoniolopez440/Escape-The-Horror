@@ -12,6 +12,12 @@ public class NumberClue : MonoBehaviour
     [Tooltip("The message shown when the player interacts with the clue")]
     public bool requireRendererVisible = true; // Whether the clue can only be interacted with when its renderer is visible
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource pulseSource;
+    [SerializeField] private AudioClip pulseClip;
+    [SerializeField] private bool loopPulse = true;
+
     private bool collectedOnce = false; // Whether the clue has been collected at least once
     private bool playerInRange = false; // Whether the player is currently in range to interact with the clue
 
@@ -23,7 +29,16 @@ public class NumberClue : MonoBehaviour
     private void Awake()
     {
         cachedRenderer = GetComponentInChildren<Renderer>();
-        
+
+        if (pulseSource == null)
+            pulseSource = GetComponent<AudioSource>();
+
+        if (pulseSource != null)
+        {
+            pulseSource.loop = loopPulse;
+            pulseSource.playOnAwake = false; // Don't play immediately
+        }
+
     }
    
 
@@ -64,7 +79,15 @@ public class NumberClue : MonoBehaviour
         
             playerInRange = true;
             UIManager.Instance.ShowHint("Clue Nearby");
-        
+
+        if (pulseSource != null && pulseClip != null)
+        {
+           if (pulseSource.clip != pulseClip)
+                pulseSource.clip = pulseClip;
+            if (!pulseSource.isPlaying)
+                pulseSource.Play();
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -73,6 +96,9 @@ public class NumberClue : MonoBehaviour
         
             playerInRange = false;
             UIManager.Instance.HideHint();
+
+        if (pulseSource != null && pulseSource.isPlaying)
+            pulseSource.Stop();
 
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarPart_StickShift
   m_EditorClassIdentifier: Assembly-CSharp::CarPart
   partType: 2
-  uIIcon: {fileID: 21300000, guid: 5d604e9d382425e47a81aa32ba9763f0, type: 3}
+  uIIcon: {fileID: 21300000, guid: 65c8fc272ee48854791377be9a96e7f8, type: 3}
   placedModel: {fileID: 4715584490940916557, guid: 35170118eb52a824490385a619b03941, type: 3}

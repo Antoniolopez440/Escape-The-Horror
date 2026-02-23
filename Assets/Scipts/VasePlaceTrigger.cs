@@ -12,6 +12,11 @@ public class VasePlaceTrigger : MonoBehaviour
     [SerializeField] int bossSpawnAmount = 1;
 
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip  placeSound;
+    [SerializeField][Range(0f, 1f)] private float placeVolume;
+
     private bool playerInRange;
     private bool used;
 
@@ -39,18 +44,25 @@ public class VasePlaceTrigger : MonoBehaviour
                 vaseToPlace.SetActive(true);
                 vaseToPlace.transform.SetPositionAndRotation(placePoint.position, placePoint.rotation);
 
+               
+
             }
+
 
             VaseInteract.HasVaseB = false;
 
+            if (PlayerInventory.Instance != null)
+                PlayerInventory.Instance.RemoveItems("VaseB");
+            
+
             if (bossSpawner != null)
             {
-                Debug.Log("Spawning Boss");
+            //    Debug.Log("Spawning Boss");
                 bossSpawner.StartLevel(bossSpawnAmount);
             }
             else
             {
-                Debug.LogError("BossSpawner is Null");
+               // Debug.LogError("BossSpawner is Null");
             }
 
             if (placePromptText) placePromptText.SetActive(false);

@@ -13,5 +13,5 @@ public class CarPart : ScriptableObject
 {
     public CarPartsType partType;
     public Sprite uIIcon;
-    public GameObject placedModel;
+    public GameObject placedModel; 
 }

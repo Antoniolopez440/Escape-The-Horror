@@ -1,4 +1,5 @@
 using NUnit;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -8,21 +9,39 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TMP_Text slot2;
     [SerializeField] private TMP_Text slot3;
 
+    private bool bound;
+
     private void OnEnable()
     {
-        if (PlayerInventory.Instance == null) return;
+        bound = false;
+        StartCoroutine(BindWhenReady());
+    }
+
+    private IEnumerator BindWhenReady()
+    {
+        while (PlayerInventory.Instance == null)
+            yield return null;
+
+        if (bound) yield break;
+        bound = true;
+
 
         PlayerInventory.Instance.InventoryChanged += Refresh;
         PlayerInventory.Instance.SelectedItemChanged += OnSelectedChanged;
-
+        
         Refresh();
     }
 
     private void OnDisable()
     {
-        if (PlayerInventory.Instance == null) return;
-        PlayerInventory.Instance.InventoryChanged -= Refresh;
-        PlayerInventory.Instance.SelectedItemChanged -= OnSelectedChanged;
+      if (!bound) return;
+        if (PlayerInventory.Instance != null) return;
+        
+            PlayerInventory.Instance.InventoryChanged -= Refresh;
+            PlayerInventory.Instance.SelectedItemChanged -= OnSelectedChanged;
+
+        bound = false;
+
     }
 
     private void OnSelectedChanged(string id) => Refresh();
@@ -30,7 +49,9 @@ public class InventoryUI : MonoBehaviour
     private void Refresh()
     {
         var inventory = PlayerInventory.Instance;
-        var items = inventory.GetItems();
+     if (inventory == null) return;
+
+     var items = inventory.GetItems();
 
         SetSlot(slot1, items, 0, inventory.SelectedIndex);
         SetSlot(slot2, items, 1, inventory.SelectedIndex);
