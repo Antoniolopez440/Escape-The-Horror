@@ -27,8 +27,7 @@ public class KeyPickup : MonoBehaviour
             gameManager.instance.CompleteSubObjective();
         }
 
-        //if (destroyOnPickup)
-        //    Destroy(gameObject); // Destroy the pickup object
-        //}
-    }
+        if (destroyOnPickup)
+          Destroy(gameObject); // Destroy the pickup object
+        }
 }
