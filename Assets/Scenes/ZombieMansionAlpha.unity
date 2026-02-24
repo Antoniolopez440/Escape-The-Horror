@@ -96253,6 +96253,10 @@ PrefabInstance:
       propertyPath: gunIconPrefab
       value: 
       objectReference: {fileID: 1060415473}
+    - target: {fileID: 747039865735102416, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -230
+      objectReference: {fileID: 0}
     - target: {fileID: 877495302498513041, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

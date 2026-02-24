@@ -295,7 +295,7 @@ public class gameManager : MonoBehaviour
                     objectiveUI.SetMain("Open The Main Gate");
                     objectiveUI.SetSubObjectivesInOrder(new string[]
                     {
-                        "Find the Shed Key",
+                        "Find the Key to the Shed",
                         "Find a Crowbar",
                         "Remove the Wooden Planks",
                         "Open Main Gate"
