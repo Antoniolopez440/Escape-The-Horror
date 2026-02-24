@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
 using Unity.Multiplayer.Center.Common;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -78,6 +79,12 @@ public class LightSwitch : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag)) PlayerInRange = true;
+        PlayerInRange = true;
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowHint(isOn ? "Press 9 to turn On" : "Press 9 to turn off");
+        }
     }
 
     void OnTriggerExit(Collider other)
