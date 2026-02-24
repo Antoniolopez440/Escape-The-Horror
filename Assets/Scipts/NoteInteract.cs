@@ -8,6 +8,11 @@ public class NoteInteract : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float interactionDistance = 2.0f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip readSound;
+    [SerializeField] [Range(0f, 1f)] private float readVolume;
+
     private bool open;
     public static bool NoteRead = false;
     private bool hintShowing = false;
@@ -68,6 +73,9 @@ public class NoteInteract : MonoBehaviour
     {
         open = true;
         notePanel.SetActive(true);
+
+        if (audioSource != null && readSound != null)
+            AudioSource.PlayClipAtPoint(readSound, transform.position, readVolume);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

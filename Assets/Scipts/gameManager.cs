@@ -304,9 +304,6 @@ public class gameManager : MonoBehaviour
                     StartAutoAdvance();
                     break;
                 case 3:
-                    wheelsCollected = 0;
-                    steeringFound = false;
-                    stickFound = false;
 
                     objectiveUI.SetChecklist("Escape the Horror", new (string id, string text)[]
                     {
@@ -314,6 +311,8 @@ public class gameManager : MonoBehaviour
                         ("steering", "Steering Wheel"),
                         ("stick", "Stick Shift")
                     });
+
+                    RefreshQuest3ChecklistUI();
                     break;
                 default:
                     objectiveUI.SetMain("Survive");
@@ -329,38 +328,27 @@ public class gameManager : MonoBehaviour
 
     public void OnCarPartPicked(CarPartsType type)
     {
-        if(objectiveUI == null || CurrentQuest != 3) return;
 
         switch (type)
         {
             case CarPartsType.Wheel:
                 wheelsCollected = Mathf.Min(4, wheelsCollected + 1);
-                objectiveUI.SetChecklistItemText("wheels", $"Wheels ({wheelsCollected}/4");
-
-                if (wheelsCollected >= 4)
-                {
-                    objectiveUI.CheckOff("wheels");
-                }
                 break;
 
             case CarPartsType.SteeringWheel:
-                if (!steeringFound)
-                {
-                    steeringFound = true;
-                    objectiveUI.CheckOff("steering");
-                }
+                steeringFound = true;
                 break;
 
             case CarPartsType.StickShift:
-                if (!stickFound)
-                {
-                    stickFound = true;
-                    objectiveUI.CheckOff("stick");
-                }
+                stickFound = true;
                 break;
         }
-    }
 
+        if (objectiveUI != null && CurrentQuest == 3)
+        {
+            RefreshQuest3ChecklistUI();
+        }
+    }
     public void CompleteSubObjective()
     {
         if (objectiveUI == null) return;
@@ -408,6 +396,21 @@ public class gameManager : MonoBehaviour
         if (objectiveUI == null) return;
         if (autoAdvanceRoutine != null) StopCoroutine(autoAdvanceRoutine);
         autoAdvanceRoutine = StartCoroutine(AutoAdvanceRoutine());
+    }
+
+    private void RefreshQuest3ChecklistUI ()
+    {
+        if (objectiveUI == null) return;
+
+        objectiveUI.SetChecklistItemText("wheels", $"Wheels ({wheelsCollected}/4");
+
+        if (wheelsCollected >= 4)
+            objectiveUI.CheckOff("wheels");
+
+        if (steeringFound)
+            objectiveUI.CheckOff("steering");
+        if (stickFound)
+            objectiveUI.CheckOff("stick");
     }
 
     IEnumerator AutoAdvanceRoutine()
