@@ -2770,7 +2770,7 @@ MonoBehaviour:
   playerInAttackRange: 1
   model: {fileID: 7739628196438022587}
   meleeDamage: 1
-  hp: 5
+  hp: 4
   animator: {fileID: 6816722868616745833}
   hasEmerged: 0
   emergetime: 3.3
