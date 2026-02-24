@@ -36,7 +36,13 @@ public class DoorCodeLock : MonoBehaviour
         if (!playerInRange) return;
 
         if (UIManager.Instance != null && UIManager.Instance.IsCodePanelOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                UIManager.Instance.CloseCodePanel();
+            }
             return;
+        }
 
         if (Input.GetKeyDown(KeyCode.E) && !isMoving)
         {
