@@ -304,7 +304,7 @@ public class gameManager : MonoBehaviour
                     StartAutoAdvance();
                     break;
                 case 3:
-
+                     
                     objectiveUI.SetChecklist("Escape the Horror", new (string id, string text)[]
                     {
                         ("wheels", "Wheels (0/4)"),
