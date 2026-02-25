@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
 using Unity.Multiplayer.Center.Common;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class LightSwitch : MonoBehaviour
         {
           //  Debug.Log("Interact Pressed");
             Toggle();
+
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.ShowHint(isOn ? "Press 9 to turn off" : "Press 9 to turn on");
+            }
         }
     }
 
@@ -77,11 +83,25 @@ public class LightSwitch : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(playerTag)) PlayerInRange = true;
+        if (!other.CompareTag(playerTag)) return;
+
+        PlayerInRange = true;
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowHint(isOn ? "Press 9 to turn off" : "Press 9 to turn on");
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(playerTag)) PlayerInRange = false;
+        if (!other.CompareTag(playerTag)) return;
+
+        PlayerInRange = false;
+
+        if (UIManager.Instance != null)
+        
+            UIManager.Instance.HideHint();
+        
     }
 }
