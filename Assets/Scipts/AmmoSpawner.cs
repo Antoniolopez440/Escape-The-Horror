@@ -50,10 +50,7 @@ public class AmmoSpawner : MonoBehaviour
         Invoke(nameof(SpawnOne), respawnDelay);
     }
 
-    public void NotifyAmmoPickUp()
-    {
-        NotifyPickedUp(-1);
-    }
+
 
     void SpawnOne()
     {
@@ -73,10 +70,10 @@ public class AmmoSpawner : MonoBehaviour
         activeAtPoint[idx] = ammo;
 
         //let the pickup tell us when it gets collected
-        AmmoPickUP pickUP = ammo.GetComponent<AmmoPickUP>();
+        AmmoPickUP pickUP = ammo.GetComponentInChildren<AmmoPickUP>();
         if (pickUP != null)
         {
-            pickUP.SetSpawner(this);
+            pickUP.SetSpawner(this, idx);
         }
         else
         {
