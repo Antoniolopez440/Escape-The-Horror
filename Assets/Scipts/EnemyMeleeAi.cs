@@ -18,6 +18,9 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] float hp;
 
     [SerializeField] Animator animator;
+    [SerializeField] float hitStunTime = 0.35f;
+    [SerializeField] float attackLockTime = 0.80f;
+    [SerializeField] float attackCooldown = 1.00f;
 
     Color colorOrig;
 
@@ -29,6 +32,9 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
 
     bool isDead;
+    bool isBusy;
+    float nextAttackTime;
+    Coroutine busyRoutine;
 
     [SerializeField] bool dropsItem = true;
     [SerializeField] GameObject dropObject;
@@ -91,22 +97,59 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (agent == null || player == null) return;
 
         if (!agent.enabled || !agent.isOnNavMesh) return;
-    
 
-        agent.SetDestination(player.transform.position);
-
-        if (playerInsight && playerInAttackRange)
+        if (isBusy)
         {
-            meleeAttack();
+            agent.SetDestination(transform.position);
+            return;
+        }
+
+        if (playerInsight)
+        {
+            if (playerInAttackRange)
+            {
+                TryAttack();
+            }
+            else
+            {
+                agent.SetDestination(player.transform.position);
+            }
         }
     }
 
-    void meleeAttack()
+    void TryAttack()
     {
-        animator.SetTrigger("Attack");
-        agent.SetDestination(transform.position);
+        if (Time.time < nextAttackTime) return;
+
+        nextAttackTime = Time.time + attackCooldown;
+
+        if (busyRoutine != null) StopCoroutine(busyRoutine);
+        busyRoutine = StartCoroutine(AttackRoutine());
     }
-    
+
+    IEnumerator AttackRoutine()
+    {
+        isBusy = true;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        animator.ResetTrigger("Hit");
+        animator.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(attackLockTime);
+
+        if (isDead || agent == null || !agent.enabled || !agent.isOnNavMesh)
+        {
+            isBusy = false;
+            yield break;
+        }
+
+        agent.isStopped = false;
+        isBusy = false;
+    }
+
 
     public int GetV(float amount)
     {
@@ -120,7 +163,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (!canTakeDamage) return;
         hp -= amount;
 
-        if (hp <= 0 )
+        if (hp <= 0)
         {
             isDead = true;
             DisableAttackColliders();
@@ -131,14 +174,12 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
             animator.ResetTrigger("Hit");
             animator.ResetTrigger("Attack");
-           
 
             int deathIndex = Random.Range(0, 4);
-            //Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
             animator.SetInteger("DieIndex", deathIndex);
             animator.SetTrigger("Die");
-            
-            
+
+
             agent.isStopped = true;
             agent.ResetPath();
             agent.updatePosition = false;
@@ -150,14 +191,40 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             StartCoroutine(DieRoutine());
             return;
         }
-        if (animator != null ) 
+        if (animator != null)
         {
             int hitIndex = Random.Range(0, 2);
             animator.SetInteger("Hitindex", hitIndex);
             animator.SetTrigger("Hit");
         }
+        if (busyRoutine != null)
+        {
+            StopCoroutine(busyRoutine);
+            busyRoutine = null;
+        }
+        isBusy = true;
+        busyRoutine = StartCoroutine(HitStunRoutine());
         // Start the flashRed coroutine
         StartCoroutine(flashRed());
+    }
+
+    IEnumerator HitStunRoutine()
+    {
+        isBusy = true;
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(hitStunTime);
+
+        if (isDead || agent == null || !agent.enabled || !agent.isOnNavMesh)
+        {
+            isBusy = false;
+            yield break;
+        }
+
+        agent.isStopped = false;
+        isBusy = false;
     }
 
     IEnumerator flashRed()
@@ -215,9 +282,10 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     {
         if (attackColliders == null) return;
 
-        foreach( Collider col in attackColliders)
+        foreach (Collider col in attackColliders)
         {
-            if ( col != null) {
+            if (col != null)
+            {
                 col.enabled = false;
             }
         }
