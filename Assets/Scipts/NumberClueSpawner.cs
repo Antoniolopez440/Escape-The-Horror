@@ -69,7 +69,7 @@ public class NumberClueSpawner : MonoBehaviour
         GameObject clueObj = Instantiate(cluePrefab, p.position, p.rotation);
         activeAtPoint[idx] = clueObj;
 
-        NumberClue clue = clueObj.GetComponent<NumberClue>();
+        NumberClue clue = clueObj.GetComponentInChildren<NumberClue>();
         if (clue != null)
         {
             clue.numberValue = digit;

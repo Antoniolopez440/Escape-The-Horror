@@ -6,6 +6,8 @@ public class UVRevealBySpotLight : MonoBehaviour
     [Header("Assign the Player-Held spotLight here")]
     [SerializeField] private Light blackLight;
 
+
+
     [Header("Renderer to reveal UV on")]
     [SerializeField] private Renderer[] renderersToToggle;
 
@@ -18,7 +20,7 @@ public class UVRevealBySpotLight : MonoBehaviour
     private void Awake()
     {
         if (renderersToToggle == null || renderersToToggle.Length == 0)
-            renderersToToggle = GetComponentsInChildren<Renderer>(true);
+            renderersToToggle = GetComponents<Renderer>();
 
         SetVisible(false);
 
