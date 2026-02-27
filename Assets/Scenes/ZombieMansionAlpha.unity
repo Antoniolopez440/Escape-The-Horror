@@ -24566,12 +24566,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389091621}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.2439444, z: -0, w: 0.96978927}
-  m_LocalPosition: {x: 67.01, y: 4.93, z: 23.05}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 62.004265, y: 2.8349998, z: 66.93686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 481258835}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &389091623
 MonoBehaviour:
@@ -24591,6 +24591,7 @@ MonoBehaviour:
   - {fileID: 1714110056}
   - {fileID: 1647364115}
   - {fileID: 1753329292}
+  removePlankSound: {fileID: 8300000, guid: e12f33e51f917924499b05124b50820f, type: 3}
   LeftGateDoor: {fileID: 388067859}
   RightGateDoor: {fileID: 227887578}
   noToolMessage: Planks are in the way. Crowbar Needed
@@ -30693,7 +30694,6 @@ Transform:
   - {fileID: 126408828}
   - {fileID: 307747629}
   - {fileID: 1657901175}
-  - {fileID: 389091622}
   - {fileID: 318200157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -28.239, z: 0}
@@ -75809,7 +75809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalRotation.w
@@ -96749,7 +96749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413106718410534983, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.028381
+      value: -30.02832
       objectReference: {fileID: 0}
     - target: {fileID: 1481649460114237521, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -123844,10 +123844,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1984416095}
   - component: {fileID: 1984416097}
-  - component: {fileID: 1984416096}
   - component: {fileID: 1984416099}
   - component: {fileID: 1984416098}
-  - component: {fileID: 1984416100}
+  - component: {fileID: 1984416101}
   m_Layer: 0
   m_Name: DoorHinge
   m_TagString: Untagged
@@ -123871,35 +123870,6 @@ Transform:
   - {fileID: 7354583775444831219}
   m_Father: {fileID: 1339792473609042206}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1984416096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984416094}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6739437e7da0043ba79e3a0da5a5c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
-  hinge: {fileID: 1984416095}
-  pairedDoors: {fileID: 0}
-  openAngle: -90
-  speed: 6
-  interactKey: 101
-  zombieTag: Enemy
-  zombieOpenDelay: 5
-  lockType: 1
-  startsLocked: 1
-  requiredKeyId: DoorKey
-  adevanceQuest: 0
-  questToSet: 2
-  triggerOnce: 1
-  onlyRunOnQuest: 1
-  audioSource: {fileID: 0}
-  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
-  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
 --- !u!65 &1984416097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124115,7 +124085,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1984416100
+--- !u!114 &1984416101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124124,18 +124094,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984416094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15c2a6c6e0a4724e856b37442218fe6, type: 3}
+  m_Script: {fileID: 11500000, guid: ec6739437e7da0043ba79e3a0da5a5c8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorCodeLock
-  doorHinge: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
+  hinge: {fileID: 1984416095}
+  pairedDoors: {fileID: 0}
   openAngle: -90
-  openSpeed: 180
-  unlocked: 0
+  speed: 6
+  interactKey: 101
+  zombieTag: Enemy
+  zombieOpenDelay: 5
   lockType: 1
-  requiredKeyId: FrontDoorKey
+  startsLocked: 1
+  requiredKeyId: DoorKey
+  adevanceQuest: 0
+  questToSet: 2
+  triggerOnce: 1
+  onlyRunOnQuest: 1
   audioSource: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
+  closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
 --- !u!1001 &1985008793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136923,6 +136901,7 @@ SceneRoots:
   - {fileID: 1441263134}
   - {fileID: 1422031816455972623}
   - {fileID: 5475386696957284976}
+  - {fileID: 389091622}
   - {fileID: 2873546337699105613}
   - {fileID: 481258835}
   - {fileID: 1667147381}

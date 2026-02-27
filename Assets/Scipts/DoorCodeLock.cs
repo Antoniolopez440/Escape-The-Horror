@@ -88,15 +88,19 @@ public class DoorCodeLock : MonoBehaviour
 
     void Toggle()
     {
-        if (audioSource != null)
-        {
-            audioSource.clip = isMoving ? closeSound : openSound;
-            if (audioSource.clip != null)
-                audioSource.PlayOneShot(audioSource.clip);
-        }
+       
 
         float toOpen = Quaternion.Angle(doorHinge.localRotation, openRot);
         float toClosed = Quaternion.Angle(doorHinge.localRotation, closedRot);
+
+        bool willOpen = toOpen < toClosed;
+
+        AudioClip clipToPlay = willOpen ? openSound : closeSound;
+
+        if (clipToPlay != null && clipToPlay != null)
+        {
+            audioSource.PlayOneShot(clipToPlay);
+        }
 
         Quaternion target = (toOpen < toClosed) ? closedRot : openRot;
         StartCoroutine(RotateTo(target));

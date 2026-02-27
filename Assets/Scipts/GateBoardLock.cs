@@ -10,6 +10,9 @@ public class GateBoardLock : MonoBehaviour
     [Header("Planks to rremove (IN Order)")]
     [SerializeField] private GameObject[] planks;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip removePlankSound;
+    
 
 
     [Header("Gate Door Interaction")]
@@ -52,6 +55,9 @@ public class GateBoardLock : MonoBehaviour
             {
                 if (planks[plankIndex] != null)
                 {
+                    if (removePlankSound != null)
+                        AudioSource.PlayClipAtPoint(removePlankSound, planks[plankIndex].transform.position);
+
                     planks[plankIndex].SetActive(false);
 
                     
