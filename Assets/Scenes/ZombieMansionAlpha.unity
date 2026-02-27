@@ -113351,6 +113351,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 47786d2115de69c45912d1fa268b4256, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4a8c63511657a4c4a906b2da7e4d2b41, type: 2}
@@ -123875,7 +123879,7 @@ GameObject:
   - component: {fileID: 1984416097}
   - component: {fileID: 1984416099}
   - component: {fileID: 1984416098}
-  - component: {fileID: 1984416101}
+  - component: {fileID: 1984416102}
   m_Layer: 0
   m_Name: DoorHinge
   m_TagString: Untagged
@@ -124114,7 +124118,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1984416101
+--- !u!114 &1984416102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124123,24 +124127,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984416094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6739437e7da0043ba79e3a0da5a5c8, type: 3}
+  m_Script: {fileID: 11500000, guid: f15c2a6c6e0a4724e856b37442218fe6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
-  hinge: {fileID: 1984416095}
-  pairedDoors: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DoorCodeLock
+  doorHinge: {fileID: 0}
   openAngle: -90
-  speed: 6
-  interactKey: 101
-  zombieTag: Enemy
-  zombieOpenDelay: 5
+  openSpeed: 180
+  unlocked: 1
   lockType: 1
-  startsLocked: 1
-  requiredKeyId: DoorKey
-  adevanceQuest: 0
-  questToSet: 2
-  triggerOnce: 1
-  onlyRunOnQuest: 1
-  audioSource: {fileID: 0}
+  requiredKeyId: FrontDoorKey
+  audioSource: {fileID: 1984416099}
   openSound: {fileID: 8300000, guid: feb9a81c8e79cbf4493477170f74aa36, type: 3}
   closeSound: {fileID: 8300000, guid: 0950700d35100ce4ab966c9bed2cc2dc, type: 3}
 --- !u!1001 &1985008793

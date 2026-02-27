@@ -75,9 +75,10 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
-            playerInRange = true;
+        if (!other.CompareTag("Player")) return;
+        playerInRange = true;
+
+       
             UIManager.Instance.ShowHint("Clue Nearby");
 
         if (pulseSource != null && pulseClip != null)
@@ -92,9 +93,10 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-      
-        
+
+        if (!other.CompareTag("Player")) return;
             playerInRange = false;
+
             UIManager.Instance.HideHint();
 
         if (pulseSource != null && pulseSource.isPlaying)
