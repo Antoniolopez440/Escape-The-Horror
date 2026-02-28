@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 
 public class EnemyMeleeAI : MonoBehaviour, IDamage
@@ -18,17 +19,32 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] float hp;
 
     [SerializeField] Animator animator;
+    [SerializeField] float hitStunTime = 0.35f;
+    [SerializeField] float attackLockTime = 0.80f;
+    [SerializeField] float attackCooldown = 1.00f;
 
     Color colorOrig;
+    [Header("Audio")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip screamSound;
+    [SerializeField][Range(0f, 20f)] float screamVolume = 2.5f;
+
 
     [SerializeField] bool hasEmerged = false;
     [SerializeField] float emergetime = 4.0F;
     [SerializeField] float screamTime = 1.833f;
 
     [SerializeField] private bool canTakeDamage = false;
+    [SerializeField] Transform outsideHoldPoint;
+    [SerializeField] float holdStoppingDistance = 2f;
+
+    private playerControllerNew playerCtrl;
 
 
     bool isDead;
+    bool isBusy;
+    float nextAttackTime;
+    Coroutine busyRoutine;
 
     [SerializeField] bool dropsItem = true;
     [SerializeField] GameObject dropObject;
@@ -53,6 +69,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         }
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
+        if (player != null)
+            playerCtrl = player.GetComponent<playerControllerNew>();
 
         animator = GetComponent<Animator>();
         hasEmerged = false;
@@ -69,8 +87,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             {
                 attackColliders[i] = attackHitboxes[i].GetComponent<Collider>();
             }
-            StartCoroutine(EmergeThenEnable());
         }
+        StartCoroutine(EmergeThenEnable());
     }
 
 
@@ -88,25 +106,84 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
         if (agent == null) agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+
         if (agent == null || player == null) return;
 
         if (!agent.enabled || !agent.isOnNavMesh) return;
-    
 
-        agent.SetDestination(player.transform.position);
-
-        if (playerInsight && playerInAttackRange)
+        if (playerCtrl == null && player != null)
         {
-            meleeAttack();
+            playerCtrl = player.GetComponent<playerControllerNew>();
+        }
+        if (CompareTag("Boss") && playerCtrl != null && playerCtrl.InMansion && outsideHoldPoint != null)
+        {
+            agent.stoppingDistance = holdStoppingDistance;
+            agent.SetDestination(outsideHoldPoint.position);
+            if (AtHoldPoint())
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+            } else
+            {
+                agent.isStopped = false;
+            }
+                return;
+        }
+        if (isBusy)
+        {
+            agent.SetDestination(transform.position);
+            return;
+        }
+
+        if (playerInsight)
+        {
+            if (playerInAttackRange)
+            {
+                TryAttack();
+            }
+            else
+            {
+                agent.isStopped = false;
+                agent.stoppingDistance = 0f;
+                agent.SetDestination(player.transform.position);
+            }
         }
     }
 
-    void meleeAttack()
+    void TryAttack()
     {
-        animator.SetTrigger("Attack");
-        agent.SetDestination(transform.position);
+        if (Time.time < nextAttackTime) return;
+
+        nextAttackTime = Time.time + attackCooldown;
+
+        if (busyRoutine != null) StopCoroutine(busyRoutine);
+        busyRoutine = StartCoroutine(AttackRoutine());
     }
-    
+
+    IEnumerator AttackRoutine()
+    {
+        isBusy = true;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        animator.ResetTrigger("Hit");
+        animator.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(attackLockTime);
+
+        if (isDead || agent == null || !agent.enabled || !agent.isOnNavMesh)
+        {
+            isBusy = false;
+            yield break;
+        }
+
+        agent.isStopped = false;
+        isBusy = false;
+    }
+
 
     public int GetV(float amount)
     {
@@ -120,7 +197,7 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         if (!canTakeDamage) return;
         hp -= amount;
 
-        if (hp <= 0 )
+        if (hp <= 0)
         {
             isDead = true;
             DisableAttackColliders();
@@ -131,14 +208,12 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
             animator.ResetTrigger("Hit");
             animator.ResetTrigger("Attack");
-           
 
             int deathIndex = Random.Range(0, 4);
-            //Debug.Log($"DIE : index={deathIndex} animator={animator?.name}");
             animator.SetInteger("DieIndex", deathIndex);
             animator.SetTrigger("Die");
-            
-            
+
+
             agent.isStopped = true;
             agent.ResetPath();
             agent.updatePosition = false;
@@ -150,14 +225,40 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             StartCoroutine(DieRoutine());
             return;
         }
-        if (animator != null ) 
+        if (animator != null)
         {
             int hitIndex = Random.Range(0, 2);
             animator.SetInteger("Hitindex", hitIndex);
             animator.SetTrigger("Hit");
         }
+        if (busyRoutine != null)
+        {
+            StopCoroutine(busyRoutine);
+            busyRoutine = null;
+        }
+        isBusy = true;
+        busyRoutine = StartCoroutine(HitStunRoutine());
         // Start the flashRed coroutine
         StartCoroutine(flashRed());
+    }
+
+    IEnumerator HitStunRoutine()
+    {
+        isBusy = true;
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(hitStunTime);
+
+        if (isDead || agent == null || !agent.enabled || !agent.isOnNavMesh)
+        {
+            isBusy = false;
+            yield break;
+        }
+
+        agent.isStopped = false;
+        isBusy = false;
     }
 
     IEnumerator flashRed()
@@ -169,7 +270,14 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     IEnumerator EmergeThenEnable()
     {
-        yield return new WaitForSeconds(emergetime + screamTime);
+        yield return new WaitForSeconds(emergetime);
+
+        if (aud != null && screamSound != null)
+        {
+            aud.PlayOneShot(screamSound, screamVolume);
+        }
+        yield return new WaitForSeconds(screamTime);
+
         OnEmergeFinished();
     }
 
@@ -215,11 +323,21 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     {
         if (attackColliders == null) return;
 
-        foreach( Collider col in attackColliders)
+        foreach (Collider col in attackColliders)
         {
-            if ( col != null) {
+            if (col != null)
+            {
                 col.enabled = false;
             }
         }
+    }
+
+    bool AtHoldPoint()
+    {
+        if (outsideHoldPoint == null || agent == null) return false;
+
+        if (agent.pathPending) return false;
+
+        return agent.remainingDistance <= (agent.stoppingDistance + 0.15f);
     }
 }

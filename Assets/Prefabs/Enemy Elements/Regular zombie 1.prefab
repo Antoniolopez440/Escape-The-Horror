@@ -2772,6 +2772,12 @@ MonoBehaviour:
   meleeDamage: 1
   hp: 4
   animator: {fileID: 6816722868616745833}
+  hitStunTime: 0.35
+  attackLockTime: 0.8
+  attackCooldown: 1
+  aud: {fileID: 8641995608172328185}
+  screamSound: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
+  screamVolume: 13.3
   hasEmerged: 0
   emergetime: 3.3
   screamTime: 1.833
