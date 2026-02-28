@@ -35,7 +35,7 @@ public class InventoryUI : MonoBehaviour
     private void OnDisable()
     {
       if (!bound) return;
-        if (PlayerInventory.Instance != null) return;
+        if (PlayerInventory.Instance == null) return;
         
             PlayerInventory.Instance.InventoryChanged -= Refresh;
             PlayerInventory.Instance.SelectedItemChanged -= OnSelectedChanged;
@@ -62,11 +62,13 @@ public class InventoryUI : MonoBehaviour
     {
         if (t == null) return;
 
-        string name = (index < items.Count) ? items[index] : "---";
+        bool hasItem = (index < items.Count);
+        string name = hasItem ? items[index] : "---";
         bool isSelected = (index == selected);
 
-        // Simple highlight
-        t.text = isSelected ? $"> {index + 1}: {name}" : $"{index + 1}: {name}";
+        // Clean look: bullet for selected, indent for others. No numbers, no arrows.
+        string prefix = isSelected ? "• " : "  ";
+        t.text = prefix + name;
     }
 }
 
