@@ -96765,7 +96765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413106718410534983, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.02832
+      value: -30.02829
       objectReference: {fileID: 0}
     - target: {fileID: 1481649460114237521, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -134031,6 +134031,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4285754096123117968, guid: 5dca691442abad841b7f52bc17466e35, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5324519130902688872, guid: 5dca691442abad841b7f52bc17466e35, type: 3}
       propertyPath: m_Name
       value: SteeringWhell (PickUp)
@@ -134737,6 +134741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StickShift (PickUp)
       objectReference: {fileID: 0}
+    - target: {fileID: 7458597541909024584, guid: bc82fed583316da41a21cb6edcfc412f, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -135295,7 +135303,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: df6c4a04a07de6c4c9a29fc9ab1a65c6, type: 2}
