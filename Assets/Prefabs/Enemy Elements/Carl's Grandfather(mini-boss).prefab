@@ -1532,16 +1532,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   sightRange: 100
-  attackRange: 1.5
+  attackRange: 2.5
   playerInsight: 1
   playerInAttackRange: 1
   model: {fileID: 1376034749837699430}
   meleeDamage: 3
   hp: 15
   animator: {fileID: 5351142330694245095}
-  hitStunTime: 0.35
-  attackLockTime: 1
-  attackCooldown: 1.5
   hasEmerged: 0
   emergetime: 3.34
   screamTime: 1.833

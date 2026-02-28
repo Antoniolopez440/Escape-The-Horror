@@ -15,6 +15,10 @@ MonoBehaviour:
   gunModel: {fileID: 100000, guid: 5977258d1679e6c43bceba1941e91837, type: 3}
   gunModelSprite: {fileID: 21300000, guid: 77f253c74a67bb647b1f862ded488a29, type: 3}
   bullet: {fileID: 8362927536016474687, guid: ec8321e5bc816f24992e993c7381cc62, type: 3}
+  viewPosOffset: {x: 0, y: 0, z: 0}
+  viewRotOffset: {x: 0, y: 0, z: 0}
+  muzzleLocalPos: {x: 0, y: 0, z: 0}
+  muzzleLocalRot: {x: 0, y: 0, z: 0}
   shootDamage: 1
   shootDist: 3
   shootForce: 18
@@ -24,6 +28,6 @@ MonoBehaviour:
   reloadTime: 1.3
   timeBetweenShots: 0
   magazineSize: 12
-  bulletsLeft: 12
+  bulletsLeft: 9
   bulletsPerTap: 1
   allowButtonHold: 0

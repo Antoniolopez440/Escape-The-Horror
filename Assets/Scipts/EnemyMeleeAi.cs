@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 
 public class EnemyMeleeAI : MonoBehaviour, IDamage
@@ -23,12 +24,21 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
     [SerializeField] float attackCooldown = 1.00f;
 
     Color colorOrig;
+    [Header("Audio")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip screamSound;
+    [SerializeField][Range(0f, 20f)] float screamVolume = 2.5f;
+
 
     [SerializeField] bool hasEmerged = false;
     [SerializeField] float emergetime = 4.0F;
     [SerializeField] float screamTime = 1.833f;
 
     [SerializeField] private bool canTakeDamage = false;
+    [SerializeField] Transform outsideHoldPoint;
+    [SerializeField] float holdStoppingDistance = 2f;
+
+    private playerControllerNew playerCtrl;
 
 
     bool isDead;
@@ -59,6 +69,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
         }
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
+        if (player != null)
+            playerCtrl = player.GetComponent<playerControllerNew>();
 
         animator = GetComponent<Animator>();
         hasEmerged = false;
@@ -75,8 +87,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             {
                 attackColliders[i] = attackHitboxes[i].GetComponent<Collider>();
             }
-            StartCoroutine(EmergeThenEnable());
         }
+        StartCoroutine(EmergeThenEnable());
     }
 
 
@@ -94,10 +106,30 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
         if (agent == null) agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+
         if (agent == null || player == null) return;
 
         if (!agent.enabled || !agent.isOnNavMesh) return;
 
+        if (playerCtrl == null && player != null)
+        {
+            playerCtrl = player.GetComponent<playerControllerNew>();
+        }
+        if (CompareTag("Boss") && playerCtrl != null && playerCtrl.InMansion && outsideHoldPoint != null)
+        {
+            agent.stoppingDistance = holdStoppingDistance;
+            agent.SetDestination(outsideHoldPoint.position);
+            if (AtHoldPoint())
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+            } else
+            {
+                agent.isStopped = false;
+            }
+                return;
+        }
         if (isBusy)
         {
             agent.SetDestination(transform.position);
@@ -112,6 +144,8 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
             }
             else
             {
+                agent.isStopped = false;
+                agent.stoppingDistance = 0f;
                 agent.SetDestination(player.transform.position);
             }
         }
@@ -236,7 +270,14 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
 
     IEnumerator EmergeThenEnable()
     {
-        yield return new WaitForSeconds(emergetime + screamTime);
+        yield return new WaitForSeconds(emergetime);
+
+        if (aud != null && screamSound != null)
+        {
+            aud.PlayOneShot(screamSound, screamVolume);
+        }
+        yield return new WaitForSeconds(screamTime);
+
         OnEmergeFinished();
     }
 
@@ -289,5 +330,14 @@ public class EnemyMeleeAI : MonoBehaviour, IDamage
                 col.enabled = false;
             }
         }
+    }
+
+    bool AtHoldPoint()
+    {
+        if (outsideHoldPoint == null || agent == null) return false;
+
+        if (agent.pathPending) return false;
+
+        return agent.remainingDistance <= (agent.stoppingDistance + 0.15f);
     }
 }

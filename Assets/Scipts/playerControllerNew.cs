@@ -30,6 +30,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     [SerializeField] LayerMask aimMask;
     [SerializeField] GameObject gunModel;
+    //[SerializeField] Transform gunOffset;
+    //[SerializeField] Transform muzzlePoint;
     [SerializeField] public float shootForce;
     [SerializeField] public float upwardForce;
     [SerializeField] public float timeBetweenShooting;
@@ -64,8 +66,11 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     bool reloading;
 
     [Header("----- Audio -----")]
+    [Header("Footsteps by Zone")]
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audStep;
+    [SerializeField] AudioClip[] audStepMansion;
+    [SerializeField] AudioClip[] audStepGrass;
+
     [Range(0.4f, 10f)][SerializeField] float audStepVol;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip hurtSound;
@@ -76,6 +81,7 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [SerializeField] float shootSoundVol = 0.8f;
     [SerializeField] AudioClip[] gunSwitchSounds;
     [Range(0.4f, 10f)][SerializeField] float gunSwitchVol;
+
 
 
     bool isSprinting;
@@ -176,22 +182,31 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
+            isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
+            isSprinting = false;
         }
     }
 
     IEnumerator playStep()
     {
         isPlayingSteps = true;
-        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
 
-        if (isSprinting)
-            yield return new WaitForSeconds(0.3f);
-        else
-            yield return new WaitForSeconds(0.5f);
+        if (InMansion)
+        {
+            if (audStepMansion != null && audStepMansion.Length > 0)
+                aud.PlayOneShot(audStepMansion[Random.Range(0, audStepMansion.Length)], audStepVol);
+        } else
+        {
+            if (audStepGrass != null && audStepGrass.Length > 0)
+                aud.PlayOneShot(audStepGrass[Random.Range(0, audStepGrass.Length)], audStepVol);
+        }
+
+        float delay = isSprinting ? 0.3f : 0.5f;
+        yield return new WaitForSeconds(delay);
 
         isPlayingSteps = false;
 
@@ -299,6 +314,12 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     private void MyInput()
     {
+        if (gameManager.instance != null && gameManager.instance.isPaused)
+        {
+            shooting = false;
+            CancelInvoke("Shoot");
+            return;
+        }
         if (!HasValidGun()) return;
 
         ProjectileGun gun = gunList[gunListPos];
@@ -352,6 +373,8 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     private void Shoot()
     {
         if (!HasValidGun()) return;
+        //muzzlePoint != null ? muzzlePoint :
+        Transform spawn = attackPoint;
 
         ProjectileGun gun = gunList[gunListPos];
 
@@ -375,16 +398,16 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
             targetPoint = ray.GetPoint(75f);
         }
 
-        Vector3 directionWithSpread = (targetPoint - attackPoint.position).normalized;
+        Vector3 directionWithSpread = (targetPoint - spawn.position).normalized;
 
         float x = Random.Range(-gun.spread, gun.spread);
         float y = Random.Range(-gun.spread, gun.spread);
         Quaternion spreadRot = Quaternion.Euler(y, x, 0f);
         directionWithSpread = (spreadRot * directionWithSpread).normalized;
-        Debug.Log($"[Shoot] Gun={gunList[gunListPos].name} bulletPrefab={(gunList[gunListPos].bullet ? gunList[gunListPos].bullet.name : "NULL")}");
+        
 
         Quaternion rot = Quaternion.LookRotation(directionWithSpread);
-        GameObject currentBullet = Instantiate(gun.bullet, attackPoint.position, rot);
+        GameObject currentBullet = Instantiate(gun.bullet, spawn.position, rot);
 
         // for normal bullet
         //currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
@@ -511,6 +534,12 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //gunOffset.localPosition = gun.viewPosOffset;
+        //gunOffset.localEulerAngles = gun.viewRotOffset;
+
+        //muzzlePoint.localPosition = gun.muzzleLocalPos;
+        //muzzlePoint.localEulerAngles = gun.muzzleLocalRot;
     }
 
     void selectGun()

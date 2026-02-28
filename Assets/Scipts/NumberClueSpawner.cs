@@ -69,7 +69,7 @@ public class NumberClueSpawner : MonoBehaviour
         GameObject clueObj = Instantiate(cluePrefab, p.position, p.rotation);
         activeAtPoint[idx] = clueObj;
 
-        NumberClue clue = clueObj.GetComponent<NumberClue>();
+        NumberClue clue = clueObj.GetComponentInChildren<NumberClue>();
         if (clue != null)
         {
             clue.numberValue = digit;
@@ -79,7 +79,7 @@ public class NumberClueSpawner : MonoBehaviour
           Debug.LogWarning("[NumberClueSpawner] Spawned prefab does not have a NumberClue component.", this);
         }
 
-        TMP_Text tmp = clueObj.GetComponentInChildren<TMP_Text>();
+        TMP_Text tmp = clueObj.GetComponent<TMP_Text>();
         if (tmp != null)
         tmp.text = digit.ToString();
     }

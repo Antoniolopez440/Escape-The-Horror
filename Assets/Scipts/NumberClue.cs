@@ -75,8 +75,8 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
+
+        if (!other.CompareTag("Player")) return;
             playerInRange = true;
             UIManager.Instance.ShowHint("Clue Nearby");
 
@@ -92,8 +92,7 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-      
-        
+        if (!other.CompareTag("Player")) return;
             playerInRange = false;
             UIManager.Instance.HideHint();
 

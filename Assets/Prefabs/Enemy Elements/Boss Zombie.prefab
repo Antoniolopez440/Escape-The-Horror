@@ -264,10 +264,18 @@ MonoBehaviour:
   meleeDamage: 4
   hp: 10
   animator: {fileID: 627387189615509163}
+  hitStunTime: 0.35
+  attackLockTime: 0.8
+  attackCooldown: 1
+  aud: {fileID: 0}
+  screamSound: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
+  screamVolume: 2.5
   hasEmerged: 0
   emergetime: 3.34
   screamTime: 1.833
   canTakeDamage: 0
+  outsideHoldPoint: {fileID: 2128103624079741784, guid: f3c700f7167daf540968a58a0d23ac89, type: 3}
+  holdStoppingDistance: 2
   dropsItem: 1
   dropObject: {fileID: 3867092246578444957, guid: 62c6c3c17e51f9a43ae96ac5152035b9, type: 3}
   dropPoint: {fileID: 8087810412772628735}
