@@ -2773,8 +2773,8 @@ MonoBehaviour:
   hp: 4
   animator: {fileID: 6816722868616745833}
   hitStunTime: 0.35
-  attackLockTime: 0.8
-  attackCooldown: 1
+  attackLockTime: 1
+  attackCooldown: 1.5
   aud: {fileID: 8641995608172328185}
   screamSound: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
   screamVolume: 13.3
@@ -2782,6 +2782,8 @@ MonoBehaviour:
   emergetime: 3.3
   screamTime: 1.833
   canTakeDamage: 0
+  outsideHoldPoint: {fileID: 0}
+  holdStoppingDistance: 2
   dropsItem: 0
   dropObject: {fileID: 0}
   dropPoint: {fileID: 0}
@@ -2865,7 +2867,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 723aa7cabe18dac44b59996c74779462, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
