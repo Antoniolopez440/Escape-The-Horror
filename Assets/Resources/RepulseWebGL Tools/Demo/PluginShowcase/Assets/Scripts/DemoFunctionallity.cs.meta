@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bff8a8a03723ad34db1d0f7e4837bbcc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Demo/PluginShowcase/Assets/Scripts/DemoFunctionallity.cs
+  uploadId: 454732

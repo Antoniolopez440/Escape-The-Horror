@@ -16,7 +16,7 @@ public class UVRevealBySpotLight : MonoBehaviour
     [SerializeField] private float extraAngle = 5f; // How much extra angle to add to the spotlight for revealing the UV
     [SerializeField] private LayerMask occlusionMask = ~0;
 
-
+     
     private void Awake()
     {
         if (renderersToToggle == null || renderersToToggle.Length == 0)

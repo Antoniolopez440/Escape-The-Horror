@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ed7b26e9b658a41b6a67be43b08a3570
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/webgl-logo.png
+  uploadId: 454732

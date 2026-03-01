@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c8da2697d58384ea39bf7e752f22cc7d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive/External/webgl-logo.png
+  uploadId: 454732

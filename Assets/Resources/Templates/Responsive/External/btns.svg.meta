@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 633eb900c21ca4b4fb271e17febd4341
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive/External/btns.svg
+  uploadId: 454732

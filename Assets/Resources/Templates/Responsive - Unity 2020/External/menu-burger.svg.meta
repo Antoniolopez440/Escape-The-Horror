@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1e3bdb228f09d44dcb1c76c8ac009763
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/menu-burger.svg
+  uploadId: 454732
