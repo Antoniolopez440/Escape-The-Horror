@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -60,6 +61,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
     [SerializeField] List<CarPart> carParts = new List<CarPart>();
 
     public IReadOnlyList<CarPart> GetCarParts() => carParts;
+
+    [Header("----- Interaction UI -----")]
+    [SerializeField] public TMP_Text interactText;
 
     bool shooting;
     bool readyToShoot;
@@ -131,6 +135,14 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         //  if (ammunitionDisplay != null)
         //      ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
+
+    void ShowInteractPrompt(bool show)
+    {
+        if (interactText == null) return;
+        interactText.gameObject.SetActive(show);
+    }
+
+
     void locoAnim()
     {
 
@@ -584,7 +596,10 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
 
     public void TryInteract()
     {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
+        ShowInteractPrompt(false);
+
+
+       
 
 
         if (carParts == null || carParts.Count == 0)
@@ -603,6 +618,9 @@ public class playerControllerNew : MonoBehaviour , IDamage , IPickup
         if (car == null)
             return;
 
+        ShowInteractPrompt(true);
+
+        if (!Input.GetKeyDown(KeyCode.E)) return;
 
         int index = carParts.Count - 1;
         CarPart part = carParts[index];
