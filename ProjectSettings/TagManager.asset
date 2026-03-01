@@ -9,6 +9,7 @@ TagManager:
   - MansionZone
   - FenceYardZone
   - Boss
+  - BlackLight
   layers:
   - Default
   - TransparentFX
