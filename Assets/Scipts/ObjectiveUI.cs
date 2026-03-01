@@ -124,6 +124,9 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
+        if (text.text.StartsWith("[ X ]"))
+            return;
+
         string raw = text.text.StartsWith("[  ] ") ? text.text.Substring(2) : text.text;
         text.text = "[ X" + raw;
         text.fontStyle = FontStyles.Strikethrough;
@@ -160,8 +163,8 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        bool checkedOff = text.text.StartsWith("[ X");
-        text.text = (checkedOff ? "[ X" : "[  ]  ") + newText;
+        bool checkedOff = text.text.StartsWith("[ X ]");
+        text.text = (checkedOff ? "[ X ]" : "[  ]  ") + newText;
     }
 
     public bool IsChecklistFullyChecked()

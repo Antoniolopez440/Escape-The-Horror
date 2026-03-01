@@ -402,7 +402,7 @@ public class gameManager : MonoBehaviour
     {
         if (objectiveUI == null) return;
 
-        objectiveUI.SetChecklistItemText("wheels", $"Wheels ({wheelsCollected}/4");
+        objectiveUI.SetChecklistItemText("wheels", $"Wheels ({wheelsCollected}/4) ");
 
         if (wheelsCollected >= 4)
             objectiveUI.CheckOff("wheels");
