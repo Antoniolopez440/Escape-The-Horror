@@ -19,18 +19,29 @@ public class CodeManager : MonoBehaviour
     [Tooltip("If empty, the code is built from found numbers in the order they were first collected.")]
     [SerializeField] private string overrideCode = ""; // e.g. "752"
 
-    public bool AllNumbersFound => foundSet.Count >= 3;
+    
+    private int[] foundByPosition = new int[3];
+    private bool[] positionCollected = new bool[3];
+
+    public bool AllNumbersFound => positionCollected[0] && positionCollected[1] && positionCollected[2];
+
+ 
 
 
     public string CurrentBuiltCode
     {
         get
-        { if (!string.IsNullOrEmpty(overrideCode))
+        {
+            if (!string.IsNullOrEmpty(overrideCode))
                 return overrideCode;
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < foundOrder.Count; i++)
-                sb.Append(foundOrder[i]);
+            StringBuilder sb = new StringBuilder(3);
+            for (int i = 0; i < 3; i++)
+            {
+                if (positionCollected[i])
+                    sb.Append(foundByPosition[i]);
+            }
+              
 
             return sb.ToString();
         }
@@ -45,16 +56,40 @@ public class CodeManager : MonoBehaviour
         Instance = this;
     }
 
-    public void CollectNumber(int number)
-    { // HashSet prevents duplicates
-        if (foundSet.Add(number))
+    public string GetCurrentCode()
+    {
+        return !string.IsNullOrEmpty(CurrentCode) ? overrideCode : CurrentCode;
+    }
+
+    public void SetCurrentCode(string code)
+    {
+        overrideCode = code;
+        CurrentCode = code;
+        Debug.Log($"CodeManager: Current code set to {overrideCode}");
+    }
+
+    public void CollectNumber(int position, int number)
+    {
+        int index = position - 1;
+
+        if (index < 0 || index >= foundByPosition.Length)
+            return;
+
+        if (!positionCollected[index])
         {
-            foundOrder.Add(number); 
-            //Debug.Log($"Collected NEW number: {number}. Total unique: {foundSet.Count}. Code now: {CurrentBuiltCode}");
-        }
-        else
-        {
-         //   Debug.Log($"Number {number} already collected before. Code stays: {CurrentBuiltCode}");
+            positionCollected[index] = true;
+            foundByPosition[index] = number;
+
+            // Rebuild foundOrder in correct position order
+            foundSet.Add(number);
+
+            foundOrder.Clear();
+
+            for (int i = 0; i < foundByPosition.Length; i++)
+            {
+                if (positionCollected[i])
+                    foundOrder.Add(foundByPosition[i]);
+            }
         }
     }
 
@@ -71,17 +106,18 @@ public class CodeManager : MonoBehaviour
         return input == CurrentBuiltCode;
     }
 
-    public void SetCurrentCode(string code)
-    {
-        overrideCode = code;
-        CurrentCode = code;
-        Debug.Log($"CodeManager: Current code set to {overrideCode}");
-    }
+
 
     public void ResetCode()
     {
         foundSet.Clear();
         foundOrder.Clear();
+
+        for (int i = 0; i < positionCollected.Length; i++)
+            positionCollected [i] = false;
+
+        for (int i = 0; i < foundByPosition.Length; i++)
+            foundByPosition[i] = 0;
    
     }
 

@@ -76165,9 +76165,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: e6b207ddd02a7de41a9bf8391a98dc74, type: 3}
     - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
+      propertyPath: audStepGrass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
+      propertyPath: audStepMansion.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
+      propertyPath: 'audStepGrass.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 032be2788c007d64e96ff797d6d78e88, type: 3}
+    - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: gunSwitchSounds.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
+      propertyPath: 'audStepMansion.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 317bf4e98d15fe347892c536d8c391e2, type: 3}
     - target: {fileID: 349888749379161326, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: 'gunSwitchSounds.Array.data[0]'
       value: 
@@ -76234,7 +76250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.98
+      value: 33.28
       objectReference: {fileID: 0}
     - target: {fileID: 7436356981700808360, guid: 4cbb4bf8dfb80154fb02377c8ced4918, type: 3}
       propertyPath: m_LocalRotation.w
@@ -97251,7 +97267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413106718410534983, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.02832
+      value: -30.02826
       objectReference: {fileID: 0}
     - target: {fileID: 1481649460114237521, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -97284,6 +97300,14 @@ PrefabInstance:
     - target: {fileID: 2267749312971816621, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276803136478078120, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276803136478078120, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2701755837125371988, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchorMax.y
@@ -97357,6 +97381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5058297328085040891, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5233614664376143569, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_fontSize
       value: 20
@@ -97396,6 +97424,14 @@ PrefabInstance:
     - target: {fileID: 5515291365133823465, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 2147483648
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531263219873429572, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -866
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531263219873429572, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 5954588642640281137, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -97471,7 +97507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7107711724641090660, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -95
+      value: -43
       objectReference: {fileID: 0}
     - target: {fileID: 7180537600755130657, guid: 038d688dcee7c7f42a8839767b7a4f45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -115384,8 +115420,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.31, y: 1.06, z: 1.43}
-  m_Center: {x: 0.17, y: 0, z: 0}
+  m_Size: {x: 2.47, y: 1.36, z: 2.43}
+  m_Center: {x: 0.3, y: 0.14, z: 0.91}
 --- !u!114 &1856256402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124647,7 +124683,7 @@ MonoBehaviour:
   doorHinge: {fileID: 0}
   openAngle: -90
   openSpeed: 180
-  unlocked: 1
+  unlocked: 0
   lockType: 1
   requiredKeyId: FrontDoorKey
   audioSource: {fileID: 1984416099}
@@ -135839,11 +135875,11 @@ AudioSource:
   m_GameObject: {fileID: 1739695938878488972}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 723aa7cabe18dac44b59996c74779462, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 7baf86343bd2fbc469c7a28e81b9ad28, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.76
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -135887,7 +135923,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.25
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -137126,8 +137162,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.22, y: 3.31, z: 3.86}
-  m_Center: {x: 0.08, y: -0.76, z: -1.8}
+  m_Size: {x: 6.51, y: 4.74, z: 7.05}
+  m_Center: {x: -0.36, y: -0.58, z: -3.26}
 --- !u!4 &7354583775444831219
 Transform:
   m_ObjectHideFlags: 0
@@ -137205,10 +137241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaa7d34ff93b284fbbe89adcc770de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumberClue
-  numberValue: 7
+  numberValue: 0
   interactMessagePrefix: 'number: '
+  codePosition: 1
   requireRendererVisible: 1
-  pulseSource: {fileID: 0}
+  pulseSource: {fileID: 3930314220776372759}
   pulseClip: {fileID: 8300000, guid: 7baf86343bd2fbc469c7a28e81b9ad28, type: 3}
   loopPulse: 1
 --- !u!23 &7716267383892722090
