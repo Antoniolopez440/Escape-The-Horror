@@ -68959,7 +68959,15 @@ PrefabInstance:
       objectReference: {fileID: 510181776}
     - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
       propertyPath: quest1SpawnRate
-      value: 30
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
+      propertyPath: quest2SpawnRate
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
+      propertyPath: quest3SpawnRate
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4641461526514394734, guid: 62e80e054c0916c4084787e831cbadd2, type: 3}
       propertyPath: playerController
