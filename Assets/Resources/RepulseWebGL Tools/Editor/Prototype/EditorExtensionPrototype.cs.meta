@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 64b4b820fc720cd47928de3566bf98c8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Editor/Prototype/EditorExtensionPrototype.cs
+  uploadId: 454732

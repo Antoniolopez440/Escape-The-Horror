@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3df7180ab11d04dbe8c61d086c70e575
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/semi-fullscreen.html
+  uploadId: 454732

@@ -1453,6 +1453,7 @@ GameObject:
   - component: {fileID: 4230343626763374857}
   - component: {fileID: 3286671881906617567}
   - component: {fileID: 3310178509042374846}
+  - component: {fileID: 8464624065367950514}
   m_Layer: 7
   m_Name: Carl's Grandfather(mini-boss)
   m_TagString: Boss
@@ -1532,17 +1533,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   sightRange: 100
-  attackRange: 2.5
+  attackRange: 1.5
   playerInsight: 1
   playerInAttackRange: 1
   model: {fileID: 1376034749837699430}
   meleeDamage: 3
   hp: 15
   animator: {fileID: 5351142330694245095}
+  hitStunTime: 0.35
+  attackLockTime: 0.8
+  attackCooldown: 1
+  aud: {fileID: 8464624065367950514}
+  screamSound: {fileID: 8300000, guid: a4a5ba61468d85d4b8f06eadcaeb7f84, type: 3}
+  screamVolume: 15
   hasEmerged: 0
   emergetime: 3.34
   screamTime: 1.833
   canTakeDamage: 0
+  outsideHoldPoint: {fileID: 0}
+  holdStoppingDistance: 2
   dropsItem: 1
   dropObject: {fileID: 1645909782545393947, guid: 89892b4f3cb419644b7170afb74c48ad, type: 3}
   dropPoint: {fileID: 2518191774439914377}
@@ -1593,6 +1602,103 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!82 &8464624065367950514
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073382991170694282}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 723aa7cabe18dac44b59996c74779462, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4152180895677504600
 GameObject:
   m_ObjectHideFlags: 0

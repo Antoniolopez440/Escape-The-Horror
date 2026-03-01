@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 374e093d968134b04a4db2cc041e1ffa
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/portrait.svg
+  uploadId: 454732

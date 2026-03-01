@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8744607f3ae728e42a5344c2e7c20d06
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Scripts/Repulse/DispatchSystem/WebGlDispatcher.cs
+  uploadId: 454732

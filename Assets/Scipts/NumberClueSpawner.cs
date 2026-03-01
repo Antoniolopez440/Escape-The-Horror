@@ -55,10 +55,10 @@ public class NumberClueSpawner : MonoBehaviour
         }
 
         for (int i = 0; i < digits.Length; i++)
-            spawnOne(digits[i]);
+            spawnOne(digits[i], i + 1);
     }
 
-    private void spawnOne(int digit)
+    private void spawnOne(int digit, int position)
     {
         int idx = GetRandomFreeSpawnIndex();
         if (idx == -1) return; // No free spawn points
@@ -73,11 +73,10 @@ public class NumberClueSpawner : MonoBehaviour
         if (clue != null)
         {
             clue.numberValue = digit;
+            clue.codePosition = position;
+         
         }
-        else
-        {
-          Debug.LogWarning("[NumberClueSpawner] Spawned prefab does not have a NumberClue component.", this);
-        }
+   
 
         TMP_Text tmp = clueObj.GetComponent<TMP_Text>();
         if (tmp != null)

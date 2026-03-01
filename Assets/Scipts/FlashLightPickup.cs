@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FlashLightPickup : MonoBehaviour
@@ -54,11 +55,23 @@ public class FlashLightPickup : MonoBehaviour
 
                HasFlashlightt = true;
 
+            StartCoroutine(ShowToggleHint());
+
             if (UIManager.Instance != null)
-                UIManager.Instance.HideMessage();
+             
 
             Destroy(gameObject, pickupSound != null ? pickupSound.length : 0f); // Destroy the pickup object
         }
+    }
+
+    private IEnumerator ShowToggleHint()
+    {
+        if (UIManager.Instance == null) yield break;
+
+        UIManager.Instance.ShowMessage("F : Toggle");
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.HideMessage();
+
     }
 
     private void OnTriggerEnter(Collider other)

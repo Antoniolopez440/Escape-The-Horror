@@ -9,6 +9,9 @@ public class NumberClue : MonoBehaviour
     [Header("Clue Display")]
     public string interactMessagePrefix = "number: "; // The message shown when the player can interact with the clue
 
+    [Header("Clue Order")]
+    [Range(1, 3)] public int codePosition = 1;
+
     [Tooltip("The message shown when the player interacts with the clue")]
     public bool requireRendererVisible = true; // Whether the clue can only be interacted with when its renderer is visible
 
@@ -40,13 +43,33 @@ public class NumberClue : MonoBehaviour
         }
 
     }
-   
+
+    private void Start()
+    {
+        if (CodeManager.Instance != null)
+            return;
+
+        string code = CodeManager.Instance.GetCurrentCode();
+
+        if (string.IsNullOrEmpty(code)) return;
+
+      
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         if (!playerInRange)
             return;
+        if (requireRendererVisible && cachedRenderer != null && !cachedRenderer.enabled)
+        {
+            UIManager.Instance.ShowHint("Clue Nearby");
+            return; 
+        }
+
+        UIManager.Instance.ShowHint("Press E to read");
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Reveal();
@@ -62,22 +85,23 @@ public class NumberClue : MonoBehaviour
         }
 
           // Always show the message when interacted (even after collected)
-            UIManager.Instance.ShowMessage(interactMessagePrefix + numberValue);
+            UIManager.Instance.ShowMessage($"Position {codePosition}: {numberValue}");
 
         // Only count it once toward the code
-        
+
         if (!collectedOnce)
         {
             collectedOnce = true;
             if (CodeManager.Instance != null)
-                CodeManager.Instance.CollectNumber(numberValue); }
+                CodeManager.Instance.CollectNumber(codePosition, numberValue); }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (!other.CompareTag("Player")) return;
-            playerInRange = true;
+        playerInRange = true;
+
+       
             UIManager.Instance.ShowHint("Clue Nearby");
 
         if (pulseSource != null && pulseClip != null)
@@ -92,8 +116,10 @@ public class NumberClue : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+
         if (!other.CompareTag("Player")) return;
             playerInRange = false;
+
             UIManager.Instance.HideHint();
 
         if (pulseSource != null && pulseSource.isPlaying)

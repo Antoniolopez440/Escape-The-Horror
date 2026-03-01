@@ -21,6 +21,7 @@ public class DoorInteract : MonoBehaviour
 
     [Header("Auto Open For Zombies")]
     [SerializeField] string zombieTag = "Enemy";
+    [SerializeField] float zombieOpenDelay = 5f;
 
     [Header("Lock Settings")]
     [SerializeField] LockType lockType = LockType.Code;
@@ -48,7 +49,8 @@ public class DoorInteract : MonoBehaviour
     bool playerInRange;
     bool isOpen;
     bool isMoving;
-    int zombiesInRange;
+    int zombiesInRange = 0;
+    bool zombieOpening = false;
 
     bool unlocked;
 
@@ -248,11 +250,24 @@ public class DoorInteract : MonoBehaviour
             zombiesInRange++;
 
             // Zombies can only open if unlocked (keeps your door puzzle intact)
-            if (unlocked && !isOpen && !isMoving)
-            {
+            if (unlocked && !isOpen && !isMoving && !zombieOpening)
+                ZombieOpenDelay();
+
                 StartCoroutine(ToggleDoor());
-            }
+            
         }
+    }
+
+    private IEnumerator ZombieOpenDelay()
+    {
+        zombieOpening = true;
+
+        yield return new WaitForSeconds(zombieOpenDelay);
+        if (zombiesInRange > 0 && unlocked && !isOpen && !isMoving)
+        {
+            StartCoroutine(ToggleDoor());
+        }
+        zombieOpening = false;
     }
 
     private void OnTriggerExit(Collider other)
@@ -267,8 +282,11 @@ public class DoorInteract : MonoBehaviour
 
         if (other.CompareTag(zombieTag))
         {
-            zombiesInRange--;
-            if (zombiesInRange < 0) zombiesInRange = 0;
+            zombiesInRange = Mathf.Max(0, zombiesInRange - 1);
+            // If no more zombies in range, close the door (if it was opened by them)
+
+            if (unlocked && zombiesInRange == 0 && isOpen && !isMoving)
+                StartCoroutine(ToggleDoor());
         }
     }
 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cb1789069d36b30409cd458f38025282
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Itch.io/External/style.css
+  uploadId: 454732

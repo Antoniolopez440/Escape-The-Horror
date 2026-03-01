@@ -79,7 +79,7 @@ public class AmmoPickUP : MonoBehaviour
 
         // Notify the spawner before destroying
         if (spawner != null)
-            spawner.NotifyAmmoPickUp();
+            spawner.NotifyPickedUp(spawnIndex);
 
         if (destroyOnPickup)
             Destroy(gameObject);

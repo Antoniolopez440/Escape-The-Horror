@@ -84,7 +84,7 @@ public class MedkitSpawner : MonoBehaviour
         activeAtPoint[idx] = kit;
 
         // Let the pickup know who spawned it + which spawn point index it used
-        HealthPickup pickup = kit.GetComponent<HealthPickup>();
+        HealthPickup pickup = kit.GetComponentInChildren<HealthPickup>();
         if (pickup != null)
         {
             pickup.SetSpawner(this, idx);

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 443f9ea05932bf24192c1116190f993c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Scripts/Repulse/WEBGL/RepulseWebGlTool.cs
+  uploadId: 454732

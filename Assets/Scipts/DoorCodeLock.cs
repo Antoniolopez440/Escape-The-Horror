@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
 
 public class DoorCodeLock : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class DoorCodeLock : MonoBehaviour
 
     [Header("Key Lock")]
     [SerializeField] private string requiredKeyId = "FrontDoorKey";
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
 
     private bool playerInRange = false;
     private bool opening = false;
@@ -82,8 +88,19 @@ public class DoorCodeLock : MonoBehaviour
 
     void Toggle()
     {
+       
+
         float toOpen = Quaternion.Angle(doorHinge.localRotation, openRot);
         float toClosed = Quaternion.Angle(doorHinge.localRotation, closedRot);
+
+        bool willOpen = toOpen < toClosed;
+
+        AudioClip clipToPlay = willOpen ? openSound : closeSound;
+
+        if (clipToPlay != null && clipToPlay != null)
+        {
+            audioSource.PlayOneShot(clipToPlay);
+        }
 
         Quaternion target = (toOpen < toClosed) ? closedRot : openRot;
         StartCoroutine(RotateTo(target));

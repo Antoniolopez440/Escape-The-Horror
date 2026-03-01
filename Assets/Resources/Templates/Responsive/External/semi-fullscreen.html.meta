@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7a5d5acaeb31647be8ca0531d58daa15
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive/External/semi-fullscreen.html
+  uploadId: 454732
