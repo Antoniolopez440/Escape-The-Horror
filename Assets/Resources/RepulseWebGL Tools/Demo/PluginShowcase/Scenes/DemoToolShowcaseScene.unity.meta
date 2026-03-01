@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 69986cc00ac9c8841a920e38deddb1e1
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/Demo/PluginShowcase/Scenes/DemoToolShowcaseScene.unity
+  uploadId: 454732

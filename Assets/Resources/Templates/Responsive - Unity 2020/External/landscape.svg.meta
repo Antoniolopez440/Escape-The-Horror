@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 65ae2d58473034b8c8cf07d3c8e9c1ed
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/landscape.svg
+  uploadId: 454732

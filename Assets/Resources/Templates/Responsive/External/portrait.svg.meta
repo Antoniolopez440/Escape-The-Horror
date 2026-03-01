@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c2ac75074d8ee45cba8123e82590be82
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive/External/portrait.svg
+  uploadId: 454732

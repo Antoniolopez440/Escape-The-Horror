@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 57a2c1d20b01f447ab82d9398a97afff
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Itch.io - Unity 2020/index.html
+  uploadId: 454732

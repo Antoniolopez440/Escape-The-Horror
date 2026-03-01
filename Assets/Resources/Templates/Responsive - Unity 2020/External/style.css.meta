@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1712462c4ec8c4ce6849e36462a2b867
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/Templates/Responsive - Unity 2020/External/style.css
+  uploadId: 454732

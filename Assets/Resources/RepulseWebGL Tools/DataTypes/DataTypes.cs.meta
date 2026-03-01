@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 65e86257c9a4181409c0e2e78fe720e9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187738
+  packageName: WebGL Tools
+  packageVersion: 0.7.0
+  assetPath: Assets/Resources/RepulseWebGL Tools/DataTypes/DataTypes.cs
+  uploadId: 454732
