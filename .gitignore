@@ -100,3 +100,4 @@ InitTestScene*.unity*
 /Assets/Prefabs/DummyBullet.prefab
 /Assets/Prefabs/DummyBullet.prefab
 /Project/ProjectZombie_Data
+/Assets/AddressableAssetsData/AssetGroups/Schemas/MainGame_BundledAssetGroupSchema.asset.meta
