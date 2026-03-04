@@ -128,7 +128,7 @@ public class ObjectiveUI : MonoBehaviour
             return;
 
         string raw = text.text.StartsWith("[  ] ") ? text.text.Substring(2) : text.text;
-        text.text = "[ X" + raw;
+        text.text = "[ X ]" + raw;
         text.fontStyle = FontStyles.Strikethrough;
         text.color = Color.gray;
 
@@ -173,7 +173,7 @@ public class ObjectiveUI : MonoBehaviour
         {
             TMP_Text text = kv.Value;
             if (text == null) continue;
-            if (!text.text.StartsWith("[ X")) return false;
+            if (!text.text.StartsWith("[ X ]")) return false;
         }
 
         return true;
