@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
@@ -89,7 +89,7 @@ public class ObjectiveUI : MonoBehaviour
         isCompleting = true;
 
         string raw = currentSubText.text.StartsWith("[  ] ") ? currentSubText.text.Substring(2) : currentSubText.text;
-        currentSubText.text = "[ X" + raw;
+        currentSubText.text = "[ X ]" + raw;
         currentSubText.fontStyle = FontStyles.Strikethrough;
         currentSubText.color = Color.gray;
 
