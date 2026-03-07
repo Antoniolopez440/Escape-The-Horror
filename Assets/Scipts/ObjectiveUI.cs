@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
@@ -124,8 +124,11 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
+        if (text.text.StartsWith("[ X ]"))
+            return;
+
         string raw = text.text.StartsWith("[  ] ") ? text.text.Substring(2) : text.text;
-        text.text = "[ X" + raw;
+        text.text = "[ X ]" + raw;
         text.fontStyle = FontStyles.Strikethrough;
         text.color = Color.gray;
 
@@ -160,8 +163,8 @@ public class ObjectiveUI : MonoBehaviour
     {
         if (!checklist.TryGetValue(id, out TMP_Text text) || text == null) return;
 
-        bool checkedOff = text.text.StartsWith("[ X");
-        text.text = (checkedOff ? "[ X" : "[  ]  ") + newText;
+        bool checkedOff = text.text.StartsWith("[ X ]");
+        text.text = (checkedOff ? "[ X ]" : "[  ]  ") + newText;
     }
 
     public bool IsChecklistFullyChecked()
@@ -170,7 +173,7 @@ public class ObjectiveUI : MonoBehaviour
         {
             TMP_Text text = kv.Value;
             if (text == null) continue;
-            if (!text.text.StartsWith("[ X")) return false;
+            if (!text.text.StartsWith("[ X ]")) return false;
         }
 
         return true;

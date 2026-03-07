@@ -270,7 +270,7 @@ MonoBehaviour:
   hitStunTime: 0.35
   attackLockTime: 0.8
   attackCooldown: 1
-  aud: {fileID: 0}
+  aud: {fileID: -8122290361683531735}
   screamSound: {fileID: 8300000, guid: beda03f5c9bbe7f4d85050c847773c70, type: 3}
   screamVolume: 15
   hasEmerged: 0
